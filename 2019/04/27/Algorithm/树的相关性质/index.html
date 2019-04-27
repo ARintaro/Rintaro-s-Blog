@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>No title | Rintaro&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content>
+    <meta name="description" content="本文大概会长期更新，然后本文大概率不会有图。（我才不会告诉你我写的时候看的图都是随手拿画图画的。。） 一、树的直径（一）求法：树形DP（不要求边权非负）、两次DFS（二）性质： 分析问题时，经常会把直径展开成一条链，其他子树在其下面，就像基环树把唯一的环作为广义根节点一样，本文下面所提的性质，大多基于“边权非负“这一前提条件，应用时请注意。 任意一个节点作根，直径两端点一定是叶子节点。 距离任意点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="No title">
+<meta property="og:url" content="http://yoursite.com/2019/04/27/Algorithm/树的相关性质/index.html">
+<meta property="og:site_name" content="Rintaro&#39;s Blog">
+<meta property="og:description" content="本文大概会长期更新，然后本文大概率不会有图。（我才不会告诉你我写的时候看的图都是随手拿画图画的。。） 一、树的直径（一）求法：树形DP（不要求边权非负）、两次DFS（二）性质： 分析问题时，经常会把直径展开成一条链，其他子树在其下面，就像基环树把唯一的环作为广义根节点一样，本文下面所提的性质，大多基于“边权非负“这一前提条件，应用时请注意。 任意一个节点作根，直径两端点一定是叶子节点。 距离任意点">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-23T10:49:14.850Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="No title">
+<meta name="twitter:description" content="本文大概会长期更新，然后本文大概率不会有图。（我才不会告诉你我写的时候看的图都是随手拿画图画的。。） 一、树的直径（一）求法：树形DP（不要求边权非负）、两次DFS（二）性质： 分析问题时，经常会把直径展开成一条链，其他子树在其下面，就像基环树把唯一的环作为广义根节点一样，本文下面所提的性质，大多基于“边权非负“这一前提条件，应用时请注意。 任意一个节点作根，直径两端点一定是叶子节点。 距离任意点">
+    
+        <link rel="alternate" type="application/atom+xml" title="Rintaro&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Rintaro</h5>
+          <a href="mailto:rintaro@foxmail.com" title="rintaro@foxmail.com" class="mail">rintaro@foxmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ARintaro" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="tencent://QQInterLive/?Cmd=2&Uin=296394065" target="_blank">
+                <i class="icon icon-lg icon-qq"></i>
+                Qq
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">No title</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">No title</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-27T09:01:25.373Z" itemprop="datePublished" class="page-time">
+  2019-04-27
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#一、树的直径"><span class="post-toc-number">1.</span> <span class="post-toc-text">一、树的直径</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#（一）求法：树形DP（不要求边权非负）、两次DFS"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">（一）求法：树形DP（不要求边权非负）、两次DFS</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#（二）性质："><span class="post-toc-number">1.2.</span> <span class="post-toc-text">（二）性质：</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#（三）在具体题目下的性质证明"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">（三）在具体题目下的性质证明</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Algorithm/树的相关性质" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">No title</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-27 17:01:25" datetime="2019-04-27T09:01:25.373Z" itemprop="datePublished">2019-04-27</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <pre><code>本文大概会长期更新，然后本文大概率不会有图。（我才不会告诉你我写的时候看的图都是随手拿画图画的。。）
+</code></pre><h4 id="一、树的直径"><a href="#一、树的直径" class="headerlink" title="一、树的直径"></a>一、树的直径</h4><h5 id="（一）求法：树形DP（不要求边权非负）、两次DFS"><a href="#（一）求法：树形DP（不要求边权非负）、两次DFS" class="headerlink" title="（一）求法：树形DP（不要求边权非负）、两次DFS"></a>（一）求法：树形DP（不要求边权非负）、两次DFS</h5><h5 id="（二）性质："><a href="#（二）性质：" class="headerlink" title="（二）性质："></a>（二）性质：</h5><ol>
+<li>分析问题时，经常会把直径展开成一条链，其他子树在其下面，就像基环树把唯一的环作为广义根节点一样，本文下面所提的性质，大多基于“边权非负“这一前提条件，应用时请注意。</li>
+<li>任意一个节点作根，直径两端点一定是叶子节点。</li>
+<li>距离任意点最远的点一定是直径的一个端点。（相当有用的性质<ul>
+<li>设从A出发找到最远点B</li>
+<li>如果A已经是直径上一个端点，正确性显然。</li>
+<li>如果不是，考虑反证，设直径为CD。</li>
+<li>由于树必然联通，一定存在一条路径能从AB上一点E到达CD上一点F（可能E、F是同一个点。</li>
+<li>则有$AE+ EB &gt; AE + EF + FD​$，推出$EB &gt; EF + FD​$，则有$CB = CF + FE + EB &gt; CF + FE + EF + FD &gt; CF + FD = CD​$，（注意，这里利用了放缩条件$FE + EF &gt; 0​$），与假设矛盾，故假设不成立。</li>
+</ul>
+</li>
+<li>树可能会有多个直径，但是一定会有一条路径（也可能是一个点）的公共部分，且在这部分两侧的长度一定相等。<ul>
+<li>显然，若存在两直径不相交，我们把其连接起来会得到一条更长的路径。</li>
+<li>如果存在两条两侧长度不等的直径，由于它们总长一定相等，我们可以在两侧分别找到它们分出来较长的部分，一接又能得到一条更长的路径。</li>
+</ul>
+</li>
+<li>对于两棵树，用一条边连接它们，新的直径的端点一定是原两颗树直径的端点。<ul>
+<li>如果直径还在一棵树中显然，不在的话基于性质2，也相当显然。</li>
+</ul>
+</li>
+<li>往一棵树里加一个点，直径的端点最多改变一个<ul>
+<li>先不考虑加进来的边权，因为另一端无论找到什么点，都会累加这个边权，所以问题即转化为：在没加之前，距它的父节点距离最远的点，再次应用性质三，显然成立。</li>
+</ul>
+</li>
+</ol>
+<h5 id="（三）在具体题目下的性质证明"><a href="#（三）在具体题目下的性质证明" class="headerlink" title="（三）在具体题目下的性质证明"></a>（三）在具体题目下的性质证明</h5><ol>
+<li>NOIP 2007 树网的核 （由于没有图，这部分很难懂，建议画图，<del>然而原题不要求证明这些东西</del><ul>
+<li>在任意直径上求最小偏心距都相等</li>
+<li>考虑任意两条直径，由于性质4，两侧长度都相等，关于给定长度$s$的限制条件显然是等价的，接下来只需讨论两条直径因为“位置”的不同而导致的答案优劣即可。</li>
+<li>考虑两条求出最小偏心距不相等的直径中答案更劣的那一条，那么在答案更优的那条的“私有部分”上（不在性质4提到的公共部分上），一定存在一个导致这条答案变劣的子树，即离这条最优的核最远的点在这个子树上。根据直径的最长性，到这个子树上最远点的距离是显然没到更优的直径端点长的，矛盾。所以不存在答案更劣的，所以最小偏心距都相等。</li>
+</ul>
+</li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-04-23T10:49:14.850Z" itemprop="dateUpdated">2019-04-23 18:49:14</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/04/27/Algorithm/树的相关性质/" target="_blank" rel="external">http://yoursite.com/2019/04/27/Algorithm/树的相关性质/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Rintaro">
+            Rintaro
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/04/27/Algorithm/树的相关性质/&title=《No title》 — Rintaro's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/04/27/Algorithm/树的相关性质/&title=《No title》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/04/27/Algorithm/树的相关性质/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《No title》 — Rintaro's Blog&url=http://yoursite.com/2019/04/27/Algorithm/树的相关性质/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/04/27/Algorithm/树的相关性质/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/04/27/Contest/NOIP 2018/D1T3 赛道修建/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">No title</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/04/27/Template/小工具/log2的姿势/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">No title</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Rintaro &copy; 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/04/27/Algorithm/树的相关性质/&title=《No title》 — Rintaro's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/04/27/Algorithm/树的相关性质/&title=《No title》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/04/27/Algorithm/树的相关性质/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《No title》 — Rintaro's Blog&url=http://yoursite.com/2019/04/27/Algorithm/树的相关性质/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/04/27/Algorithm/树的相关性质/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2019/04/27/Algorithm/树的相关性质/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Rintaro's Blog Here';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Rintaro's Blog';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
