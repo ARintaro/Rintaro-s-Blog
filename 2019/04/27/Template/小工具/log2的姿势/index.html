@@ -14,24 +14,25 @@
     
     
     
-    <title>No title | Rintaro&#39;s Blog | Algorithm and Anime</title>
+    <title>优雅的O(1)下取整log2 | Rintaro&#39;s Blog | Algorithm and Anime</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content>
-    <meta name="description" content="1.转double法@card{ double储存数的方式是[0,51]尾数位，52位后是指数位与符号位，那不妨直接右移52位找到符号位，然后用&amp;amp;63取出即可，然而编译器不会让你右移一个double，所以需要(lint&amp;amp;)，强制让编译器把t当作lint处理，复杂度你从代码也可以看出来，几乎是$O(1)$的。请注意，最后是否+1有时候根据编译器的不同会有不同的结果，我在NOI Lin">
+    <meta name="keywords" content="语言,奇淫技巧">
+    <meta name="description" content="还能不能再给力点呢？">
+<meta name="keywords" content="语言,奇淫技巧">
 <meta property="og:type" content="article">
-<meta property="og:title" content="No title">
+<meta property="og:title" content="优雅的O(1)下取整log2">
 <meta property="og:url" content="http://arintaro.com/2019/04/27/Template/小工具/log2的姿势/index.html">
 <meta property="og:site_name" content="Rintaro&#39;s Blog">
-<meta property="og:description" content="1.转double法@card{ double储存数的方式是[0,51]尾数位，52位后是指数位与符号位，那不妨直接右移52位找到符号位，然后用&amp;amp;63取出即可，然而编译器不会让你右移一个double，所以需要(lint&amp;amp;)，强制让编译器把t当作lint处理，复杂度你从代码也可以看出来，几乎是$O(1)$的。请注意，最后是否+1有时候根据编译器的不同会有不同的结果，我在NOI Lin">
+<meta property="og:description" content="还能不能再给力点呢？">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-27T13:01:50.095Z">
+<meta property="og:updated_time" content="2019-04-27T13:10:15.091Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="No title">
-<meta name="twitter:description" content="1.转double法@card{ double储存数的方式是[0,51]尾数位，52位后是指数位与符号位，那不妨直接右移52位找到符号位，然后用&amp;amp;63取出即可，然而编译器不会让你右移一个double，所以需要(lint&amp;amp;)，强制让编译器把t当作lint处理，复杂度你从代码也可以看出来，几乎是$O(1)$的。请注意，最后是否+1有时候根据编译器的不同会有不同的结果，我在NOI Lin">
+<meta name="twitter:title" content="优雅的O(1)下取整log2">
+<meta name="twitter:description" content="还能不能再给力点呢？">
     
         <link rel="alternate" type="application/atom+xml" title="Rintaro&#39;s Blog" href="/atom.xml">
     
@@ -112,7 +113,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">No title</div>
+        <div class="flex-col header-title ellipsis">优雅的O(1)下取整log2</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -131,16 +132,18 @@
         
     </div>
 </header>
-<header class="content-header post-header">
+<header class="content-header page-header">
 
     <div class="container fade-scale">
-        <h1 class="title">No title</h1>
+        <h1 class="title">优雅的O(1)下取整log2</h1>
         <h5 class="subtitle">
             
                 <time datetime="2019-04-27T09:01:25.331Z" itemprop="datePublished" class="page-time">
   2019-04-27
 </time>
 
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/模板/">模板</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/模板/工具/">工具</a></li></ul></li></ul>
 
             
         </h5>
@@ -153,79 +156,36 @@
 
 
 <div class="container body-wrap">
-    
-    <aside class="post-widget">
-        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#undefined"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.转double法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#undefined"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.打表法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#undefined"><span class="post-toc-number">3.</span> <span class="post-toc-text">3.double法的具体测试</span></a></li></ol>
-        </nav>
-    </aside>
-
-
-<article id="post-Template/小工具/log2的姿势" class="post-article article-type-post fade" itemprop="blogPost">
-
-    <div class="post-card">
-        <h1 class="post-card-title">No title</h1>
-        <div class="post-meta">
-            <time class="post-time" title="2019-04-27 17:01:25" datetime="2019-04-27T09:01:25.331Z" itemprop="datePublished">2019-04-27</time>
-
-            
-
-
-            
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
-    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
-</span>
-
-
-        </div>
-        <div class="post-content" id="post-content" itemprop="postContent">
-            <h4><span id="1转double法">1.转double法</span></h4><p>@card{</p>
+    <article class="page-article fade" itemprop="blogPage">
+        <div class="post-content page-content" id="page-content" itemprop="pageContent">
+            <p>还能不能再给力点呢？<a id="more"></a></p>
+<h4><span id="1转double法">1.转double法</span></h4><div class="card">
 <p>double储存数的方式是[0,51]尾数位，52位后是指数位与符号位，那不妨直接右移52位找到符号位，然后用&amp;63取出即可，然而编译器不会让你右移一个double，所以需要(lint&amp;)，强制让编译器把t当作lint处理，复杂度你从代码也可以看出来，几乎是$O(1)$的。<br>请注意，最后是否+1有时候根据编译器的不同会有不同的结果，我在NOI Linux与DevC++上测试均需要+1，考试用前请稍微测试一下。（一般来说手玩2 7 8 9即可）</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lint long long</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> lint <span class="title">mlog2</span><span class="params">(lint x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">double</span> t = (<span class="keyword">double</span>)x;</span><br><span class="line">    <span class="keyword">return</span> (lint)((lint&amp;)t &gt;&gt; <span class="number">52</span> &amp; <span class="number">63</span>) + <span class="number">1</span>; <span class="comment">// 注意最前面还要再转一次long long</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Luogu ST表 传统打表法 1011ms <a href="https://www.luogu.org/recordnew/show/13493959" target="_blank" rel="noopener">https://www.luogu.org/recordnew/show/13493959</a><br>Luogu ST表 double法 1009ms <a href="https://www.luogu.org/recordnew/show/18155615" target="_blank" rel="noopener">https://www.luogu.org/recordnew/show/18155615</a><br>实测后发现速度差异不大, 开了O2打表会快一些</p>
-<p>}</p>
-<h4><span id="2打表法">2.打表法</span></h4><p>@card{</p>
+</div>
+<h4><span id="2打表法">2.打表法</span></h4><div class="card">
 <p>显然我们可以对值域内的所有整数打表，但是如果数据较大，且只查2的指数，可以利用这样的一个结论</p>
 <p>$$\forall k \in [0,35], 2^kmod\ 37,\ 取遍[1,36]$$</p>
-<p>}</p>
-<h4><span id="3double法的具体测试">3.double法的具体测试</span></h4><p>@card{</p>
+</div>
+<h4><span id="3double法的具体测试">3.double法的具体测试</span></h4><div class="card">
 <ul>
 <li>$test\ site:$<a href="https://www.luogu.org/problemnew/show/P3865" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P3865</a></li>
 <li>$task:$ 实现函数mlog2，需要$O(1)$返回$\lfloor log_2{x} \rfloor​$</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// test site: https://www.luogu.org/problemnew/show/P3865</span></span><br><span class="line"><span class="comment">// 要求：实现函数mlog2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> readint(x) scanf(<span class="meta-string">"%d"</span>,&amp;(x))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rint register int</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lint long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n, m, logn;</span><br><span class="line"><span class="keyword">int</span> arr[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> lint <span class="title">mlog2</span><span class="params">(lint x)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> rmq[<span class="number">20</span>][maxn];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">getrmq</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; i++) rmq[<span class="number">0</span>][i] = arr[i];</span><br><span class="line">    <span class="keyword">for</span>(rint d=<span class="number">1</span>; d&lt;=logn; d++) &#123;</span><br><span class="line">        <span class="keyword">int</span> len = (<span class="number">1</span> &lt;&lt; d), half = (<span class="number">1</span> &lt;&lt; (d<span class="number">-1</span>));</span><br><span class="line">        <span class="keyword">for</span>(rint i=<span class="number">1</span>; i+len<span class="number">-1</span>&lt;=n; i++) &#123;</span><br><span class="line">            rmq[d][i] = max(rmq[d<span class="number">-1</span>][i], rmq[d<span class="number">-1</span>][i+half]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">ask</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> loglen = mlog2(r - l + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> max(rmq[loglen][l], rmq[loglen][r-(<span class="number">1</span>&lt;&lt;loglen)+<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    readint(n), readint(m);</span><br><span class="line">    logn = <span class="built_in">ceil</span>(log2(n));</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; i++) readint(arr[i]);</span><br><span class="line">    getrmq();</span><br><span class="line">    <span class="keyword">int</span> nl, nr;</span><br><span class="line">    <span class="keyword">while</span>(m--) &#123;</span><br><span class="line">        readint(nl), readint(nr);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ask(nl,nr));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>}</p>
+</div>
 
         </div>
 
-        <blockquote class="post-copyright">
-    
-    <div class="content">
         
-<span class="post-time">
-    最后更新时间：<time datetime="2019-04-27T13:01:50.095Z" itemprop="dateUpdated">2019-04-27 21:01:50</time>
-</span><br>
-
-
-        
-        戦いの日々は、ずっとこれから —— Euphoria
-        
-    </div>
-    
-    <footer>
-        <a href="http://arintaro.com">
-            <img src="/img/avatar.jpg" alt="Rintaro">
-            Rintaro
-        </a>
-    </footer>
-</blockquote>
-
-        
-
-
-        <div class="post-footer">
-            
+        <div class="card page-about-me flex-row">
+            <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="/img/avatar.jpg"></a>
+            <div class="content flex-col">
+                <p><strong>Rintaro</strong></p>
+                <p><em>Algorithm and Anime</em></p>
+                <p>LN某弱校高一OIer, 想进队ORZ</p>
+            </div>
 
             
 <div class="page-share-wrap">
@@ -234,7 +194,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/04/27/Template/小工具/log2的姿势/&title=《No title》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/04/27/Template/小工具/log2的姿势/&title=《优雅的O(1)下取整log2》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -244,7 +204,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/04/27/Template/小工具/log2的姿势/&title=《No title》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/04/27/Template/小工具/log2的姿势/&title=《优雅的O(1)下取整log2》 — Rintaro's Blog&source=还能不能再给力点呢？" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -254,7 +214,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《No title》 — Rintaro's Blog&url=http://arintaro.com/2019/04/27/Template/小工具/log2的姿势/&via=http://arintaro.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《优雅的O(1)下取整log2》 — Rintaro's Blog&url=http://arintaro.com/2019/04/27/Template/小工具/log2的姿势/&via=http://arintaro.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -276,48 +236,34 @@
 
 
         </div>
-    </div>
+        
 
+        
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </article>
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/2019/04/27/Algorithm/树的相关性质/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">树的相关性质(更新中)</h4>
-      </a>
-    </div>
-  
-
-  
-</nav>
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</article>
-
-
 
 </div>
 
@@ -360,7 +306,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/04/27/Template/小工具/log2的姿势/&title=《No title》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/04/27/Template/小工具/log2的姿势/&title=《优雅的O(1)下取整log2》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -370,7 +316,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/04/27/Template/小工具/log2的姿势/&title=《No title》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/04/27/Template/小工具/log2的姿势/&title=《优雅的O(1)下取整log2》 — Rintaro's Blog&source=还能不能再给力点呢？" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -380,7 +326,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《No title》 — Rintaro's Blog&url=http://arintaro.com/2019/04/27/Template/小工具/log2的姿势/&via=http://arintaro.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《优雅的O(1)下取整log2》 — Rintaro's Blog&url=http://arintaro.com/2019/04/27/Template/小工具/log2的姿势/&via=http://arintaro.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
