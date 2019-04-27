@@ -14,25 +14,25 @@
     
     
     
-    <title>����ͼ��ģ�� | Rintaro&#39;s Blog | Algorithm and Anime</title>
+    <title>基础图论模板 | Rintaro&#39;s Blog | Algorithm and Anime</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="ͼ��">
-    <meta name="description" content="�������ж�@card{  $test\ site: $https://www.luogu.org/problemnew/show/P3385  $task: $ 600ms�����ж���������ע�⣬�ж������ݣ�Ҫ��ʵ��clear�����������ڽӱ�  $tips: $ ѭ��������ʵ�ֺá�  $extra:?$?”ͬʱ��¼�ڵ���Ӵ���”��”">
-<meta name="keywords" content="ͼ��">
+    <meta name="keywords" content="图论">
+    <meta name="description" content="需要$2min$内实现任意一个">
+<meta name="keywords" content="图论">
 <meta property="og:type" content="article">
-<meta property="og:title" content="����ͼ��ģ��">
-<meta property="og:url" content="http://arintaro.com/2019/04/27/Template/基础图论/负环/index.html">
+<meta property="og:title" content="基础图论模板">
+<meta property="og:url" content="http://arintaro.com/2019/04/27/Template/图论/基础图论/index.html">
 <meta property="og:site_name" content="Rintaro&#39;s Blog">
-<meta property="og:description" content="�������ж�@card{  $test\ site: $https://www.luogu.org/problemnew/show/P3385  $task: $ 600ms�����ж���������ע�⣬�ж������ݣ�Ҫ��ʵ��clear�����������ڽӱ�  $tips: $ ѭ��������ʵ�ֺá�  $extra:?$?”ͬʱ��¼�ڵ���Ӵ���”��”">
+<meta property="og:description" content="需要$2min$内实现任意一个">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-27T12:59:16.061Z">
+<meta property="og:updated_time" content="2019-04-27T13:23:32.613Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="����ͼ��ģ��">
-<meta name="twitter:description" content="�������ж�@card{  $test\ site: $https://www.luogu.org/problemnew/show/P3385  $task: $ 600ms�����ж���������ע�⣬�ж������ݣ�Ҫ��ʵ��clear�����������ڽӱ�  $tips: $ ѭ��������ʵ�ֺá�  $extra:?$?”ͬʱ��¼�ڵ���Ӵ���”��”">
+<meta name="twitter:title" content="基础图论模板">
+<meta name="twitter:description" content="需要$2min$内实现任意一个">
     
         <link rel="alternate" type="application/atom+xml" title="Rintaro&#39;s Blog" href="/atom.xml">
     
@@ -113,7 +113,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">����ͼ��ģ��</div>
+        <div class="flex-col header-title ellipsis">基础图论模板</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -135,15 +135,15 @@
 <header class="content-header page-header">
 
     <div class="container fade-scale">
-        <h1 class="title">����ͼ��ģ��</h1>
+        <h1 class="title">基础图论模板</h1>
         <h5 class="subtitle">
             
-                <time datetime="2019-04-27T12:55:06.214Z" itemprop="datePublished" class="page-time">
+                <time datetime="2019-04-27T13:23:23.969Z" itemprop="datePublished" class="page-time">
   2019-04-27
 </time>
 
 
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/g��/">ģ��</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/模板/">模板</a></li></ul>
 
             
         </h5>
@@ -158,13 +158,14 @@
 <div class="container body-wrap">
     <article class="page-article fade" itemprop="blogPage">
         <div class="post-content page-content" id="page-content" itemprop="pageContent">
-            <ol>
-<li><h4><span id="ж">�������ж�</span></h4><div class="card">
+            <p>需要$2min$内实现任意一个 <a id="more"></a></p>
+<ol>
+<li><h4><span id="负环的判定">负环的判定</span></h4><div class="card">
 <ul>
 <li>$test\ site: $<a href="https://www.luogu.org/problemnew/show/P3385" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P3385</a> </li>
-<li>$task: $ 600ms�����ж���������ע�⣬�ж������ݣ�Ҫ��ʵ��clear�����������ڽӱ� </li>
-<li>$tips: $ ѭ��������ʵ�ֺá� </li>
-<li>$extra:?$?”ͬʱ��¼�ڵ���Ӵ���”��”��ʱ”</li>
+<li>$task: $ 600ms以内判定负环，请注意，有多组数据，要求实现clear函数（包括邻接表 </li>
+<li>$tips: $ 循环队列已实现好。 </li>
+<li>$extra:?$?”同时记录节点入队次数”、”卡时”</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line"></span><br><span class="line">#define rint register int</span><br><span class="line">#define lint long long</span><br><span class="line">#define isnum(x) (&apos;0&apos; &lt;= (x) &amp;&amp; (x) &lt;= &apos;9&apos;)</span><br><span class="line">template&lt;typename tint&gt;</span><br><span class="line">inline void readint(tint&amp; x) &#123;</span><br><span class="line">    int f = 1; char ch = getchar(); x = 0;</span><br><span class="line">    for(; !isnum(ch); ch = getchar()) if(ch == &apos;-&apos;) f = -1;</span><br><span class="line">    for(; isnum(ch); ch = getchar()) x = x * 10 + ch - &apos;0&apos;;</span><br><span class="line">    x *= f;</span><br><span class="line">&#125;</span><br><span class="line">using namespace std;</span><br><span class="line">const int maxn = 2000 + 10;</span><br><span class="line">const int maxm = 6000 + 10;</span><br><span class="line">int n, m, start = 1;</span><br><span class="line"></span><br><span class="line">int head[maxn], ev[maxm], ew[maxm], nxt[maxm];</span><br><span class="line">int totedge = 0;</span><br><span class="line">inline void addedge(int nu, int nv, int nw) &#123;</span><br><span class="line">    ev[++totedge] = nv, ew[totedge] = nw, nxt[totedge] = head[nu];</span><br><span class="line">    head[nu] = totedge;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">struct Queue&#123;</span><br><span class="line">    int arr[maxn];</span><br><span class="line">    int l, r, size;</span><br><span class="line">    inline void init() &#123; l = 1, r = 0, size = maxn - 10; &#125;</span><br><span class="line">    inline void push(int x) &#123;</span><br><span class="line">        if(r == size) r = 0;</span><br><span class="line">        arr[++r] = x;</span><br><span class="line">    &#125;</span><br><span class="line">    inline int pop() &#123;</span><br><span class="line">        if(l == size) &#123;l = 1; return arr[size]; &#125;</span><br><span class="line">        return arr[l++];</span><br><span class="line">    &#125;</span><br><span class="line">    inline bool empty() &#123; return l == r + 1; &#125;</span><br><span class="line">&#125;q;</span><br><span class="line"></span><br><span class="line">void clear() &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool check() &#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    int T;</span><br><span class="line">    readint(T);</span><br><span class="line">    while(T--) &#123;</span><br><span class="line">        int nu, nv, nw;</span><br><span class="line">        readint(n), readint(m);</span><br><span class="line">        clear();</span><br><span class="line">        for(rint i=1; i&lt;=m; i++) &#123;</span><br><span class="line">            readint(nu), readint(nv), readint(nw);</span><br><span class="line">            addedge(nu, nv, nw);</span><br><span class="line">            if(nw &gt;= 0) addedge(nv, nu, nw);</span><br><span class="line">        &#125;</span><br><span class="line">        puts(check() ? &quot;YE5&quot; : &quot;N0&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </div>
@@ -190,7 +191,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/04/27/Template/基础图论/负环/&title=《����ͼ��ģ��》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/04/27/Template/图论/基础图论/&title=《基础图论模板》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -200,22 +201,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/04/27/Template/基础图论/负环/&title=《����ͼ��ģ��》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/04/27/Template/图论/基础图论/&title=《基础图论模板》 — Rintaro's Blog&source=需要$2min$内实现任意一个" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/04/27/Template/基础图论/负环/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/04/27/Template/图论/基础图论/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《����ͼ��ģ��》 — Rintaro's Blog&url=http://arintaro.com/2019/04/27/Template/基础图论/负环/&via=http://arintaro.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《基础图论模板》 — Rintaro's Blog&url=http://arintaro.com/2019/04/27/Template/图论/基础图论/&via=http://arintaro.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/04/27/Template/基础图论/负环/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/04/27/Template/图论/基础图论/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -302,7 +303,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/04/27/Template/基础图论/负环/&title=《����ͼ��ģ��》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/04/27/Template/图论/基础图论/&title=《基础图论模板》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -312,22 +313,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/04/27/Template/基础图论/负环/&title=《����ͼ��ģ��》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/04/27/Template/图论/基础图论/&title=《基础图论模板》 — Rintaro's Blog&source=需要$2min$内实现任意一个" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/04/27/Template/基础图论/负环/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/04/27/Template/图论/基础图论/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《����ͼ��ģ��》 — Rintaro's Blog&url=http://arintaro.com/2019/04/27/Template/基础图论/负环/&via=http://arintaro.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《基础图论模板》 — Rintaro's Blog&url=http://arintaro.com/2019/04/27/Template/图论/基础图论/&via=http://arintaro.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/04/27/Template/基础图论/负环/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/04/27/Template/图论/基础图论/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -338,7 +339,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://arintaro.com/2019/04/27/Template/基础图论/负环/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://arintaro.com/2019/04/27/Template/图论/基础图论/" alt="微信分享二维码">
 </div>
 
 
