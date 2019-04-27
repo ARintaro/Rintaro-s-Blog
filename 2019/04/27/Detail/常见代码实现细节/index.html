@@ -14,24 +14,25 @@
     
     
     
-    <title>No title | Rintaro&#39;s Blog | Algorithm and Anime(?</title>
+    <title>常见代码实现细节 | Rintaro&#39;s Blog | Algorithm and Anime</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content>
-    <meta name="description" content="这里记录的问题，全是我调过的问题orz 一、变量溢出问题 乘是一个相当危险的操作，只要有乘，必须考虑溢出问题，lint型做乘法带模数时，要写快速乘 int型涉及到前缀和/乘法时，注意要转lint防爆，有的题表面是1e9左右，但有多次加法操作，也得开lint INT范围是 2^31-1也就是2.1e9，一般来说1e9可以安全加减一次，平时inf开到1e9即可， 但是要注意毒瘤题范围2^32或者左右，">
+    <meta name="keywords" content="总结,方法论">
+    <meta name="description" content="这里记录的问题，全是我调过的问题orz。 &amp;lt;!– more – &amp;gt; @card{  我们写代码的目标是”一遍成”，不清醒时不写代码，没想好时不写代码  } 一、变量溢出问题@card{  乘是一个相当危险的操作，只要有乘，必须考虑溢出问题，lint型做乘法带模数时，要写快速乘 int型涉及到前缀和/乘法时，注意要转lint防爆，有的题表面是1e9左右，但有多次加法操作，也得开lint">
+<meta name="keywords" content="总结,方法论">
 <meta property="og:type" content="article">
-<meta property="og:title" content="No title">
+<meta property="og:title" content="常见代码实现细节">
 <meta property="og:url" content="http://arintaro.com/2019/04/27/Detail/常见代码实现细节/index.html">
 <meta property="og:site_name" content="Rintaro&#39;s Blog">
-<meta property="og:description" content="这里记录的问题，全是我调过的问题orz 一、变量溢出问题 乘是一个相当危险的操作，只要有乘，必须考虑溢出问题，lint型做乘法带模数时，要写快速乘 int型涉及到前缀和/乘法时，注意要转lint防爆，有的题表面是1e9左右，但有多次加法操作，也得开lint INT范围是 2^31-1也就是2.1e9，一般来说1e9可以安全加减一次，平时inf开到1e9即可， 但是要注意毒瘤题范围2^32或者左右，">
-<meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-26T12:52:52.032Z">
+<meta property="og:description" content="这里记录的问题，全是我调过的问题orz。 &amp;lt;!– more – &amp;gt; @card{  我们写代码的目标是”一遍成”，不清醒时不写代码，没想好时不写代码  } 一、变量溢出问题@card{  乘是一个相当危险的操作，只要有乘，必须考虑溢出问题，lint型做乘法带模数时，要写快速乘 int型涉及到前缀和/乘法时，注意要转lint防爆，有的题表面是1e9左右，但有多次加法操作，也得开lint">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-27T12:38:16.711Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="No title">
-<meta name="twitter:description" content="这里记录的问题，全是我调过的问题orz 一、变量溢出问题 乘是一个相当危险的操作，只要有乘，必须考虑溢出问题，lint型做乘法带模数时，要写快速乘 int型涉及到前缀和/乘法时，注意要转lint防爆，有的题表面是1e9左右，但有多次加法操作，也得开lint INT范围是 2^31-1也就是2.1e9，一般来说1e9可以安全加减一次，平时inf开到1e9即可， 但是要注意毒瘤题范围2^32或者左右，">
+<meta name="twitter:title" content="常见代码实现细节">
+<meta name="twitter:description" content="这里记录的问题，全是我调过的问题orz。 &amp;lt;!– more – &amp;gt; @card{  我们写代码的目标是”一遍成”，不清醒时不写代码，没想好时不写代码  } 一、变量溢出问题@card{  乘是一个相当危险的操作，只要有乘，必须考虑溢出问题，lint型做乘法带模数时，要写快速乘 int型涉及到前缀和/乘法时，注意要转lint防爆，有的题表面是1e9左右，但有多次加法操作，也得开lint">
     
         <link rel="alternate" type="application/atom+xml" title="Rintaro&#39;s Blog" href="/atom.xml">
     
@@ -81,13 +82,6 @@
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/tags">
-                <i class="icon icon-lg icon-tags"></i>
-                Tags
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
               <a href="/archives">
                 <i class="icon icon-lg icon-archives"></i>
                 Archives
@@ -119,13 +113,13 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis"></div>
+        <div class="flex-col header-title ellipsis">常见代码实现细节</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -138,16 +132,18 @@
         
     </div>
 </header>
-<header class="content-header post-header">
+<header class="content-header page-header">
 
     <div class="container fade-scale">
-        <h1 class="title"></h1>
+        <h1 class="title">常见代码实现细节</h1>
         <h5 class="subtitle">
             
                 <time datetime="2019-04-27T09:01:25.528Z" itemprop="datePublished" class="page-time">
   2019-04-27
 </time>
 
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/细节/">细节</a></li></ul>
 
             
         </h5>
@@ -160,35 +156,16 @@
 
 
 <div class="container body-wrap">
-    
-    <aside class="post-widget">
-        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#一、变量溢出问题"><span class="post-toc-number">1.</span> <span class="post-toc-text">一、变量溢出问题</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#二、运算问题"><span class="post-toc-number">2.</span> <span class="post-toc-text">二、运算问题</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#三、语言问题"><span class="post-toc-number">3.</span> <span class="post-toc-text">三、语言问题</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#四、数学相关"><span class="post-toc-number">4.</span> <span class="post-toc-text">四、数学相关</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#五、数据结构相关"><span class="post-toc-number">5.</span> <span class="post-toc-text">五、数据结构相关</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#六、图论相关"><span class="post-toc-number">6.</span> <span class="post-toc-text">六、图论相关</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#七、动态规划相关"><span class="post-toc-number">7.</span> <span class="post-toc-text">七、动态规划相关</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#八、杂项"><span class="post-toc-number">8.</span> <span class="post-toc-text">八、杂项</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#九、奇异的语言细节"><span class="post-toc-number">9.</span> <span class="post-toc-text">九、奇异的语言细节</span></a></li></ol>
-        </nav>
-    </aside>
-
-
-<article id="post-Detail/常见代码实现细节" class="post-article article-type-post fade" itemprop="blogPost">
-
-    <div class="post-card">
-        <h1 class="post-card-title"></h1>
-        <div class="post-meta">
-            <time class="post-time" title="2019-04-27 17:01:25" datetime="2019-04-27T09:01:25.528Z" itemprop="datePublished">2019-04-27</time>
-
-            
-
-
-            
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
-    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
-</span>
-
-
-        </div>
-        <div class="post-content" id="post-content" itemprop="postContent">
-            <p>这里记录的问题，全是我调过的问题orz</p>
-<h4 id="一、变量溢出问题"><a href="#一、变量溢出问题" class="headerlink" title="一、变量溢出问题"></a>一、变量溢出问题</h4><ol>
+    <article class="page-article fade" itemprop="blogPage">
+        <div class="post-content page-content" id="page-content" itemprop="pageContent">
+            <p>这里记录的问题，全是我调过的问题orz。 &lt;!– more – &gt;</p>
+<div class="card">
+<blockquote>
+<p>我们写代码的目标是”一遍成”，不清醒时不写代码，没想好时不写代码</p>
+</blockquote>
+</div>
+<h2><span id="一-变量溢出问题">一、变量溢出问题</span></h2><div class="card">
+<ol>
 <li>乘是一个相当危险的操作，只要有乘，必须考虑溢出问题，lint型做乘法带模数时，要写快速乘</li>
 <li>int型涉及到前缀和/乘法时，注意要转lint防爆，有的题表面是1e9左右，但有多次加法操作，也得开lint</li>
 <li>INT范围是 2^31-1也就是2.1e9，一般来说1e9可以安全加减一次，平时inf开到1e9即可， 但是要注意毒瘤题范围2^32或者左右，一定要开long long，</li>
@@ -196,7 +173,9 @@
 <li>signed类型: 值$[-2^{8<em>size-1},2^{8</em>size-1}-1]$，溢出后也取模，只不过会平移到值域范围内。</li>
 <li>long double型可以存下long long型的所有有效数字，遇到long long的溢出问题可以考虑转long double存整数</li>
 </ol>
-<h4 id="二、运算问题"><a href="#二、运算问题" class="headerlink" title="二、运算问题"></a><strong>二、运算问题</strong></h4><ol>
+</div>
+<h2><span id="二-运算问题"><strong>二、运算问题</strong></span></h2><div class="card">
+<ol>
 <li>有时候模数是一个负数，要得到最小非负整数解前，需要把负数转成正数</li>
 <li>要注意乘除法的顺序，是否需要向下取整、先进行除法的话能否整除</li>
 <li>做乘法初值一定要设为1，例如线段树的乘法Lazytag，累乘的初值，</li>
@@ -204,9 +183,11 @@
 <li>注意非负整数与“正整数”的区别，值域里可能会有0</li>
 <li>有时候求区间$[l,r]$之类的，$l&gt;=1$，有时候我们利用区间可减性会导致值域里出现$0$，注意特判。</li>
 </ol>
-<h4 id="三、语言问题"><a href="#三、语言问题" class="headerlink" title="三、语言问题"></a><strong>三、语言问题</strong></h4><ol>
+</div>
+<h2><span id="三-语言问题"><strong>三、语言问题</strong></span></h2><div class="card">
+<ol>
 <li>有时需要注意\n \r的问题，建议写手动读入的时候直接特判掉</li>
-<li>宏定义千万别忘了括号，调一辈子</li>
+<li>宏定义千万别忘了括号，调一辈子，一般来说”有分割”的东西，不用加括号</li>
 <li>lint 输入输出 %lld，ldob输入输出 %Lf</li>
 <li>数组作为形参会退化成指针，不能再用sizeof求大小</li>
 <li>题目中要求“当输入用例 n=k=0 时，表示输入终止”, 不能写 n&amp;&amp;k, 因为可能n与k其中一个还可能等于0</li>
@@ -214,11 +195,13 @@
 <li>使用二分查找时，要注意不存在的情况，我们常用的写法下标会返回n+1，注意特判掉</li>
 <li>写递归式程序、维护双指针时，一定要把需要维护的东西列个表，比如vis数组等</li>
 <li>维护双指针时，需要注意运算顺序，j–，i++是发生在操作前还是操作后，应该具体写出定义</li>
-<li>计算某些东西时，如果计算后需要移动指针，注意别先移动指针了。（Acwing 294）</li>
+<li>计算某些东西时，如果计算后需要移动指针，注意别先移动指针了（Acwing 294, 倍增LCA等）</li>
 <li>写一些嵌套循环移动同一个或多个指针时，必须考虑不存在，不移动，移动多了越界的情况，不然等着WA普及-吧</li>
 <li>维护单调队列的一些变形时（如点队列维护两点间斜率，区间队列带二分等），一定要仔细考虑边界情况和各种退队情况进队情况，这种东西极其容易写炸。</li>
 </ol>
-<h4 id="四、数学相关"><a href="#四、数学相关" class="headerlink" title="四、数学相关"></a><strong>四、数学相关</strong></h4><ol>
+</div>
+<h2><span id="四-数学相关"><strong>四、数学相关</strong></span></h2><div class="card">
+<ol>
 <li><p>BSGS注意判断，算出的指数要大于等于0，即 $i*len - ht[Yk] &gt;= 0​$</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(Z == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">//Luogu P2485 [SDOI2011]计算器</span></span><br><span class="line"><span class="keyword">if</span>(Y % P == <span class="number">0</span>) <span class="keyword">return</span> Z%P == <span class="number">0</span> ? <span class="number">1</span> : <span class="number">-1</span>; </span><br><span class="line">i*len - ht[Yk] &gt;= <span class="number">0</span></span><br></pre></td></tr></table></figure>
 </li>
@@ -229,7 +212,9 @@
 <li>计算组合数时，要注意 $0!=1$ 以及它的逆元，选0一个数一定时一种方案，$m&lt;n\ ||\ m&lt;0\ ||\ n&lt;0$时0种方案</li>
 <li>试填法，一般最后一位可以等于“后面没有位了，最后一位小于等于即可保证一定小于等于”，前置位必须保证小于</li>
 </ol>
-<h4 id="五、数据结构相关"><a href="#五、数据结构相关" class="headerlink" title="五、数据结构相关"></a>五、数据结构相关</h4><ol>
+<p>} </p>
+<h2><span id="五-数据结构相关">五、数据结构相关</span></h2><div class="card">
+<ol>
 <li>维护一个差分序列时，时常会有+1,-1，为了防止爆炸，建议你把值域范围开到[0,n+1]</li>
 <li>分块题由于最后一段的右端点是$min(t*len,n)$, 建议你直接预处理出端点，不要每次特判，特别容易错</li>
 <li>分块题开数组不要开混了</li>
@@ -244,9 +229,12 @@
 <li>如果一个数据结构题需要大量判边界，前驱后继是否存在等，一般是要插几个inf或-inf的虚点减少特判。</li>
 <li>有延时标记+动态开点时，注意下传的延时标记会不会传到0上，让下传的标记回归虚无。</li>
 <li>有时需要特判“不存在”、”没找到“的情况</li>
-<li>写一些链式的指针结构时，如果需要清空/删除某些东西，一定要记得清空<strong>相关</strong>指针，数据清不清无所谓。</li>
+<li>写一些链式的指针结构时，如果需要清空/删除某些东西，一定要记得清空<strong>相关</strong>指针，大部分情况数据清不清无所谓。</li>
+<li>值域范围奇怪，如带0等会影响树状数组一类的东西，需要加减移动值域。</li>
 </ol>
-<h4 id="六、图论相关"><a href="#六、图论相关" class="headerlink" title="六、图论相关"></a>六、图论相关</h4><ol>
+</div>
+<h4><span id="六-图论相关">六、图论相关</span></h4><div class="card">
+<ol>
 <li>如果无向图里有重边，一般只加一次，无向图邻接表开两倍，树邻接表开到节点数即可。</li>
 <li>邻接矩阵注意初值是0还是inf</li>
 <li>在有负权边时，树的直径不能通过两次DFS求。</li>
@@ -254,51 +242,39 @@
 <li>带有重边的图中，不能只记录来源节点，可能需要记录来源边，来处理一些情况，如“二元环”。</li>
 <li>在写图的遍历DFS、BFS时，别忘了递归子节点/将子节点入队，（别笑，我真的干过，还调了一段时间。。</li>
 </ol>
-<h4 id="七、动态规划相关"><a href="#七、动态规划相关" class="headerlink" title="七、动态规划相关"></a>七、动态规划相关</h4><ol>
+</div>
+<h4><span id="七-动态规划相关">七、动态规划相关</span></h4><div class="card">
+<ol>
 <li>要仔细考虑初值的设计，比如背包问题，要求“背包必须装满”，按照实际含义，$dp[0] = 0, \forall j \ \ dp[j] = -inf$，因为在第0个物品时，只有“没装东西”是合法的状态。</li>
 <li>状压DP把状态映射到集合中后，注意初值设置下标也要是集合中的下标，例如0映射到1，需要$dp[0][1] = 1$</li>
 <li></li>
 </ol>
-<h4 id="八、杂项"><a href="#八、杂项" class="headerlink" title="八、杂项"></a>八、杂项</h4><ol>
+</div>
+<h4><span id="八-杂项">八、杂项</span></h4><div class="card">
+<ol>
 <li>题目中的限制条件一定要用手写出来，不然很容易写混 &lt;= &gt;=</li>
 <li>一些涉及到坐标，线段长的问题，一定要仔细考虑边界情况以及定义，有时候需要+1，-1</li>
 <li>在经过对拍/大样例后，程序仍可能WA的原因一般是溢出(尤其需要注意(比较)函数传参时)、数组越界(小范围越界不会RE)。</li>
 </ol>
-<h4 id="九、奇异的语言细节"><a href="#九、奇异的语言细节" class="headerlink" title="九、奇异的语言细节"></a>九、奇异的语言细节</h4><ol>
-<li><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C++标准并没有规定参数的求值顺序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="string">" "</span> &lt;&lt; y &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">test(++x,x); <span class="comment">// 输出 1 1</span></span><br><span class="line">test(++x,x<span class="number">-1</span>); <span class="comment">// 输出1 -1</span></span><br></pre></td></tr></table></figure>
+</div>
+<h4><span id="九-奇异的语言细节">九、奇异的语言细节</span></h4><div class="card">
+<ol>
+<li><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 形参中的表达式一定会被计算，但是C++标准并没有规定参数的求值顺序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="string">" "</span> &lt;&lt; y &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">test(++x,x); <span class="comment">// 输出 1 1</span></span><br><span class="line">test(++x,x<span class="number">-1</span>); <span class="comment">// 输出1 -1</span></span><br></pre></td></tr></table></figure>
 </li>
 <li></li>
 </ol>
+</div>
 
         </div>
 
-        <blockquote class="post-copyright">
-    
-    <div class="content">
         
-<span class="post-time">
-    最終更新：<time datetime="2019-04-26T12:52:52.032Z" itemprop="dateUpdated">2019-04-26 20:52:52</time>
-</span><br>
-
-
-        
-        戦いの日々は、ずっとこれから —— Euphoria
-        
-    </div>
-    
-    <footer>
-        <a href="http://arintaro.com">
-            <img src="/img/avatar.jpg" alt="Rintaro">
-            Rintaro
-        </a>
-    </footer>
-</blockquote>
-
-        
-
-
-        <div class="post-footer">
-            
+        <div class="card page-about-me flex-row">
+            <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="/img/avatar.jpg"></a>
+            <div class="content flex-col">
+                <p><strong>Rintaro</strong></p>
+                <p><em>Algorithm and Anime</em></p>
+                <p>LN某弱校高一OIer, 想进队ORZ</p>
+            </div>
 
             
 <div class="page-share-wrap">
@@ -307,7 +283,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/04/27/Detail/常见代码实现细节/&title=Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/04/27/Detail/常见代码实现细节/&title=《常见代码实现细节》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -317,7 +293,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/04/27/Detail/常见代码实现细节/&title=Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/04/27/Detail/常见代码实现细节/&title=《常见代码实现细节》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -327,7 +303,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Rintaro's Blog&url=http://arintaro.com/2019/04/27/Detail/常见代码实现细节/&via=http://arintaro.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《常见代码实现细节》 — Rintaro's Blog&url=http://arintaro.com/2019/04/27/Detail/常见代码实现细节/&via=http://arintaro.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -349,55 +325,34 @@
 
 
         </div>
-    </div>
+        
 
+        
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div></article>
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/2019/04/27/Detail/综合技巧与实践/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">[no title]</h4>
-      </a>
-    </div>
-  
-
-  
-    <div class="waves-block waves-effect next">
-      <a href="/2019/04/27/Detail/OI中知识点与技巧总结/" id="post-next" class="post-nav-link">
-        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">[no title]</h4>
-      </a>
-    </div>
-  
-</nav>
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</article>
-
-
 
 </div>
 
@@ -406,10 +361,10 @@
         
 <p>
     <span id="busuanzi_container_site_uv" style="display:none">
-        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+        神犇到访数：<span id="busuanzi_value_site_uv"></span>
     </span>
     <span id="busuanzi_container_site_pv" style="display:none">
-        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
     </span>
 </p>
 
@@ -418,7 +373,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>このブログの内容物は<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div>
     <div class="bottom">
@@ -440,7 +395,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/04/27/Detail/常见代码实现细节/&title=《No title》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/04/27/Detail/常见代码实现细节/&title=《常见代码实现细节》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -450,7 +405,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/04/27/Detail/常见代码实现细节/&title=《No title》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/04/27/Detail/常见代码实现细节/&title=《常见代码实现细节》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -460,7 +415,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《No title》 — Rintaro's Blog&url=http://arintaro.com/2019/04/27/Detail/常见代码实现细节/&via=http://arintaro.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《常见代码实现细节》 — Rintaro's Blog&url=http://arintaro.com/2019/04/27/Detail/常见代码实现细节/&via=http://arintaro.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>

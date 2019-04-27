@@ -14,24 +14,25 @@
     
     
     
-    <title>No title | Rintaro&#39;s Blog | Algorithm and Anime(?</title>
+    <title>综合技巧与实践 | Rintaro&#39;s Blog | Algorithm and Anime</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content>
-    <meta name="description" content="一、杂项​    1.值域范围奇怪，如带0等会影响树状数组一类的东西，需要加减移动值域 二、STL相关1.algorithm123456789101112131.lower_bound &amp;amp; upper_bound //我就算饿死，死外面，也不会自己写一个二分查找的	int pos = lower_bound(arr+1,arr+n+1,val) - arr; //在有序数组[1,n]中查第">
+    <meta name="keywords" content="语言,STL,Linux,Emacs">
+    <meta name="description" content="根据贪心策略，我们把这些东西背一背肯定是是不亏的。">
+<meta name="keywords" content="语言,STL,Linux,Emacs">
 <meta property="og:type" content="article">
-<meta property="og:title" content="No title">
+<meta property="og:title" content="综合技巧与实践">
 <meta property="og:url" content="http://arintaro.com/2019/04/27/Detail/综合技巧与实践/index.html">
 <meta property="og:site_name" content="Rintaro&#39;s Blog">
-<meta property="og:description" content="一、杂项​    1.值域范围奇怪，如带0等会影响树状数组一类的东西，需要加减移动值域 二、STL相关1.algorithm123456789101112131.lower_bound &amp;amp; upper_bound //我就算饿死，死外面，也不会自己写一个二分查找的	int pos = lower_bound(arr+1,arr+n+1,val) - arr; //在有序数组[1,n]中查第">
-<meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-11T06:23:34.289Z">
+<meta property="og:description" content="根据贪心策略，我们把这些东西背一背肯定是是不亏的。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-27T12:43:17.568Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="No title">
-<meta name="twitter:description" content="一、杂项​    1.值域范围奇怪，如带0等会影响树状数组一类的东西，需要加减移动值域 二、STL相关1.algorithm123456789101112131.lower_bound &amp;amp; upper_bound //我就算饿死，死外面，也不会自己写一个二分查找的	int pos = lower_bound(arr+1,arr+n+1,val) - arr; //在有序数组[1,n]中查第">
+<meta name="twitter:title" content="综合技巧与实践">
+<meta name="twitter:description" content="根据贪心策略，我们把这些东西背一背肯定是是不亏的。">
     
         <link rel="alternate" type="application/atom+xml" title="Rintaro&#39;s Blog" href="/atom.xml">
     
@@ -81,13 +82,6 @@
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/tags">
-                <i class="icon icon-lg icon-tags"></i>
-                Tags
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
               <a href="/archives">
                 <i class="icon icon-lg icon-archives"></i>
                 Archives
@@ -119,13 +113,13 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis"></div>
+        <div class="flex-col header-title ellipsis">综合技巧与实践</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -138,16 +132,18 @@
         
     </div>
 </header>
-<header class="content-header post-header">
+<header class="content-header page-header">
 
     <div class="container fade-scale">
-        <h1 class="title"></h1>
+        <h1 class="title">综合技巧与实践</h1>
         <h5 class="subtitle">
             
                 <time datetime="2019-04-27T09:01:25.547Z" itemprop="datePublished" class="page-time">
   2019-04-27
 </time>
 
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/细节/">细节</a></li></ul>
 
             
         </h5>
@@ -160,78 +156,41 @@
 
 
 <div class="container body-wrap">
-    
-    <aside class="post-widget">
-        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#一、杂项"><span class="post-toc-number">1.</span> <span class="post-toc-text">一、杂项</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#二、STL相关"><span class="post-toc-number">2.</span> <span class="post-toc-text">二、STL相关</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-algorithm"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1.algorithm</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2-vector"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2.vector</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#三、NOI-Linux相关"><span class="post-toc-number">3.</span> <span class="post-toc-text">三、NOI Linux相关</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#四、对拍相关"><span class="post-toc-number">4.</span> <span class="post-toc-text">四、对拍相关</span></a></li></ol>
-        </nav>
-    </aside>
+    <article class="page-article fade" itemprop="blogPage">
+        <div class="post-content page-content" id="page-content" itemprop="pageContent">
+            <p>根据贪心策略，我们把这些东西背一背肯定是是不亏的。 <a id="more"></a></p>
+<h2><span id="一-stl相关">一、STL相关</span></h2><div class="card">
+<h4><span id="1algorithm">1.algorithm</span></h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.l</span>ower_bound &amp; upper_bound <span class="comment">//我就算饿死，死外面，也不会自己写一个二分查找的</span></span><br><span class="line">	<span class="keyword">int</span> pos = lower_bound(arr+<span class="number">1</span>,arr+n+<span class="number">1</span>,val) - arr; <span class="comment">//在有序数组[1,n]中查第一个 &gt;=val的数</span></span><br><span class="line">	<span class="comment">// 最后一个参数可以传比较函数，需要与序列顺序相同，即 单增 &lt; less 和 单减 &lt; greater</span></span><br><span class="line"><span class="number">2.u</span>nique <span class="comment">//常用于离散化</span></span><br><span class="line">       n = unique(arr+<span class="number">1</span>,arr+n+<span class="number">1</span>) - (arr+<span class="number">1</span>); <span class="comment">//去重，新元素存在[1,n]</span></span><br><span class="line">   <span class="number">3.</span>inplace_merge merge <span class="comment">// 常用于CDQ分治中，不要cdq里套sort了！！</span></span><br><span class="line">       <span class="comment">// 数组 arr分为有序的两部分 [1,mid] [mid+1,n]</span></span><br><span class="line">       inplace_merge(arr+<span class="number">1</span>,arr+mid+<span class="number">1</span>,arr+n+<span class="number">1</span>);</span><br><span class="line">	merge(first1,last1,first2,last2,result,compare);</span><br><span class="line"><span class="number">4.</span>nth_element <span class="comment">//数组中O(n)找第k大，前k个数一定都在[1，k]</span></span><br><span class="line">       nth_element(arr+<span class="number">1</span>,arr+k,arr+n+<span class="number">1</span>);</span><br><span class="line"><span class="number">5.</span>sort stable_sort <span class="comment">// 后一个可以稳定排序</span></span><br><span class="line">   <span class="number">6.</span>reverse <span class="comment">// 跟sort传参一样，序列反转</span></span><br></pre></td></tr></table></figure>
+<h4><span id="2vector">2.vector</span></h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span><span class="built_in">vector</span>的clear不会释放空间，需要释放空间的话，需要:</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;().swap(a); <span class="comment">// 但是几乎比clear慢一倍</span></span><br></pre></td></tr></table></figure>
+</div>
+<h2><span id="二-noi-linux相关">二、NOI Linux相关</span></h2><div class="card">
+<p>​    1.Emacs相关（M为Alt键，C为Ctrl键</p>
+<pre><code>- M+x输入命令 C+x+k关闭当前窗口
+- Options-Use CUA Keys (转换复制粘贴快捷键)
+- Options-Customize Emacs-Custom-Themes-Tango Dark （转换主题）
+- Options-Set Default Font - Ubuntu Mono 20-30（变更字体
+- C-x-2 水平切分当前Buffer, C-x-3 左右切分
+- 命令 Find-file后， ~/.emacs 可以直接打开配置文件
 
-
-<article id="post-Detail/综合技巧与实践" class="post-article article-type-post fade" itemprop="blogPost">
-
-    <div class="post-card">
-        <h1 class="post-card-title"></h1>
-        <div class="post-meta">
-            <time class="post-time" title="2019-04-27 17:01:25" datetime="2019-04-27T09:01:25.547Z" itemprop="datePublished">2019-04-27</time>
-
-            
-
-
-            
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
-    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
-</span>
-
-
-        </div>
-        <div class="post-content" id="post-content" itemprop="postContent">
-            <h4 id="一、杂项"><a href="#一、杂项" class="headerlink" title="一、杂项"></a>一、杂项</h4><p>​    1.值域范围奇怪，如带0等会影响树状数组一类的东西，需要加减移动值域</p>
-<h4 id="二、STL相关"><a href="#二、STL相关" class="headerlink" title="二、STL相关"></a>二、STL相关</h4><h5 id="1-algorithm"><a href="#1-algorithm" class="headerlink" title="1.algorithm"></a>1.algorithm</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.l</span>ower_bound &amp; upper_bound <span class="comment">//我就算饿死，死外面，也不会自己写一个二分查找的</span></span><br><span class="line">	<span class="keyword">int</span> pos = lower_bound(arr+<span class="number">1</span>,arr+n+<span class="number">1</span>,val) - arr; <span class="comment">//在有序数组[1,n]中查第一个 &gt;=val的数</span></span><br><span class="line">	<span class="comment">// 最后一个参数可以传比较函数，需要与序列顺序相同，即 单增 &lt; less 和 单减 &lt; greater</span></span><br><span class="line"><span class="number">2.u</span>nique <span class="comment">//常用于离散化</span></span><br><span class="line">       n = unique(arr+<span class="number">1</span>,arr+n+<span class="number">1</span>) - (arr+<span class="number">1</span>); <span class="comment">//去重，新元素存在[1,n]</span></span><br><span class="line">   <span class="number">3.</span>inplace_merge merge <span class="comment">// 常用于CDQ分治中，不要cdq里套sort了！！</span></span><br><span class="line">       <span class="comment">// 数组 arr分为有序的两部分 [1,mid] [mid+1,n]</span></span><br><span class="line">       inplace_merge(arr+<span class="number">1</span>,arr+mid+<span class="number">1</span>,arr+n+<span class="number">1</span>);</span><br><span class="line">	merge(first1,last1,first2,last2,result,compare);</span><br><span class="line"><span class="number">4.</span>nth_element <span class="comment">//数组中O(n)找第k大，前k个数一定都在[1，k]</span></span><br><span class="line">       nth_element(arr+<span class="number">1</span>,arr+k,arr+n+<span class="number">1</span>);</span><br><span class="line"><span class="number">5.</span>sort stable_sort <span class="comment">// 后一个可以稳定排序</span></span><br><span class="line">   <span class="number">6.</span>reverse <span class="comment">// 跟sort传参一样，序列反转</span></span><br></pre></td></tr></table></figure>
-<h5 id="2-vector"><a href="#2-vector" class="headerlink" title="2.vector"></a>2.vector</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span><span class="built_in">vector</span>的clear不会释放空间，需要释放空间的话，需要:</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;().swap(a); <span class="comment">// 但是几乎比clear慢一倍</span></span><br></pre></td></tr></table></figure>
-<h4 id="三、NOI-Linux相关"><a href="#三、NOI-Linux相关" class="headerlink" title="三、NOI Linux相关"></a>三、NOI Linux相关</h4><p>​    1.Emacs相关（M为Alt键，C为Ctrl键</p>
-<ul>
-<li>M+x输入命令 C+x+k关闭当前窗口</li>
-<li>Options-Use CUA Keys (转换复制粘贴快捷键)</li>
-<li>Options-Customize Emacs-Custom-Themes-Tango Dark （转换主题）</li>
-<li>Options-Set Default Font - Ubuntu Mono 20-30（变更字体</li>
-<li>C-x-2 水平切分当前Buffer, C-x-3 左右切分</li>
-<li>命令 Find-file后， ~/.emacs 可以直接打开配置文件</li>
-</ul>
 <figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">global-linum-mode</span> <span class="literal">t</span>) <span class="comment">;;line num 显示行号</span></span><br><span class="line">(<span class="name">setq</span> c-basic-offset <span class="number">3</span>) <span class="comment">;; 变更缩进</span></span><br><span class="line">(<span class="name">setq</span> default-tab-width <span class="number">3</span>) </span><br><span class="line"></span><br><span class="line">(<span class="name">electric-pair-mode</span> <span class="literal">t</span>) <span class="comment">;;electric pair 括号补全</span></span><br><span class="line">(<span class="name">electric-layout-mode</span> <span class="literal">t</span>)</span><br><span class="line">(<span class="name">electric-indent-mode</span> <span class="literal">t</span>)</span><br><span class="line"></span><br><span class="line">(<span class="name">setq-default</span> cursor-type 'bar) <span class="comment">;;光标竖线</span></span><br><span class="line">(<span class="name">show-paren-mode</span> <span class="literal">t</span>) <span class="comment">;;show paren 括号配对</span></span><br><span class="line"></span><br><span class="line">(<span class="name">global-set-key</span> [f4] 'shell) <span class="comment">;;摁F4进入shell</span></span><br><span class="line">(<span class="name">defun</span> compile-file()(<span class="name">interactive</span>)</span><br><span class="line">(<span class="name">compile</span>(<span class="name">format</span> <span class="string">"g++ -o '%s' '%s' -lm -Wall -g"</span></span><br><span class="line">(<span class="name">file-name-sans-extension</span>(<span class="name">buffer-name</span>))(<span class="name">buffer-name</span>))))</span><br><span class="line">(<span class="name">global-set-key</span> [f5] 'compile-file) <span class="comment">;;摁F5编译</span></span><br><span class="line">(<span class="name">global-set-key</span> [f6] 'gdb) <span class="comment">;;摁F6进入gdb调试</span></span><br><span class="line"></span><br><span class="line">(<span class="name">global-set-key</span> (<span class="name">kbd</span> <span class="string">"C-s"</span>) 'save-buffer) <span class="comment">;; Ctrl+s变为保存</span></span><br><span class="line">(<span class="name">global-set-key</span> (<span class="name">kbd</span> <span class="string">"C-a"</span>) 'mark-the-whole-buffer) <span class="comment">;; Ctrl+s变为保存</span></span><br><span class="line">(<span class="name">global-set-key</span> (<span class="name">kbd</span> <span class="string">"RET"</span>) 'newline-and-indent) <span class="comment">;;回车自动缩进</span></span><br></pre></td></tr></table></figure>
-<h4 id="四、对拍相关"><a href="#四、对拍相关" class="headerlink" title="四、对拍相关"></a>四、对拍相关</h4><p>​    1.程序运行时间  </p>
+</code></pre></div>
+<h2><span id="四-对拍相关">四、对拍相关</span></h2><div class="card">
+<p>​    #### 1.程序运行时间  </p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> t = clock();</span><br><span class="line"><span class="built_in">cerr</span> &lt;&lt; (clock() - t) / CLOCKS_PER_SEC &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+<pre><code>#### 2.diff命令
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">diff -b -B test.out ans.out</span><br></pre></td></tr></table></figure>
+</code></pre></div>
 
         </div>
 
-        <blockquote class="post-copyright">
-    
-    <div class="content">
         
-<span class="post-time">
-    最終更新：<time datetime="2019-04-11T06:23:34.289Z" itemprop="dateUpdated">2019-04-11 14:23:34</time>
-</span><br>
-
-
-        
-        戦いの日々は、ずっとこれから —— Euphoria
-        
-    </div>
-    
-    <footer>
-        <a href="http://arintaro.com">
-            <img src="/img/avatar.jpg" alt="Rintaro">
-            Rintaro
-        </a>
-    </footer>
-</blockquote>
-
-        
-
-
-        <div class="post-footer">
-            
+        <div class="card page-about-me flex-row">
+            <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="/img/avatar.jpg"></a>
+            <div class="content flex-col">
+                <p><strong>Rintaro</strong></p>
+                <p><em>Algorithm and Anime</em></p>
+                <p>LN某弱校高一OIer, 想进队ORZ</p>
+            </div>
 
             
 <div class="page-share-wrap">
@@ -240,7 +199,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/04/27/Detail/综合技巧与实践/&title=Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/04/27/Detail/综合技巧与实践/&title=《综合技巧与实践》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -250,7 +209,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/04/27/Detail/综合技巧与实践/&title=Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/04/27/Detail/综合技巧与实践/&title=《综合技巧与实践》 — Rintaro's Blog&source=根据贪心策略，我们把这些东西背一背肯定是是不亏的。" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -260,7 +219,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Rintaro's Blog&url=http://arintaro.com/2019/04/27/Detail/综合技巧与实践/&via=http://arintaro.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《综合技巧与实践》 — Rintaro's Blog&url=http://arintaro.com/2019/04/27/Detail/综合技巧与实践/&via=http://arintaro.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -282,55 +241,34 @@
 
 
         </div>
-    </div>
+        
 
+        
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </article>
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/2019/04/27/Essay/LNOI2019 & 多省联考 游记/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">[no title]</h4>
-      </a>
-    </div>
-  
-
-  
-    <div class="waves-block waves-effect next">
-      <a href="/2019/04/27/Detail/常见代码实现细节/" id="post-next" class="post-nav-link">
-        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">[no title]</h4>
-      </a>
-    </div>
-  
-</nav>
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</article>
-
-
 
 </div>
 
@@ -339,10 +277,10 @@
         
 <p>
     <span id="busuanzi_container_site_uv" style="display:none">
-        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+        神犇到访数：<span id="busuanzi_value_site_uv"></span>
     </span>
     <span id="busuanzi_container_site_pv" style="display:none">
-        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
     </span>
 </p>
 
@@ -351,7 +289,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>このブログの内容物は<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div>
     <div class="bottom">
@@ -373,7 +311,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/04/27/Detail/综合技巧与实践/&title=《No title》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/04/27/Detail/综合技巧与实践/&title=《综合技巧与实践》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -383,7 +321,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/04/27/Detail/综合技巧与实践/&title=《No title》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/04/27/Detail/综合技巧与实践/&title=《综合技巧与实践》 — Rintaro's Blog&source=根据贪心策略，我们把这些东西背一背肯定是是不亏的。" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -393,7 +331,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《No title》 — Rintaro's Blog&url=http://arintaro.com/2019/04/27/Detail/综合技巧与实践/&via=http://arintaro.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《综合技巧与实践》 — Rintaro's Blog&url=http://arintaro.com/2019/04/27/Detail/综合技巧与实践/&via=http://arintaro.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
