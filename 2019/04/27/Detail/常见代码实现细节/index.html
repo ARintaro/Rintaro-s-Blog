@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="Rintaro&#39;s Blog">
 <meta property="og:description" content="这里记录的问题，全是我调过的问题orz。 &amp;lt;!– more – &amp;gt; @card{  我们写代码的目标是”一遍成”，不清醒时不写代码，没想好时不写代码  } 一、变量溢出问题@card{  乘是一个相当危险的操作，只要有乘，必须考虑溢出问题，lint型做乘法带模数时，要写快速乘 int型涉及到前缀和/乘法时，注意要转lint防爆，有的题表面是1e9左右，但有多次加法操作，也得开lint">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-27T12:38:16.711Z">
+<meta property="og:updated_time" content="2019-05-03T12:23:54.526Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见代码实现细节">
 <meta name="twitter:description" content="这里记录的问题，全是我调过的问题orz。 &amp;lt;!– more – &amp;gt; @card{  我们写代码的目标是”一遍成”，不清醒时不写代码，没想好时不写代码  } 一、变量溢出问题@card{  乘是一个相当危险的操作，只要有乘，必须考虑溢出问题，lint型做乘法带模数时，要写快速乘 int型涉及到前缀和/乘法时，注意要转lint防爆，有的题表面是1e9左右，但有多次加法操作，也得开lint">
@@ -241,6 +241,8 @@
 <li>无向图邻接表修改边的属性时，注意也要把反向的边也一起修改。</li>
 <li>带有重边的图中，不能只记录来源节点，可能需要记录来源边，来处理一些情况，如“二元环”。</li>
 <li>在写图的遍历DFS、BFS时，别忘了递归子节点/将子节点入队，（别笑，我真的干过，还调了一段时间。。</li>
+<li>建虚点，平移编号后一定要注意读入后别忘平移，节点数别忘增加。</li>
+<li>有向图的$scc$，注意更新$low[x]$时，需要判断节点是否在栈里。无向图的$e-dcc$, 需要注意记录的是“来的边”，而不是父节点，来处理重边问题。无向图的$v-dcc$，需要注意按常规割点定义，搜索树的根节点需要有俩儿子判定成功，且割点会属于多个$v-dcc$。</li>
 </ol>
 </div>
 <h4><span id="七-动态规划相关">七、动态规划相关</span></h4><div class="card">
@@ -255,6 +257,7 @@
 <li>题目中的限制条件一定要用手写出来，不然很容易写混 &lt;= &gt;=</li>
 <li>一些涉及到坐标，线段长的问题，一定要仔细考虑边界情况以及定义，有时候需要+1，-1</li>
 <li>在经过对拍/大样例后，程序仍可能WA的原因一般是溢出(尤其需要注意(比较)函数传参时)、数组越界(小范围越界不会RE)。</li>
+<li>交换变量时，注意变量的附带属性别忘了一起交换。</li>
 </ol>
 </div>
 <h4><span id="九-奇异的语言细节">九、奇异的语言细节</span></h4><div class="card">
