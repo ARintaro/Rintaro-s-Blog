@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://arintaro.com/"/>
-  <updated>2019-09-25T08:15:53.101Z</updated>
+  <updated>2019-09-26T07:16:07.885Z</updated>
   <id>http://arintaro.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://arintaro.com/2019/09/25/Algorithm/%E5%9F%BA%E7%A1%80%E6%95%B0%E5%AD%A6%E6%80%BB%E7%BB%93/"/>
     <id>http://arintaro.com/2019/09/25/Algorithm/基础数学总结/</id>
     <published>2019-09-25T07:56:33.502Z</published>
-    <updated>2019-09-25T08:15:53.101Z</updated>
+    <updated>2019-09-26T07:16:07.885Z</updated>
     
-    <content type="html"><![CDATA[<a id="more"></a><h2><span id="一-数论">一、数论</span></h2><p>@card{</p><h4><span id="一-质数与因子相关">(一) 质数与因子相关</span></h4><h6><span id="1对于一个足够大的整数n不超过n的质数大约有fracnlnn个">1.对于一个足够大的整数N，不超过N的质数大约有$\frac{N}{ln(n)}$个</span></h6><h6><span id="2一个数至少有一个小于sqrtn的因子至多存在一个超过sqrtn的因子因此不少算法可以只跑到sqrtn">2.一个数至少有一个小于$\sqrt{n}$的因子，至多存在一个超过$\sqrt{n}$的因子，因此不少算法可以只跑到$\sqrt{n}$</span></h6><h6><span id="3埃筛">3.埃筛</span></h6><p>(1) 每个数从$x^2​$开始筛即可</p><p>(2) 用$\sqrt{r}$内的数就可以对$[l, r]$进行区间筛</p><h6><span id="4线筛">4.线筛</span></h6><p>(1) 通过“积累最小质因子”的方法，去除合数</p><h6><span id="5质因数分解">5.质因数分解</span></h6><p>(1) 不少题可以通过算术基本定理找出想法</p><p>(2) 试除法最后需要特判剩下来个大于$\sqrt{n}$的质数的情况</p><p>(3) 有时候也可以反过来统计，不考虑它有什么因子，而是考虑“每个因子有多少个”，阶乘快速分解和倍数法基于此思想</p><h6><span id="6">6.</span></h6><p>｝</p>]]></content>
+    <content type="html"><![CDATA[<a id="more"></a><h2><span id="一-数论">一、数论</span></h2><p>@card{</p><h4><span id="一-质数与因子相关">(一) 质数与因子相关</span></h4><h5><span id="1对于一个足够大的整数n不超过n的质数大约有fracnlnn个">1.对于一个足够大的整数N，不超过N的质数大约有$\frac{N}{ln(n)}$个</span></h5><h5><span id="2一个数至少有一个小于sqrtn的因子至多存在一个超过sqrtn的因子因此不少算法可以只跑到sqrtn">2.一个数至少有一个小于$\sqrt{n}$的因子，至多存在一个超过$\sqrt{n}$的因子，因此不少算法可以只跑到$\sqrt{n}​$</span></h5><h6><span id="3埃筛">3.埃筛</span></h6><p>(1) 每个数从$x^2​$开始筛即可</p><p>(2) 用$\sqrt{r}$内的数就可以对$[l, r]$进行区间筛</p><h6><span id="4线筛">4.线筛</span></h6><p>(1) 通过“积累最小质因子”的方法，去除合数</p><h6><span id="5质因数分解">5.质因数分解</span></h6><p>(1) 不少题可以通过算术基本定理找出想法</p><p>(2) 试除法最后需要特判剩下来个大于$\sqrt{n}$的质数的情况</p><p>(3) 有时候也可以反过来统计，不考虑它有什么因子，而是考虑“每个因子有多少个”，阶乘快速分解和倍数法基于此思想</p><h6><span id="6">6.</span></h6><p>}</p>]]></content>
     
     <summary type="html">
     
@@ -31,7 +31,7 @@
       
         &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h2&gt;&lt;span id=&quot;一-数论&quot;&gt;一、数论&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;@card{&lt;/p&gt;
-&lt;h4&gt;&lt;span id=&quot;一-质数与因子相关&quot;&gt;(一) 质数与因子相关&lt;/span&gt;&lt;/h4&gt;&lt;h6&gt;&lt;span id=&quot;1对于一个足够大的整
+&lt;h4&gt;&lt;span id=&quot;一-质数与因子相关&quot;&gt;(一) 质数与因子相关&lt;/span&gt;&lt;/h4&gt;&lt;h5&gt;&lt;span id=&quot;1对于一个足够大的整
       
     
     </summary>
