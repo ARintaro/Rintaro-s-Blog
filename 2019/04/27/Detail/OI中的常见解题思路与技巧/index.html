@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="Rintaro&#39;s Blog">
 <meta property="og:description" content="也许很有用，也许没什么卵用。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-26T07:05:49.246Z">
+<meta property="og:updated_time" content="2019-09-26T09:40:01.771Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OI中的常见解题思路与技巧（更新中）">
 <meta name="twitter:description" content="也许很有用，也许没什么卵用。">
@@ -183,10 +183,41 @@
 <ol>
 <li><h6><span id="求和题核心思想交换求和顺序">求和题：核心思想：[交换求和顺序]</span></h6></li>
 </ol>
-<p>   }</p>
+</div>
 <h2><span id="五-图论问题">五、图论问题</span></h2><div class="card">
 </div>
 <h2><span id="六-搜索优化策略">六、搜索优化策略</span></h2><div class="card">
+<ol>
+<li><h6><span id="优化搜索顺序">优化搜索顺序</span></h6></li>
+</ol>
+<ul>
+<li>即从“后续变化较少”的状态开始搜</li>
+<li>搜前排序</li>
+</ul>
+<ol start="2">
+<li><h6><span id="排除等效亢余">排除等效亢余</span></h6></li>
+</ol>
+<ul>
+<li>给搜索固定一个顺序，例如二元组(x, y)与(y, x)不要反复搜</li>
+<li>例如往盒子里放东西，一个东西放在不同的“空盒子”即是等效的</li>
+</ul>
+<ol start="3">
+<li><h6><span id="贪心">贪心</span></h6></li>
+</ol>
+<ul>
+<li>考虑在一个状态下做了什么决策比另一些决策更优秀</li>
+</ul>
+<ol start="4">
+<li><h6><span id="可行性-最优性剪枝-估价函数">可行性、最优性剪枝 / 估价函数</span></h6></li>
+</ol>
+<ul>
+<li>即“最理想的方法”都无法满足可行或可更新答案</li>
+<li>估价函数必须比实际路径非严格更优</li>
+<li>有时候与范围相关的可以通过不等式放缩来去掉一些状态</li>
+</ul>
+<ol start="5">
+<li><h6><span id="双向搜索">双向搜索</span></h6></li>
+</ol>
 </div>
 <h2><span id="七-动态规划优化策略">七、动态规划优化策略</span></h2><div class="card">
 <ol>
@@ -302,7 +333,7 @@
 
 
 
-    </div></article>
+    </article>
     
 
 </div>
