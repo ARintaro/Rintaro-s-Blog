@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>NOIP2010 观光公交 | Rintaro&#39;s Blog | Algorithm and Anime</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="贪心,迭代">
+    <meta name="description" content="你以为我是DP,其实我是贪心啦dio">
+<meta name="keywords" content="贪心,迭代">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NOIP2010 观光公交">
+<meta property="og:url" content="http://arintaro.com/2019/10/23/Contest/NOIP 2010/bus/index.html">
+<meta property="og:site_name" content="Rintaro&#39;s Blog">
+<meta property="og:description" content="你以为我是DP,其实我是贪心啦dio">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-23T10:48:35.241Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NOIP2010 观光公交">
+<meta name="twitter:description" content="你以为我是DP,其实我是贪心啦dio">
+    
+        <link rel="alternate" type="application/atom+xml" title="Rintaro&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Rintaro</h5>
+          <a href="mailto:rintaro@foxmail.com" title="rintaro@foxmail.com" class="mail">rintaro@foxmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ARintaro" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="tencent://QQInterLive/?Cmd=2&Uin=296394065" target="_blank">
+                <i class="icon icon-lg icon-qq"></i>
+                QQ
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">NOIP2010 观光公交</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header page-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">NOIP2010 观光公交</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-10-23T09:33:02.040Z" itemprop="datePublished" class="page-time">
+  2019-10-23
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/比赛/">比赛</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/比赛/NOIP2009/">NOIP2009</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/比赛/NOIP2009/题解/">题解</a></li></ul></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    <article class="page-article fade" itemprop="blogPage">
+        <div class="post-content page-content" id="page-content" itemprop="pageContent">
+            <p>你以为我是DP,其实我是贪心啦dio<br><a id="more"></a></p>
+<h2><span id="description">Description:</span></h2><div class="card">
+<p>题意较为复杂,套的壳比较多,可见<a href="https://www.luogu.org/problem/P1315" target="_blank" rel="noopener">https://www.luogu.org/problem/P1315</a><br>要点: 公交车在每站都必须等待需要从该景点出发的所有乘客都上车后才能出发开往下一景点。</p>
+</div>
+<h2><span id="solution">Solution:</span></h2><div class="card">
+<p>对于这种外面壳比较多的题,一定要先抽象其限制条件与需要去最优化的目标。由于每个乘客的旅行时间开始计算的点的是”乘客到达出发地点的时间”, 而不是”上车时间”, 所以每个乘客对总时间的影响只会体现在”公交车到达目标的时间”, 而跟到达起点的时间无关, 所以我们可以直接把费用体现它的终点去计算。而它的”出发地点与时间”, 体现为对”出发地点”的”最早出发时间”的限制条件。</p>
+<p>接着考虑怎么做, 是个最优化问题,第一眼看上去像个DP, 然而DP的话, “剩余的加速器”与”现在公交车的地点”是两个显然必须要记录的信息, 然而即使转移是$O(1)$的, 这两个信息也足以让我们TLE。联系图论的话, 可以跑费用流, 然而如果跑到上界显然会TLE掉(<del>事实上远远跑不到</del>); 用二分答案的话, 二分除的答案$旅行时间总和$又显然对$check$毫无帮助, 所以考虑贪心。</p>
+<p>我们显然不能按开车的顺序去贪心, 无法在有效的时间内判断这次贪心对后面的影响, 又设计不出”可以反悔的贪心”。所以我们考虑”迭代式的贪心”, 即先求出一组可行解, 不断尝试去优化它, 直到收敛到最优解。(<del>这两个名词都是我瞎编的</del>)</p>
+<h4><span id="算法1贪心">算法1：贪心</span></h4><p>直观的想法肯定是对于一个加速器, 让它能够加速的人越多越好, 那么怎么去计算”一个加速器放在某个位置能加速多少人?”, 显然是从使用位置开始到第一个”车等人”的位置,所有结束位置在这段区间的人的时间都会减小1, 而对这之后的位置毫无影响。进一步考虑, 这些区间之间的关系要么是一个包含一个, 要么是不相交。考虑从$i$出发延展的区间, 从$i+1$出发也显然会到它的终点, 显然我们在$i$上用比$i+1$上用要好。所以, 在每个区间内部肯定是在起点用最好, 在区间之间用不用又毫无影响, 所以我们每次找一个加速时间最长的起点用肯定是最好的。</p>
+<p>同时需要注意一些细节, 比如第二个限制条件$D_i$不能为负数, 每次用完中间有车和人同时到达, 要分裂区间, 不再赘述。直接按照上述思路模拟即可写出$O(kn)$的算法, 网上大部分题解也是这么做的。</p>
+<h4><span id="算法2优化后的贪心">算法2：优化后的贪心</span></h4><p>发现$n = 10^3$, $k = 10^5$, 直接考虑每个怎么用肯定会TLE(<del>然而并没有</del>), 考虑每次用一个加速器, 如果这个区间”没有被分裂”, 肯定下次最优的还是它, 所以我们可以直接用到它分裂为止, 显然就是这段区间中人等车的最短时间。由于每次用完至少会有一个点变为$人等车$, 而我们只有$n$个点, 故上述过程至多执行$O(n)$, 所以总复杂度$O(n^2)$, 可以通过。</p>
+<h4><span id="算法3-数据结构优化贪心">算法3: 数据结构优化贪心</span></h4><p>考虑$n = 10^5$时怎么做, 我们可以直接用一个堆维护这些区间的人数, 而每次不用遍历这些区间去找最大值, 然而问题在于如何去”分裂区间”, 我们可以在预处理这些区间后, 记录这些区间所有”最小值”的位置, 下次这个区间被选到时, 这些最小值必然同时变为0, 这些最小值的位置切分这个区间, 把这些区间的人数入堆即可。问题在于如何维护新区间最小值的位置, 我们可以发现, 对于任意时刻的一个区间, 它内部的所有数字必然经历的相同的”区间修改”, 也就是说, 只要知道区间的左右端点, 它内部的最小值位置一定是不变的, 即查位置这件事情根本就是个静态问题, 随便用个数据结构可以直接解决, 不同与只维护一个点的建树$O(n)$, 这样最坏建树是$O(nlogn)$的, 单次查询显然是这次删除的点数乘个$logn$, 根据上面的均摊分析, 显然总复杂度是$O(nlogn)$的, 至于具体的最小值可以直接在每个区间上记录一下至今减少了多少, 加上原数组即可求出。</p>
+</div>
+<h2><span id="code">Code:</span></h2><div class="card">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rint register int</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lint long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> isnum(x) (<span class="meta-string">'0'</span> &lt;= (x) &amp;&amp; (x) &lt;= <span class="meta-string">'9'</span>)</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> tint&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">readint</span><span class="params">(tint&amp; x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> f = <span class="number">1</span>; <span class="keyword">char</span> ch = getchar(); x = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(; !isnum(ch); ch = getchar()) <span class="keyword">if</span>(ch == <span class="string">'-'</span>) f = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(; isnum(ch); ch = getchar()) x = x * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">	x *= f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1000</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf = <span class="number">1e9</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m, k;</span><br><span class="line"><span class="keyword">int</span> cnt[maxn], leave[maxn], arrive[maxn], w[maxn];</span><br><span class="line">lint sum[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	readint(n), readint(m), readint(k);</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">2</span>; i&lt;=n; i++) readint(w[i]);</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=m; i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> t, st, ed;</span><br><span class="line">		readint(t), readint(st), readint(ed);</span><br><span class="line">		cnt[ed]++, sum[ed] += t;</span><br><span class="line">		leave[st] = max(leave[st], t);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">2</span>; i&lt;=n; i++) arrive[i] = max(arrive[i<span class="number">-1</span>], leave[i<span class="number">-1</span>]) + w[i];</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span>(k != <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">int</span> res_st = <span class="number">0</span>, res_ed = <span class="number">0</span>, res_w = <span class="number">0</span>, res_cnt = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(rint i=<span class="number">2</span>; i&lt;=n; ) &#123;</span><br><span class="line">			<span class="keyword">if</span>(w[i] == <span class="number">0</span>) &#123; i++; <span class="keyword">continue</span>; &#125;</span><br><span class="line">			<span class="keyword">int</span> now_w = min(w[i], k), now_cnt = <span class="number">0</span>;</span><br><span class="line">			rint j = i;</span><br><span class="line">			<span class="keyword">for</span>(; j &lt;= n &amp;&amp; arrive[j] &gt; leave[j]; j++) &#123;</span><br><span class="line">				now_cnt += cnt[j], now_w = min(now_w, arrive[j] - leave[j]);</span><br><span class="line">			&#125;</span><br><span class="line">			now_cnt += cnt[j];</span><br><span class="line">			<span class="keyword">if</span>(now_cnt &gt; res_cnt) res_st = i, res_ed = j, res_w = now_w, res_cnt = now_cnt;</span><br><span class="line">			i = j + <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(res_w == <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">		w[res_st] -= res_w, k -= res_w;</span><br><span class="line">		<span class="keyword">for</span>(rint i=res_st; i&lt;=res_ed; i++) arrive[i] -= res_w;</span><br><span class="line">	&#125;</span><br><span class="line">	lint ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; i++) ans += (lint)cnt[i] * arrive[i] - sum[i];</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+        </div>
+
+        
+        <div class="card page-about-me flex-row">
+            <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="/img/avatar.jpg"></a>
+            <div class="content flex-col">
+                <p><strong>Rintaro</strong></p>
+                <p><em>Algorithm and Anime</em></p>
+                <p>LN某弱校高一OIer, 想进队ORZ</p>
+            </div>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/10/23/Contest/NOIP 2010/bus/&title=《NOIP2010 观光公交》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/10/23/Contest/NOIP 2010/bus/&title=《NOIP2010 观光公交》 — Rintaro's Blog&source=你以为我是DP,其实我是贪心啦dio" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/10/23/Contest/NOIP 2010/bus/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《NOIP2010 观光公交》 — Rintaro's Blog&url=http://arintaro.com/2019/10/23/Contest/NOIP 2010/bus/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/10/23/Contest/NOIP 2010/bus/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+        
+
+        
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </article>
+    
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        神犇到访数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Rintaro &copy; 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/10/23/Contest/NOIP 2010/bus/&title=《NOIP2010 观光公交》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/10/23/Contest/NOIP 2010/bus/&title=《NOIP2010 观光公交》 — Rintaro's Blog&source=你以为我是DP,其实我是贪心啦dio" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/10/23/Contest/NOIP 2010/bus/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《NOIP2010 观光公交》 — Rintaro's Blog&url=http://arintaro.com/2019/10/23/Contest/NOIP 2010/bus/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/10/23/Contest/NOIP 2010/bus/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://arintaro.com/2019/10/23/Contest/NOIP 2010/bus/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Rintaro's Blog Here';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Rintaro's Blog';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

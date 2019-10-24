@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="Rintaro&#39;s Blog">
 <meta property="og:description" content="这里记录的问题，全是我调过的问题orz。 &amp;lt;!– more – &amp;gt; @card{  我们写代码的目标是”一遍成”，不清醒时不写代码，没想好时不写代码  } 一、变量溢出问题@card{  乘是一个相当危险的操作，只要有乘，必须考虑溢出问题，lint型做乘法带模数时，要写快速乘 int型涉及到前缀和/乘法时，注意要转lint防爆，有的题表面是1e9左右，但有多次加法操作，也得开lint">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-25T08:24:08.576Z">
+<meta property="og:updated_time" content="2019-10-23T13:54:21.232Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见代码实现细节">
 <meta name="twitter:description" content="这里记录的问题，全是我调过的问题orz。 &amp;lt;!– more – &amp;gt; @card{  我们写代码的目标是”一遍成”，不清醒时不写代码，没想好时不写代码  } 一、变量溢出问题@card{  乘是一个相当危险的操作，只要有乘，必须考虑溢出问题，lint型做乘法带模数时，要写快速乘 int型涉及到前缀和/乘法时，注意要转lint防爆，有的题表面是1e9左右，但有多次加法操作，也得开lint">
@@ -203,18 +203,14 @@
 </ol>
 </div>
 <h2><span id="四-数学相关"><strong>四、数学相关</strong></span></h2><div class="card">
-<ol>
-<li><p>BSGS注意判断，算出的指数要大于等于0，即 $i*len - ht[Yk] &gt;= 0​$</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(Z == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">//Luogu P2485 [SDOI2011]计算器</span></span><br><span class="line"><span class="keyword">if</span>(Y % P == <span class="number">0</span>) <span class="keyword">return</span> Z%P == <span class="number">0</span> ? <span class="number">1</span> : <span class="number">-1</span>; </span><br><span class="line">i*len - ht[Yk] &gt;= <span class="number">0</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>无论是什么题目，题目中保证质数了，也有可能其中的某个数是这个质数的倍数，注意判断这种情况</p>
-</li>
-<li>exgcd求出的d，如果要算最小非负解，一定把模数取决定值，才能用我们惯用的写法</li>
-<li>如果在模意义下做减法，一定要随时调整至非负即 $(a%7 + 7) % 7$ 才是安全的</li>
-<li>计算组合数时，要注意 $0!=1$ 以及它的逆元，选0一个数一定时一种方案，$m&lt;n\ ||\ m&lt;0\ ||\ n&lt;0$时0种方案</li>
-<li>试填法，一般最后一位可以等于“后面没有位了，最后一位小于等于即可保证一定小于等于”，前置位必须保证小于</li>
-</ol>
-<p>} </p>
+<pre><code>1. BSGS注意判断，算出的指数要大于等于0，即 $i*len - ht[Yk] &gt;= 0​$
+</code></pre><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(Z == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">//Luogu P2485 [SDOI2011]计算器</span></span><br><span class="line"><span class="keyword">if</span>(Y % P == <span class="number">0</span>) <span class="keyword">return</span> Z%P == <span class="number">0</span> ? <span class="number">1</span> : <span class="number">-1</span>; </span><br><span class="line">i*len - ht[Yk] &gt;= <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<pre><code>2. 无论是什么题目，题目中保证质数了，也有可能其中的某个数是这个质数的倍数，注意判断这种情况
+3. exgcd会求出负数解，如果求出的东西需要最小非负整数解，或者作逆元等，一定要取模到正数。
+4. 如果在模意义下做减法，一定要随时调整至非负即 $(a%7 + 7) % 7$ 才是安全的
+5. 计算组合数时，要注意 $0!=1$ 以及它的逆元，选0一个数一定时一种方案，$m&lt;n\ ||\ m&lt;0\ ||\ n&lt;0$时0种方案
+6. 试填法，一般最后一位可以等于“后面没有位了，最后一位小于等于即可保证一定小于等于”，前置位必须保证小于
+</code></pre><p>} </p>
 <h2><span id="五-数据结构相关">五、数据结构相关</span></h2><div class="card">
 <pre><code>1. 维护一个差分序列时，时常会有+1,-1，为了防止爆炸，建议你把值域范围开到[0,n+1]
 2. 分块题由于最后一段的右端点是$min(t*len,n)$, 建议你直接预处理出端点，不要每次特判，特别容易错
@@ -235,6 +231,7 @@
 17. 值域范围奇怪，如带0等会影响树状数组一类的东西，需要加减移动值域。
 18. 树链剖分第二次$DFS$别忘了跳过重儿子。
 19. Trie树一开始有个根节点，初始化时总节点数要设为1.
+   20. 维护不相交区间的问题，可以定义小于号为$a.r &lt; b.l$，这样完全在左为小于，完全在右为大于，剩下的相等即相交
 </code></pre></div>
 <h4><span id="六-图论相关">六、图论相关</span></h4><div class="card">
 <ol>
@@ -249,13 +246,14 @@
 <li>无向图的$e-dcc$, 需要注意记录的是“来的边”，而不是父节点，来处理重边问题，回溯时判断并出栈，解决根节点的问题</li>
 <li>无向图的$v-dcc$，需要注意按常规割点定义，搜索树的根节点需要有俩儿子判定成功，且割点会属于多个$v-dcc$，建议回溯到父节点时判断儿子，根节点需要特判。</li>
 <li>缩点相关的题注意边界情况，缩成一个点等特殊情况。</li>
+<li>找环后别忘了$tot+1$存的是最后一个节点到第一个节点的长度</li>
 </ol>
 </div>
 <h4><span id="七-动态规划相关">七、动态规划相关</span></h4><div class="card">
 <ol>
 <li>要仔细考虑初值的设计，比如背包问题，要求“背包必须装满”，按照实际含义，$dp[0] = 0, \forall j \ \ dp[j] = -inf$，因为在第0个物品时，只有“没装东西”是合法的状态。</li>
 <li>状压DP把状态映射到集合中后，注意初值设置下标也要是集合中的下标，例如0映射到1，需要$dp[0][1] = 1$</li>
-<li></li>
+<li>有不合法状态的递推时，一定要考虑“某个现在不合法的状态”，能否在以后变成一个合法状态，能的话不能直接不计算它，为了它后置状态的正确转移必须要计算它。</li>
 </ol>
 </div>
 <h4><span id="八-杂项">八、杂项</span></h4><div class="card">
@@ -268,6 +266,11 @@
 <li>进行思考、推导时，一定要注意前提条件，例如“一定可以从这个点出发找到另一个点”，这个点真的存在么？$n=1$时还存在么？</li>
 <li>数组复用时，一定得是“赋值”，才不用清零，如果直接用++了，别忘了清零。</li>
 <li>用前缀和时，千万别忘了还可以取整个前缀即“ - arr[0]”</li>
+<li>写搜索时，中间的剪枝立即回溯前也别忘了还原现场。</li>
+<li>开邻接矩阵时，有时会有重边，注意后面覆盖前面的问题</li>
+<li>无论是倍增还是二分答案，尽量让指针保持在定义域内，不要让其自然溢出。</li>
+<li>我们常用的1-index下标遇上模循环节的时候一定要注意，多举反例</li>
+<li>一定要考虑边界状况, $n = 1$或$m = 1$时算法是否还能成立。</li>
 </ol>
 </div>
 <h4><span id="九-奇异的语言细节">九、奇异的语言细节</span></h4><div class="card">
