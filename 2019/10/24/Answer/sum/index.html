@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Luogu P1121 环状最大两段子段和 | Rintaro&#39;s Blog | Algorithm and Anime</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="贪心,经典模型,正难则反,两段处理,环形处理">
+    <meta name="description" content="大概特判才是主要难点(">
+<meta name="keywords" content="贪心,经典模型,正难则反,两段处理,环形处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Luogu P1121 环状最大两段子段和">
+<meta property="og:url" content="http://arintaro.com/2019/10/24/Answer/sum/index.html">
+<meta property="og:site_name" content="Rintaro&#39;s Blog">
+<meta property="og:description" content="大概特判才是主要难点(">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-24T14:00:23.944Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Luogu P1121 环状最大两段子段和">
+<meta name="twitter:description" content="大概特判才是主要难点(">
+    
+        <link rel="alternate" type="application/atom+xml" title="Rintaro&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Rintaro</h5>
+          <a href="mailto:rintaro@foxmail.com" title="rintaro@foxmail.com" class="mail">rintaro@foxmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ARintaro" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="tencent://QQInterLive/?Cmd=2&Uin=296394065" target="_blank">
+                <i class="icon icon-lg icon-qq"></i>
+                QQ
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Luogu P1121 环状最大两段子段和</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header page-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Luogu P1121 环状最大两段子段和</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-10-24T13:24:25.109Z" itemprop="datePublished" class="page-time">
+  2019-10-24
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Luogu/">Luogu</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Luogu/题解/">题解</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    <article class="page-article fade" itemprop="blogPage">
+        <div class="post-content page-content" id="page-content" itemprop="pageContent">
+            <p>大概特判才是主要难点(<br><a id="more"></a></p>
+<h2><span id="description">Description:</span></h2><div class="card">
+<p>给定一个环状序列, 可以选其中两段连续不相交的子段, 求它们的最大和</p>
+</div>
+<h2><span id="solution">Solution:</span></h2><div class="card">
+<p>对于这种”两段”问题的处理, 一般有两种方法：第一种是枚举切点, 用前后两段的”一段”的最优去组合答案；第二种是在DP状态内记录当前选了几段, 从而进行转移。</p>
+<h4><span id="算法1-枚举切点-正难则反">算法1: 枚举切点, 正难则反</span></h4><p>考虑序列上怎么做, 显然可以枚举切点用前后两段的最大子段和组合答案。顺着想到可以破环成链跑类似的算法, 然而可能前后两段的长度加起来超过$n$, 从而使答案变大, 这里可以用数据结构维护不同长度的答案(eg. 可持久化平衡树), 然而无论怎么样, 复杂度都会多个$log$。</p>
+<p>考虑在序列上跑完遗落了什么情况, 显然是前后两段接到一起和中间的一段组成答案, 发现这其实在序列上体现为三段, 这三段又分出来了两段, 最优解中这两段之和显然是最小的, 那么用总和减去”序列上最小两段子段和”, 一定能覆盖这种情况。</p>
+<p>然而到这里还远没有结束, 考虑边界情况, 第一种情况只要我们枚举的”两个数之间的断点”在序列中间, 前后两段加起来至少会有两个数字, 因此是没有问题的。但是第二种情况, 我们求出的”序列上最小两段子段和”的长度$len &gt; n-2$的话, 求出来的解就是没有意义的, 由于特判范围较小, 考虑进行讨论。当$len = n$时, 显然序列中必然全是负数, 否则我们在一个正数两边切点就能得到更小的解; 当$len = n-1$时, 我们用来更新答案的值必然是序列中最大的正数, 如果存在另外一个正数, 那么第一种情况一定会比第二种情况求出的答案优秀, 不影响答案, 如果不存在另外一个正数, 那么序列中有且仅有一个正数, 我们显然可以直接得到答案。</p>
+<p>综上, 当序列中正数只有$0$个或$1$个时, 答案为序列中的最大值加次小值, 否则可以应用我们上述的算法, 正确求出答案。</p>
+<h4><span id="算法2-动态规划-一次断开-一次强制连接">算法2: 动态规划, 一次断开, 一次强制连接</span></h4><p>考虑序列上怎么做, 显然我们可以在状态内记录当前选了几个, 以及上个选没选(其实记录上个选没选可以理解为一种小范围的状态压缩去解决一定的后效性)来转移。如果破环成链势必又面临维护麻烦的长度限制的问题, 所以考虑强制连接。</p>
+<p>强制连接后前后两个视为一段, 在中间找第三段即可, 即求出不强制连接时的两段答案, 和强制连接后的三段答案就可覆盖所有情况。</p>
+<p>这种方法常数不太好, 但是不用考虑麻烦的边界情况, 是考场比较优秀的算法。</p>
+</div>
+<h2><span id="code">Code:</span></h2><div class="card">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rint register int</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lint long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> isnum(x) (<span class="meta-string">'0'</span> &lt;= (x) &amp;&amp; (x) &lt;= <span class="meta-string">'9'</span>)</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> tint&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">readint</span><span class="params">(tint&amp; x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> f = <span class="number">1</span>; <span class="keyword">char</span> ch = getchar(); x = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(; !isnum(ch); ch = getchar()) <span class="keyword">if</span>(ch == <span class="string">'-'</span>) f = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(; isnum(ch); ch = getchar()) x = x * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">	x *= f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">2e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf = <span class="number">2e9</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> arr[maxn], cnt = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> ans = -inf, sum, max1 = -inf, max2 = -inf;</span><br><span class="line"><span class="keyword">int</span> presum[maxn], sufsum[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">calc</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; i++) presum[i] = max(presum[i<span class="number">-1</span>], <span class="number">0</span>) + arr[i];</span><br><span class="line">	<span class="keyword">for</span>(rint i=n; i&gt;=<span class="number">1</span>; i--) sufsum[i] = max(sufsum[i+<span class="number">1</span>], <span class="number">0</span>) + arr[i];</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">2</span>; i&lt;=n; i++) presum[i] = max(presum[i<span class="number">-1</span>], presum[i]);</span><br><span class="line">	<span class="keyword">for</span>(rint i=n<span class="number">-1</span>; i&gt;=<span class="number">1</span>; i--) sufsum[i] = max(sufsum[i+<span class="number">1</span>], sufsum[i]); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	readint(n);</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">		readint(arr[i]), sum += arr[i];</span><br><span class="line">		<span class="keyword">if</span>(arr[i] &gt;= <span class="number">0</span>) cnt++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span>(arr[i] &gt;= max1) max2 = max1, max1 = arr[i];</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(arr[i] &gt; max2) max2 = arr[i];</span><br><span class="line">	&#125;</span><br><span class="line">	ans = max1 + max2;</span><br><span class="line">	<span class="keyword">if</span>(cnt &lt; <span class="number">2</span>) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	calc();</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n<span class="number">-1</span>; i++) ans = max(ans, presum[i] + sufsum[i+<span class="number">1</span>]);</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; i++) arr[i] = -arr[i];</span><br><span class="line">	calc();</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n<span class="number">-1</span>; i++) ans = max(ans, sum + presum[i] + sufsum[i+<span class="number">1</span>]);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+        </div>
+
+        
+        <div class="card page-about-me flex-row">
+            <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="/img/avatar.jpg"></a>
+            <div class="content flex-col">
+                <p><strong>Rintaro</strong></p>
+                <p><em>Algorithm and Anime</em></p>
+                <p>LN某弱校高一OIer, 想进队ORZ</p>
+            </div>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/10/24/Answer/sum/&title=《Luogu P1121 环状最大两段子段和》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/10/24/Answer/sum/&title=《Luogu P1121 环状最大两段子段和》 — Rintaro's Blog&source=大概特判才是主要难点(" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/10/24/Answer/sum/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Luogu P1121 环状最大两段子段和》 — Rintaro's Blog&url=http://arintaro.com/2019/10/24/Answer/sum/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/10/24/Answer/sum/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+        
+
+        
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </article>
+    
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        神犇到访数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Rintaro &copy; 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/10/24/Answer/sum/&title=《Luogu P1121 环状最大两段子段和》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/10/24/Answer/sum/&title=《Luogu P1121 环状最大两段子段和》 — Rintaro's Blog&source=大概特判才是主要难点(" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/10/24/Answer/sum/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Luogu P1121 环状最大两段子段和》 — Rintaro's Blog&url=http://arintaro.com/2019/10/24/Answer/sum/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/10/24/Answer/sum/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://arintaro.com/2019/10/24/Answer/sum/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Rintaro's Blog Here';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Rintaro's Blog';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
