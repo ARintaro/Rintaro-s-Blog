@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="Rintaro&#39;s Blog">
 <meta property="og:description" content="这里记录的问题，全是我调过的问题orz。 &amp;lt;!– more – &amp;gt; @card{  我们写代码的目标是”一遍成”，不清醒时不写代码，没想好时不写代码  } 一、变量溢出问题@card{  乘是一个相当危险的操作，只要有乘，必须考虑溢出问题，lint型做乘法带模数时，要写快速乘 int型涉及到前缀和/乘法时，注意要转lint防爆，有的题表面是1e9左右，但有多次加法操作，也得开lint">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-23T13:54:21.232Z">
+<meta property="og:updated_time" content="2019-10-25T00:41:39.281Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见代码实现细节">
 <meta name="twitter:description" content="这里记录的问题，全是我调过的问题orz。 &amp;lt;!– more – &amp;gt; @card{  我们写代码的目标是”一遍成”，不清醒时不写代码，没想好时不写代码  } 一、变量溢出问题@card{  乘是一个相当危险的操作，只要有乘，必须考虑溢出问题，lint型做乘法带模数时，要写快速乘 int型涉及到前缀和/乘法时，注意要转lint防爆，有的题表面是1e9左右，但有多次加法操作，也得开lint">
@@ -203,36 +203,47 @@
 </ol>
 </div>
 <h2><span id="四-数学相关"><strong>四、数学相关</strong></span></h2><div class="card">
-<pre><code>1. BSGS注意判断，算出的指数要大于等于0，即 $i*len - ht[Yk] &gt;= 0​$
-</code></pre><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(Z == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">//Luogu P2485 [SDOI2011]计算器</span></span><br><span class="line"><span class="keyword">if</span>(Y % P == <span class="number">0</span>) <span class="keyword">return</span> Z%P == <span class="number">0</span> ? <span class="number">1</span> : <span class="number">-1</span>; </span><br><span class="line">i*len - ht[Yk] &gt;= <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<pre><code>2. 无论是什么题目，题目中保证质数了，也有可能其中的某个数是这个质数的倍数，注意判断这种情况
-3. exgcd会求出负数解，如果求出的东西需要最小非负整数解，或者作逆元等，一定要取模到正数。
-4. 如果在模意义下做减法，一定要随时调整至非负即 $(a%7 + 7) % 7$ 才是安全的
-5. 计算组合数时，要注意 $0!=1$ 以及它的逆元，选0一个数一定时一种方案，$m&lt;n\ ||\ m&lt;0\ ||\ n&lt;0$时0种方案
-6. 试填法，一般最后一位可以等于“后面没有位了，最后一位小于等于即可保证一定小于等于”，前置位必须保证小于
-</code></pre><p>} </p>
+<ol>
+<li><p>BSGS注意判断，算出的指数要大于等于0，即 $i*len - ht[Yk] &gt;= 0​$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(Z == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">//Luogu P2485 [SDOI2011]计算器</span></span><br><span class="line"><span class="keyword">if</span>(Y % P == <span class="number">0</span>) <span class="keyword">return</span> Z%P == <span class="number">0</span> ? <span class="number">1</span> : <span class="number">-1</span>; </span><br><span class="line">i*len - ht[Yk] &gt;= <span class="number">0</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>无论是什么题目，题目中保证质数了，也有可能其中的某个数是这个质数的倍数，注意判断这种情况</p>
+</li>
+<li>exgcd会求出负数解，如果求出的东西需要最小非负整数解，或者作逆元等，一定要取模到正数。</li>
+<li>如果在模意义下做减法，一定要随时调整至非负即 $(a%7 + 7) % 7$ 才是安全的</li>
+<li>计算组合数时，要注意 $0!=1$ 以及它的逆元，选0一个数一定时一种方案，$m&lt;n\ ||\ m&lt;0\ ||\ n&lt;0$时0种方案</li>
+<li>试填法，一般最后一位可以等于“后面没有位了，最后一位小于等于即可保证一定小于等于”，前置位必须保证小于</li>
+</ol>
+<p>} </p>
 <h2><span id="五-数据结构相关">五、数据结构相关</span></h2><div class="card">
-<pre><code>1. 维护一个差分序列时，时常会有+1,-1，为了防止爆炸，建议你把值域范围开到[0,n+1]
-2. 分块题由于最后一段的右端点是$min(t*len,n)$, 建议你直接预处理出端点，不要每次特判，特别容易错
-3. 分块题开数组不要开混了
-4. 在权值线段树或平衡树上求k小时，函数一般定义时p的子树中求k小，此时如果进右子树别忘了减去“已经确定比它小的个数”
-5. 常见的分治$(l+r) &gt;&gt; 1$ 作为$mid$, 层数为[log2n，log2n+2]，算内存的时候记得取 log2n + 2
-6. 静态线段树空间直接开4*n防越界，动态开点的范围为 $[mlog_2m, 2*n-1]$
-7. 翻转序列等需要改变子树顺序的延时标记需要在进入时立即下放，为了防止翻车，我们不如无论什么标记都是进入时立即下放
-8. 下放延时标记时，需要考虑此标记对其他标记的影响，需要一起结算，（eg: 区间加区间最小值最大值的影响
-9. pushup与pushdown时，注意不要错误地把下标为0的节点信息更新来更新去
-10. 在操作任何“实点”前需要pushdown，在修改后需要pushup
-11. 将操作重新排序后，注意是删除操作优先，还是增加操作优先
-12. 邻接表 i=nxt[i], 千万别写成 i=nxt[x]
-13. 如果一个数据结构题需要大量判边界，前驱后继是否存在等，一般是要插几个inf或-inf的虚点减少特判。
-14. 有延时标记+动态开点时，注意下传的延时标记会不会传到0上，让下传的标记回归虚无。
-15. 有时需要特判“不存在”、”没找到“的情况
-16. 写一些链式的指针结构时，如果需要清空/删除某些东西，一定要记得清空**相关**指针，大部分情况数据清不清无所谓。
-17. 值域范围奇怪，如带0等会影响树状数组一类的东西，需要加减移动值域。
-18. 树链剖分第二次$DFS$别忘了跳过重儿子。
-19. Trie树一开始有个根节点，初始化时总节点数要设为1.
-   20. 维护不相交区间的问题，可以定义小于号为$a.r &lt; b.l$，这样完全在左为小于，完全在右为大于，剩下的相等即相交
-</code></pre></div>
+<ol>
+<li>维护一个差分序列时，时常会有+1,-1，为了防止爆炸，建议你把值域范围开到[0,n+1]</li>
+<li>分块题由于最后一段的右端点是$min(t*len,n)$, 建议你直接预处理出端点，不要每次特判，特别容易错</li>
+<li>分块题开数组不要开混了</li>
+<li>在权值线段树或平衡树上求k小时，函数一般定义时p的子树中求k小，此时如果进右子树别忘了减去“已经确定比它小的个数”</li>
+<li>常见的分治$(l+r) &gt;&gt; 1$ 作为$mid$, 层数为[log2n，log2n+2]，算内存的时候记得取 log2n + 2</li>
+<li>静态线段树空间直接开4<em>n防越界，动态开点的范围为 $[mlog_2m, 2</em>n-1]$</li>
+<li>翻转序列等需要改变子树顺序的延时标记需要在进入时立即下放，为了防止翻车，我们不如无论什么标记都是进入时立即下放</li>
+<li>下放延时标记时，需要考虑此标记对其他标记的影响，需要一起结算，（eg: 区间加区间最小值最大值的影响</li>
+<li>pushup与pushdown时，注意不要错误地把下标为0的节点信息更新来更新去</li>
+<li>在操作任何“实点”前需要pushdown，在修改后需要pushup</li>
+<li>将操作重新排序后，注意是删除操作优先，还是增加操作优先</li>
+<li>邻接表 i=nxt[i], 千万别写成 i=nxt[x]</li>
+<li>如果一个数据结构题需要大量判边界，前驱后继是否存在等，一般是要插几个inf或-inf的虚点减少特判。</li>
+<li>有延时标记+动态开点时，注意下传的延时标记会不会传到0上，让下传的标记回归虚无。</li>
+<li>有时需要特判“不存在”、”没找到“的情况</li>
+<li>写一些链式的指针结构时，如果需要清空/删除某些东西，一定要记得清空<strong>相关</strong>指针，大部分情况数据清不清无所谓。</li>
+<li>值域范围奇怪，如带0等会影响树状数组一类的东西，需要加减移动值域。</li>
+<li>树链剖分第二次$DFS$别忘了跳过重儿子。</li>
+<li>Trie树是信息存在边的数据结构, 我们一般把其边上的信息下放到其深度较大的节点, 由于与其他我们常写的数据结构信息存储方式不同, 写的时候一定要注意。</li>
+<li>Trie空树是有一个节点的, 即初始化时要设totnode为1</li>
+<li><p>Trie节点维护信息时, 最后一次跳转后跳转终止, 但是访问到了最后一个节点, 也要更新最后一个节点的信息</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Accepted 由于根节点不需要存储信息</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> p = <span class="number">1</span>, t = x;</span><br><span class="line">		<span class="keyword">while</span>(x != <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">int</span> v = x % <span class="number">10</span>; x /= <span class="number">10</span>;</span><br><span class="line">			<span class="keyword">if</span>(pv[p][v] == <span class="number">0</span>) pv[p][v] = ++totnode, val[totnode] = t;</span><br><span class="line">			p = pv[p][v], val[p] = min(val[p], t);</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Wrong Answer 最后一个节点未被更新</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> p = <span class="number">1</span>, t = x;</span><br><span class="line">		<span class="keyword">while</span>(x != <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">int</span> v = x % <span class="number">10</span>; x /= <span class="number">10</span>;</span><br><span class="line">      val[p] = min(val[p], t);</span><br><span class="line">			<span class="keyword">if</span>(pv[p][v] == <span class="number">0</span>) pv[p][v] = ++totnode, val[totnode] = t;</span><br><span class="line">			p = pv[p][v];</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>维护不相交区间的问题，可以定义小于号为$a.r &lt; b.l$，这样完全在左为小于，完全在右为大于，剩下的相等即相交</p>
+</li>
+</ol>
+</div>
 <h4><span id="六-图论相关">六、图论相关</span></h4><div class="card">
 <ol>
 <li>如果无向图里有重边，一般只加一次，无向图邻接表开两倍，树邻接表开到节点数即可。</li>
@@ -254,6 +265,8 @@
 <li>要仔细考虑初值的设计，比如背包问题，要求“背包必须装满”，按照实际含义，$dp[0] = 0, \forall j \ \ dp[j] = -inf$，因为在第0个物品时，只有“没装东西”是合法的状态。</li>
 <li>状压DP把状态映射到集合中后，注意初值设置下标也要是集合中的下标，例如0映射到1，需要$dp[0][1] = 1$</li>
 <li>有不合法状态的递推时，一定要考虑“某个现在不合法的状态”，能否在以后变成一个合法状态，能的话不能直接不计算它，为了它后置状态的正确转移必须要计算它。</li>
+<li>维护单调队列时, 从队头出队判断合法性一定要在入队操作之后。<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Wrong Answer</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">  <span class="keyword">while</span>(l &lt;= r &amp;&amp; !check(j, i)) l++; <span class="comment">// 出队操作</span></span><br><span class="line">  <span class="keyword">while</span>(j &lt; i &amp;&amp; cmp(q[r], j)) r--; <span class="comment">// 入队操作</span></span><br><span class="line">  q[++r] = j++;</span><br><span class="line">  <span class="keyword">if</span>(l &lt;= r) dp[i] = dp[q[l]] + val(i, q[l]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Accepted</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">  <span class="keyword">while</span>(j &lt; i &amp;&amp; cmp(q[r], j)) r--; <span class="comment">// 入队操作</span></span><br><span class="line">  q[++r] = j++;</span><br><span class="line">  <span class="keyword">while</span>(l &lt;= r &amp;&amp; !check(j, i)) l++; <span class="comment">// 出队操作</span></span><br><span class="line">  <span class="keyword">if</span>(l &lt;= r) dp[i] = dp[q[l]] + val(i, q[l]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Accepted</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">  <span class="keyword">while</span>(l &lt;= r &amp;&amp; !check(j, i)) l++; <span class="comment">// 出队操作</span></span><br><span class="line">  <span class="keyword">if</span>(l &lt;= r) dp[i] = dp[q[l]] + val(i, q[l]);</span><br><span class="line">  <span class="keyword">while</span>(j &lt; i &amp;&amp; cmp(q[r], j)) r--; <span class="comment">// 入队操作</span></span><br><span class="line">  q[++r] = j++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 </div>
 <h4><span id="八-杂项">八、杂项</span></h4><div class="card">
@@ -275,7 +288,7 @@
 </div>
 <h4><span id="九-奇异的语言细节">九、奇异的语言细节</span></h4><div class="card">
 <ol>
-<li><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 形参中的表达式一定会被计算，但是C++标准并没有规定参数的求值顺序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="string">" "</span> &lt;&lt; y &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">test(++x,x); <span class="comment">// 输出 1 1</span></span><br><span class="line">test(++x,x<span class="number">-1</span>); <span class="comment">// 输出1 -1</span></span><br></pre></td></tr></table></figure>
+<li><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 形参中的表达式一定会被计算，但是C++标准并没有规定参数的求值顺序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="string">" "</span> &lt;&lt; y &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">test(++x,x); <span class="comment">// 输出 1 1</span></span><br><span class="line">test(++x,x<span class="number">-1</span>); <span class="comment">// 输出1 -1</span></span><br></pre></td></tr></table></figure>
 </li>
 <li></li>
 </ol>
