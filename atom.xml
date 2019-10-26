@@ -70,11 +70,11 @@
       <category term="题解" scheme="http://arintaro.com/categories/Luogu/NOIP2018/%E9%A2%98%E8%A7%A3/"/>
     
     
+      <category term="数学" scheme="http://arintaro.com/tags/%E6%95%B0%E5%AD%A6/"/>
+    
       <category term="递推" scheme="http://arintaro.com/tags/%E9%80%92%E6%8E%A8/"/>
     
       <category term="期望" scheme="http://arintaro.com/tags/%E6%9C%9F%E6%9C%9B/"/>
-    
-      <category term="数学" scheme="http://arintaro.com/tags/%E6%95%B0%E5%AD%A6/"/>
     
   </entry>
   
@@ -213,9 +213,9 @@
       <category term="数学" scheme="http://arintaro.com/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/"/>
     
     
-      <category term="数学" scheme="http://arintaro.com/tags/%E6%95%B0%E5%AD%A6/"/>
-    
       <category term="总结" scheme="http://arintaro.com/tags/%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="数学" scheme="http://arintaro.com/tags/%E6%95%B0%E5%AD%A6/"/>
     
   </entry>
   
@@ -511,9 +511,9 @@
       <category term="题解" scheme="http://arintaro.com/categories/%E6%AF%94%E8%B5%9B/NOIP2018/%E9%A2%98%E8%A7%A3/"/>
     
     
-      <category term="贪心" scheme="http://arintaro.com/tags/%E8%B4%AA%E5%BF%83/"/>
-    
       <category term="图论" scheme="http://arintaro.com/tags/%E5%9B%BE%E8%AE%BA/"/>
+    
+      <category term="贪心" scheme="http://arintaro.com/tags/%E8%B4%AA%E5%BF%83/"/>
     
       <category term="双指针" scheme="http://arintaro.com/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
     
