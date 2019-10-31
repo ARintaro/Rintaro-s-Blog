@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="Rintaro&#39;s Blog">
 <meta property="og:description" content="也许很有用，也许没什么卵用。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-24T13:33:57.509Z">
+<meta property="og:updated_time" content="2019-10-31T02:08:03.083Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OI中的常见解题思路与技巧（更新中）">
 <meta name="twitter:description" content="也许很有用，也许没什么卵用。">
@@ -171,6 +171,8 @@
 <li>可以小范围搜索+多重限制贪心乱搞，说不定就骗到了100pts呢，考试的时候要<del>勇于乱搞，敢于乱搞</del></li>
 <li>一般一个错误的贪心，都能提炼出一些在某些限制条件下的正确性质。</li>
 <li>出题人是傻的，数据是水的，贪心+暴力是能过的，是能$AC$的。</li>
+<li>排序、邻项交换：注意严格弱序, 没有关系没有传递性肯定不行, 没有不可比传递性可以双关键字排序。性质证明可以枚举证明。</li>
+<li>后悔法：先选上一组可行解, 再迭代的后悔选出最优解</li>
 </ul>
 </li>
 </ol>
@@ -200,6 +202,12 @@
 
 
 <h2><span id="三-数据结构题">三、数据结构题</span></h2><div class="card">
+<ol>
+<li><h6><span id="思路">思路</span></h6><ul>
+<li>并查集也可以用来维护序列, 有着优秀的常数和时间。</li>
+</ul>
+</li>
+</ol>
 </div>
 <h2><span id="四-数学题">四、数学题</span></h2><div class="card">
 <ol>
@@ -318,13 +326,20 @@
 <li>“要是这样就好了” =&gt; “怎么样能变成这样”</li>
 </ul>
 </li>
-<li><h6><span id="用适当的枚举与计算顺序覆盖所有情况">用适当的枚举与计算顺序覆盖所有情况</span></h6></li>
+<li><h6><span id="用适当的枚举与计算顺序覆盖所有情况">用适当的枚举与计算顺序覆盖所有情况</span></h6><ul>
+<li>有时候会有错误的转移更新答案, 但肯定没有答案优秀, 所以不影响结果</li>
+</ul>
+</li>
 <li><h6><span id="调整法">调整法</span></h6><ul>
 <li>先求出一组可行解, 在逐步调整至最优解</li>
 </ul>
 </li>
-<li><h6><span id="划分决策集合">划分决策集合</span></h6><ul>
+<li><h6><span id="划分决策集合-及时排除不可能的决策">划分决策集合, 及时排除不可能的决策</span></h6><ul>
 <li>全部决策集合不容易维护, 考虑按某种性质划分成多个集合, 集合内部满足单调性等优秀性质</li>
+</ul>
+</li>
+<li><h6><span id="价值转化">价值转化</span></h6><ul>
+<li>直接从题面描述的价值计算方式不容易计算，考虑对每个单元计算贡献。</li>
 </ul>
 </li>
 </ol>

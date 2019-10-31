@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="Rintaro&#39;s Blog">
 <meta property="og:description" content="这里记录的问题，全是我调过的问题orz。 &amp;lt;!– more – &amp;gt; @card{  我们写代码的目标是”一遍成”，不清醒时不写代码，没想好时不写代码  } 一、变量溢出问题@card{  乘是一个相当危险的操作，只要有乘，必须考虑溢出问题，lint型做乘法带模数时，要写快速乘 int型涉及到前缀和/乘法时，注意要转lint防爆，有的题表面是1e9左右，但有多次加法操作，也得开lint">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-25T00:41:39.281Z">
+<meta property="og:updated_time" content="2019-10-30T14:12:32.669Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见代码实现细节">
 <meta name="twitter:description" content="这里记录的问题，全是我调过的问题orz。 &amp;lt;!– more – &amp;gt; @card{  我们写代码的目标是”一遍成”，不清醒时不写代码，没想好时不写代码  } 一、变量溢出问题@card{  乘是一个相当危险的操作，只要有乘，必须考虑溢出问题，lint型做乘法带模数时，要写快速乘 int型涉及到前缀和/乘法时，注意要转lint防爆，有的题表面是1e9左右，但有多次加法操作，也得开lint">
@@ -174,6 +174,7 @@
 <li>long double型可以存下long long型的所有有效数字，遇到long long的溢出问题可以考虑转long double存整数</li>
 <li>double用memset初始化时，跟int型一样的最值用max: 0x42, min: 0xc2,，极限值max: 0x7f, min: 0xfe。</li>
 <li>在long long数据范围使用左移时，一定得用1LL防止溢出。</li>
+<li>设inf时一定要小心, 0x3f最多加两次, 0x7f不能加, 有时正常数据不会爆int, 但你设的两个inf之间运算爆了int</li>
 </ol>
 </div>
 <h2><span id="二-运算问题"><strong>二、运算问题</strong></span></h2><div class="card">
@@ -188,7 +189,7 @@
 </div>
 <h2><span id="三-语言问题"><strong>三、语言问题</strong></span></h2><div class="card">
 <ol>
-<li>有时需要注意\n \r的问题，建议写手动读入的时候直接特判掉</li>
+<li>有时需要注意\n \r的问题，建议写手动读入的时候直接特判掉, scanf和getline混用时尤其要注意</li>
 <li>宏定义千万别忘了括号，调一辈子，一般来说”有分割”的东西，不用加括号</li>
 <li>lint 输入输出 %lld，ldob输入输出 %Lf</li>
 <li>数组作为形参会退化成指针，不能再用sizeof求大小</li>
@@ -250,7 +251,7 @@
 <li>邻接矩阵注意初值是0还是inf，无向边一定要记得加两遍！！</li>
 <li>在有负权边时，树的直径不能通过两次DFS求。</li>
 <li>无向图邻接表修改边的属性时，注意也要把反向的边也一起修改。</li>
-<li>带有重边的图中，不能只记录来源节点，可能需要记录来源边，来处理一些情况，如“二元环”。</li>
+<li>带有重边的图中，不能只记录来源节点，可能需要记录来源边，来处理一些情况，如“<strong>二元环</strong>”。</li>
 <li>在写图的遍历DFS、BFS时，别忘了递归子节点/将子节点入队，（别笑，我真的干过，还调了一段时间。。</li>
 <li>建虚点，平移编号后一定要注意读入后别忘平移，节点数别忘增加。</li>
 <li>有向图的$scc$，注意更新$low[x]$时，需要判断节点是否在栈里，回溯时判断并出栈。</li>
@@ -258,6 +259,7 @@
 <li>无向图的$v-dcc$，需要注意按常规割点定义，搜索树的根节点需要有俩儿子判定成功，且割点会属于多个$v-dcc$，建议回溯到父节点时判断儿子，根节点需要特判。</li>
 <li>缩点相关的题注意边界情况，缩成一个点等特殊情况。</li>
 <li>找环后别忘了$tot+1$存的是最后一个节点到第一个节点的长度</li>
+<li>用奇数偶数存正反边建正反图时, 注意对常数的影响。</li>
 </ol>
 </div>
 <h4><span id="七-动态规划相关">七、动态规划相关</span></h4><div class="card">
@@ -265,10 +267,12 @@
 <li>要仔细考虑初值的设计，比如背包问题，要求“背包必须装满”，按照实际含义，$dp[0] = 0, \forall j \ \ dp[j] = -inf$，因为在第0个物品时，只有“没装东西”是合法的状态。</li>
 <li>状压DP把状态映射到集合中后，注意初值设置下标也要是集合中的下标，例如0映射到1，需要$dp[0][1] = 1$</li>
 <li>有不合法状态的递推时，一定要考虑“某个现在不合法的状态”，能否在以后变成一个合法状态，能的话不能直接不计算它，为了它后置状态的正确转移必须要计算它。</li>
-<li>维护单调队列时, 从队头出队判断合法性一定要在入队操作之后。<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Wrong Answer</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">  <span class="keyword">while</span>(l &lt;= r &amp;&amp; !check(j, i)) l++; <span class="comment">// 出队操作</span></span><br><span class="line">  <span class="keyword">while</span>(j &lt; i &amp;&amp; cmp(q[r], j)) r--; <span class="comment">// 入队操作</span></span><br><span class="line">  q[++r] = j++;</span><br><span class="line">  <span class="keyword">if</span>(l &lt;= r) dp[i] = dp[q[l]] + val(i, q[l]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Accepted</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">  <span class="keyword">while</span>(j &lt; i &amp;&amp; cmp(q[r], j)) r--; <span class="comment">// 入队操作</span></span><br><span class="line">  q[++r] = j++;</span><br><span class="line">  <span class="keyword">while</span>(l &lt;= r &amp;&amp; !check(j, i)) l++; <span class="comment">// 出队操作</span></span><br><span class="line">  <span class="keyword">if</span>(l &lt;= r) dp[i] = dp[q[l]] + val(i, q[l]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Accepted</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">  <span class="keyword">while</span>(l &lt;= r &amp;&amp; !check(j, i)) l++; <span class="comment">// 出队操作</span></span><br><span class="line">  <span class="keyword">if</span>(l &lt;= r) dp[i] = dp[q[l]] + val(i, q[l]);</span><br><span class="line">  <span class="keyword">while</span>(j &lt; i &amp;&amp; cmp(q[r], j)) r--; <span class="comment">// 入队操作</span></span><br><span class="line">  q[++r] = j++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p>维护单调队列时, 从队头出队判断合法性一定要在入队操作之后。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Wrong Answer</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">  <span class="keyword">while</span>(l &lt;= r &amp;&amp; !check(j, i)) l++; <span class="comment">// 出队操作</span></span><br><span class="line">  <span class="keyword">while</span>(j &lt; i &amp;&amp; cmp(q[r], j)) r--; <span class="comment">// 入队操作</span></span><br><span class="line">  q[++r] = j++;</span><br><span class="line">  <span class="keyword">if</span>(l &lt;= r) dp[i] = dp[q[l]] + val(i, q[l]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Accepted</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">  <span class="keyword">while</span>(j &lt; i &amp;&amp; cmp(q[r], j)) r--; <span class="comment">// 入队操作</span></span><br><span class="line">  q[++r] = j++;</span><br><span class="line">  <span class="keyword">while</span>(l &lt;= r &amp;&amp; !check(j, i)) l++; <span class="comment">// 出队操作</span></span><br><span class="line">  <span class="keyword">if</span>(l &lt;= r) dp[i] = dp[q[l]] + val(i, q[l]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Accepted</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">  <span class="keyword">while</span>(l &lt;= r &amp;&amp; !check(j, i)) l++; <span class="comment">// 出队操作</span></span><br><span class="line">  <span class="keyword">if</span>(l &lt;= r) dp[i] = dp[q[l]] + val(i, q[l]);</span><br><span class="line">  <span class="keyword">while</span>(j &lt; i &amp;&amp; cmp(q[r], j)) r--; <span class="comment">// 入队操作</span></span><br><span class="line">  q[++r] = j++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在动态规划中应用单调队列时，队列最大可能是<strong>值域</strong>，别顺手写成maxn了<br>}</p>
 </li>
 </ol>
-</div>
 <h4><span id="八-杂项">八、杂项</span></h4><div class="card">
 <ol>
 <li>题目中的限制条件一定要用手写出来，不然很容易写混 &lt;= &gt;=</li>
@@ -284,6 +288,7 @@
 <li>无论是倍增还是二分答案，尽量让指针保持在定义域内，不要让其自然溢出。</li>
 <li>我们常用的1-index下标遇上模循环节的时候一定要注意，多举反例</li>
 <li>一定要考虑边界状况, $n = 1$或$m = 1$时算法是否还能成立。</li>
+<li>有多个上限$n$, $m$, $t$等, 循环时一定要分清上限是哪个</li>
 </ol>
 </div>
 <h4><span id="九-奇异的语言细节">九、奇异的语言细节</span></h4><div class="card">
@@ -291,6 +296,16 @@
 <li><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 形参中的表达式一定会被计算，但是C++标准并没有规定参数的求值顺序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="string">" "</span> &lt;&lt; y &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">test(++x,x); <span class="comment">// 输出 1 1</span></span><br><span class="line">test(++x,x<span class="number">-1</span>); <span class="comment">// 输出1 -1</span></span><br></pre></td></tr></table></figure>
 </li>
 <li></li>
+</ol>
+</div>
+<h4><span id="十-final-check">十、Final Check</span></h4><div class="card">
+<ol>
+<li>为了防止某题正解挂的连暴力都不如, 提交前必须检查。</li>
+<li>对拍: 写正解的题必须拍, 包括T1, 虽然暴力可能写挂, 但是正解与暴力挂的一模一样的概率极低</li>
+<li>极限数据: 在暴力的数据范围拍完后, 必须造一组极限数据检查是否会TLE/RE/MLE</li>
+<li>数据类型检查: double, long long与int, 尤其是经常被忽略的函数返回值</li>
+<li>运算溢出检查: 某个地方会不会有int之间的运算, 结果却需要long或double</li>
+<li>数组越界检查: 数组是否开的不够大？</li>
 </ol>
 </div>
 
@@ -380,7 +395,7 @@
 
 
 
-    </div></article>
+    </div></div></article>
     
 
 </div>
