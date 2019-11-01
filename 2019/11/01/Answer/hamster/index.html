@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Luogu P3400 仓鼠窝 | Rintaro&#39;s Blog | Algorithm and Anime</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="单调栈,悬线法,多维问题">
+    <meta name="description" content="转化后不难的问题。">
+<meta name="keywords" content="单调栈,悬线法,多维问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Luogu P3400 仓鼠窝">
+<meta property="og:url" content="http://arintaro.com/2019/11/01/Answer/hamster/index.html">
+<meta property="og:site_name" content="Rintaro&#39;s Blog">
+<meta property="og:description" content="转化后不难的问题。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-01T09:35:37.443Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Luogu P3400 仓鼠窝">
+<meta name="twitter:description" content="转化后不难的问题。">
+    
+        <link rel="alternate" type="application/atom+xml" title="Rintaro&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Rintaro</h5>
+          <a href="mailto:rintaro@foxmail.com" title="rintaro@foxmail.com" class="mail">rintaro@foxmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ARintaro" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="tencent://QQInterLive/?Cmd=2&Uin=296394065" target="_blank">
+                <i class="icon icon-lg icon-qq"></i>
+                QQ
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Luogu P3400 仓鼠窝</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header page-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Luogu P3400 仓鼠窝</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-11-01T08:46:01.002Z" itemprop="datePublished" class="page-time">
+  2019-11-01
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Luogu/">Luogu</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Luogu/题解/">题解</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    <article class="page-article fade" itemprop="blogPage">
+        <div class="post-content page-content" id="page-content" itemprop="pageContent">
+            <p>转化后不难的问题。<br><a id="more"></a></p>
+<h2><span id="description">Description:</span></h2><div class="card">
+<p>给一个$n \times n$的$01$矩阵，求出其中均为$1$的子矩阵个数。</p>
+<p>$1 \leq n \leq 3000$</p>
+</div>
+<h2><span id="solution">Solution:</span></h2><div class="card">
+<p>先考虑几个朴素做法，枚举子矩阵的三个角，暴力判断其中是否都是$1$，$O(n^6)$。</p>
+<p>发现判断很耗时，不如用hash，降到$O(n^4)$。</p>
+<p>考虑只枚举两个角，即枚举两个行，然后判断两行间有多少子矩阵。只要把多行压成一行，然后转化成一维问题解决即可。降到$O(n^3)$。</p>
+<p>再写出暴力对拍后，考虑能否只枚举一个角解决问题。</p>
+<h4><span id="算法一-单调栈-分行计算贡献">算法一: 单调栈 + 分行计算贡献</span></h4><p>考虑之前经常做的最大子矩阵问题，我们可以枚举一行，然后每列之上连续的$1$的数量作为一列的高度。</p>
+<p>同时注意不要重复计算，我们每次计算的是”底端在这行上”的数量，类似最大子矩阵问题，我们在出栈时计算贡献。</p>
+<p>与之前相同，因为我们维护了矩形的单调性，我们出栈时倒序计算可以保证右边的矩形都比当前矩形高，从而快速累加贡献。但是这里我们需要计算什么呢？为了防止重复计算，我们规定出栈时只计算”跨多个矩形构成的子矩阵”，出栈一个矩形时，分成它自己的左端，和这次之前出栈的右端，不妨设左端宽度$w$，右端宽度$now$，左端高度$h$，则这次的贡献显然是$w \times now \times h$。</p>
+<p>之后注意入栈时不能只入$now + 1$一个矩形，而是要入一个$now$和一个$1$的，因为新加进来的矩形与之前的矩形的贡献还未计算。</p>
+<h4><span id="算法二-单调栈-对每个右下角计算贡献">算法二： 单调栈 + 对每个右下角计算贡献</span></h4><p>考虑对一个右下角有多少个左上角能与其匹配，手玩后发现其在列上满足一定的单调性。所以分列转移，用递推预处理出每个点向左最多能扩展$1$的长度，再用单调栈维护一下即可，具体做法与上个方法类似。</p>
+</div>
+<h2><span id="code">Code:</span></h2><div class="card">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rint register int</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lint long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> isnum(x) (<span class="meta-string">'0'</span> &lt;= (x) &amp;&amp; (x) &lt;= <span class="meta-string">'9'</span>)</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> tint&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">readint</span><span class="params">(tint&amp; x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> f = <span class="number">1</span>; <span class="keyword">char</span> ch = getchar(); x = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(; !isnum(ch); ch = getchar()) <span class="keyword">if</span>(ch == <span class="string">'-'</span>) f = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(; isnum(ch); ch = getchar()) x = x * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">	x *= f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">3000</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">bool</span> ma[maxn][maxn];</span><br><span class="line"><span class="keyword">int</span> arr[maxn];</span><br><span class="line">lint ans = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> h[maxn], w[maxn], stop = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意n, m别写反了</span></span><br><span class="line"><span class="function">lint <span class="title">calc</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	stop = <span class="number">0</span>;</span><br><span class="line">	lint res = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=m+<span class="number">1</span>; i++) &#123;</span><br><span class="line">		res += arr[i];</span><br><span class="line">		<span class="keyword">if</span>(h[stop] &lt; arr[i]) h[++stop] = arr[i], w[stop] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">int</span> now = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">while</span>(stop &amp;&amp; h[stop] &gt;= arr[i]) &#123;</span><br><span class="line">				res += (lint)w[stop] * now * h[stop], now += w[stop];</span><br><span class="line">				stop--;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(arr[i] != <span class="number">0</span>) &#123;</span><br><span class="line">				h[++stop] = arr[i], w[stop] = now;</span><br><span class="line">				h[++stop] = arr[i], w[stop] = <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	readint(n), readint(m);</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span>(rint j=<span class="number">1</span>; j&lt;=m; j++) &#123;</span><br><span class="line">			readint(ma[i][j]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span>(rint j=<span class="number">1</span>; j&lt;=m; j++) arr[j] = ma[i][j] ? arr[j] + <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">		ans += calc();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法二</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rint register int</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lint long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> isnum(x) (<span class="meta-string">'0'</span> &lt;= (x) &amp;&amp; (x) &lt;= <span class="meta-string">'9'</span>)</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> tint&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">readint</span><span class="params">(tint&amp; x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> f = <span class="number">1</span>; <span class="keyword">char</span> ch = getchar(); x = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(; !isnum(ch); ch = getchar()) <span class="keyword">if</span>(ch == <span class="string">'-'</span>) f = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(; isnum(ch); ch = getchar()) x = x * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">	x *= f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">3000</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">int</span> lt[maxn][maxn];</span><br><span class="line"><span class="keyword">bool</span> ma[maxn][maxn];</span><br><span class="line"><span class="keyword">int</span> h[maxn], w[maxn];</span><br><span class="line">lint ans = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	readint(n), readint(m);</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span>(rint j=<span class="number">1</span>; j&lt;=m; j++) &#123;</span><br><span class="line">			readint(ma[i][j]);</span><br><span class="line">			lt[i][j] = ma[i][j] ? lt[i][j<span class="number">-1</span>] + <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(rint j=<span class="number">1</span>; j&lt;=m; j++) &#123;</span><br><span class="line">		<span class="keyword">int</span> cnt = <span class="number">0</span>, stop = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">			cnt += lt[i][j];</span><br><span class="line">			<span class="keyword">if</span>(!stop || (stop &amp;&amp; w[stop] &lt;= lt[i][j])) &#123;</span><br><span class="line">				w[++stop] = lt[i][j], h[stop] = <span class="number">1</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">int</span> now = <span class="number">1</span>;</span><br><span class="line">				<span class="keyword">while</span>(stop &amp;&amp; w[stop] &gt;= lt[i][j]) &#123;</span><br><span class="line">					cnt -= (w[stop] - lt[i][j]) * h[stop];</span><br><span class="line">					now += h[stop], stop--;</span><br><span class="line">				&#125;</span><br><span class="line">				w[++stop] = lt[i][j], h[stop] = now;</span><br><span class="line">			&#125;</span><br><span class="line">			ans += cnt;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+        </div>
+
+        
+        <div class="card page-about-me flex-row">
+            <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="/img/avatar.jpg"></a>
+            <div class="content flex-col">
+                <p><strong>Rintaro</strong></p>
+                <p><em>Algorithm and Anime</em></p>
+                <p>LN某弱校高一OIer, 想进队ORZ</p>
+            </div>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/11/01/Answer/hamster/&title=《Luogu P3400 仓鼠窝》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/11/01/Answer/hamster/&title=《Luogu P3400 仓鼠窝》 — Rintaro's Blog&source=转化后不难的问题。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/11/01/Answer/hamster/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Luogu P3400 仓鼠窝》 — Rintaro's Blog&url=http://arintaro.com/2019/11/01/Answer/hamster/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/11/01/Answer/hamster/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+        
+
+        
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </article>
+    
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        神犇到访数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Rintaro &copy; 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/11/01/Answer/hamster/&title=《Luogu P3400 仓鼠窝》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/11/01/Answer/hamster/&title=《Luogu P3400 仓鼠窝》 — Rintaro's Blog&source=转化后不难的问题。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/11/01/Answer/hamster/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Luogu P3400 仓鼠窝》 — Rintaro's Blog&url=http://arintaro.com/2019/11/01/Answer/hamster/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/11/01/Answer/hamster/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://arintaro.com/2019/11/01/Answer/hamster/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Rintaro's Blog Here';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Rintaro's Blog';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

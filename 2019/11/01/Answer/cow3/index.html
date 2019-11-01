@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>USACO11OPEN 奇数度 Odd degrees | Rintaro&#39;s Blog | Algorithm and Anime</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="树上问题,等效法,生成树">
+    <meta name="description" content="转化后不难的问题。">
+<meta name="keywords" content="树上问题,等效法,生成树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="USACO11OPEN 奇数度 Odd degrees">
+<meta property="og:url" content="http://arintaro.com/2019/11/01/Answer/cow3/index.html">
+<meta property="og:site_name" content="Rintaro&#39;s Blog">
+<meta property="og:description" content="转化后不难的问题。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-01T08:45:40.063Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="USACO11OPEN 奇数度 Odd degrees">
+<meta name="twitter:description" content="转化后不难的问题。">
+    
+        <link rel="alternate" type="application/atom+xml" title="Rintaro&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Rintaro</h5>
+          <a href="mailto:rintaro@foxmail.com" title="rintaro@foxmail.com" class="mail">rintaro@foxmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ARintaro" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="tencent://QQInterLive/?Cmd=2&Uin=296394065" target="_blank">
+                <i class="icon icon-lg icon-qq"></i>
+                QQ
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">USACO11OPEN 奇数度 Odd degrees</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header page-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">USACO11OPEN 奇数度 Odd degrees</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-11-01T02:41:11.874Z" itemprop="datePublished" class="page-time">
+  2019-11-01
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/USACO/">USACO</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/USACO/题解/">题解</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    <article class="page-article fade" itemprop="blogPage">
+        <div class="post-content page-content" id="page-content" itemprop="pageContent">
+            <p>转化后不难的问题。<br><a id="more"></a></p>
+<h2><span id="description">Description:</span></h2><div class="card">
+<p>给一张图，要求选出一些边，使每个点的度数为奇数。</p>
+<p>$1 \leq n \leq 10^5$，$1 \leq m \leq 2 \times 10^5$</p>
+</div>
+<h2><span id="solution">Solution:</span></h2><div class="card">
+<p>由于图上问题有”任意性”, 难以进行DP，所以先考虑性质与扫描。</p>
+<p>发现这个问题与图的形态无关，其实就是给一个全$0$序列和$m$对关系，选一对关系是把两个都加一，最后求怎么选能让序列中的数都都是奇数，最后发现十分不可做，我们难以确定计算顺序，选了一对关系很可能会对后面带来无法估计与记录的影响。</p>
+<p>考虑在树上怎么做，树上显然确定计算顺序自下而上即可，叶子节点连向父亲的边是必须选的，考虑完所有的叶子节点，再考虑向上一层，它们此时的度数的奇偶性是确定，也就是说成为新的”可以直接确定连向父亲边选不选的”叶子节点。</p>
+<p>接着扩展到图上，发现图上随便一个生成树的所有方案其实覆盖了图上的所有方案。首先，对一条链来讲，把其中边选不选的状态取反，中间的节点度数奇偶性均不变，只有两头的节点奇偶性取反。那么如果存在一种方案有一条不在生成树上的边成立，那么去掉这条边，把它在生成树路径上的边取反，显然也是一种成立的方案。</p>
+<p>所以随便求个生成树当树上问题做即可。</p>
+</div>
+<h2><span id="code">Code:</span></h2><div class="card">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rint register int</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lint long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> isnum(x) (<span class="meta-string">'0'</span> &lt;= (x) &amp;&amp; (x) &lt;= <span class="meta-string">'9'</span>)</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> tint&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">readint</span><span class="params">(tint&amp; x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> f = <span class="number">1</span>; <span class="keyword">char</span> ch = getchar(); x = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(; !isnum(ch); ch = getchar()) <span class="keyword">if</span>(ch == <span class="string">'-'</span>) f = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(; isnum(ch); ch = getchar()) x = x * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">    x *= f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">5e4</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm = <span class="number">2e5</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">int</span> head[maxn], ev[maxm], nxt[maxm], id[maxm], totedge = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addedge</span><span class="params">(<span class="keyword">int</span> nu, <span class="keyword">int</span> nv, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    ev[++totedge] = nv, nxt[totedge] = head[nu], head[nu] = totedge;</span><br><span class="line">    id[totedge] = x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 图上问题在树上怎么做？</span></span><br><span class="line"><span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">bool</span> vis[maxn], choose[maxm];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">bool</span> res = <span class="number">0</span>;</span><br><span class="line">    vis[x] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rint i=head[x], y=ev[i]; i; i=nxt[i], y=ev[i]) &#123;</span><br><span class="line">        <span class="keyword">if</span>(vis[y]) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span>(!dfs(y)) cnt++, choose[id[i]] = <span class="number">1</span>, res ^= <span class="number">1</span>; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    readint(n), readint(m);</span><br><span class="line">    <span class="keyword">int</span> nu, nv;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=m; i++) &#123;</span><br><span class="line">        readint(nu), readint(nv);</span><br><span class="line">        addedge(nu, nv, i), addedge(nv, nu, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">bool</span> failed = <span class="number">0</span>;</span><br><span class="line">	 <span class="keyword">for</span>(rint x=<span class="number">1</span>; x&lt;=n; x++) &#123;</span><br><span class="line">		 <span class="keyword">if</span>(vis[x]) <span class="keyword">continue</span>;</span><br><span class="line">		 <span class="keyword">if</span>(!dfs(x)) &#123;</span><br><span class="line">			 failed = <span class="number">1</span>;</span><br><span class="line">			 <span class="keyword">break</span>;</span><br><span class="line">		 &#125;</span><br><span class="line">	 &#125;</span><br><span class="line">    <span class="keyword">if</span>(failed) <span class="built_in">puts</span>(<span class="string">"-1"</span>);</span><br><span class="line">	 <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, cnt);</span><br><span class="line">        <span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=m; i++) <span class="keyword">if</span>(choose[i]) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, i);</span><br><span class="line">	 &#125;</span><br><span class="line">         </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+        </div>
+
+        
+        <div class="card page-about-me flex-row">
+            <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="/img/avatar.jpg"></a>
+            <div class="content flex-col">
+                <p><strong>Rintaro</strong></p>
+                <p><em>Algorithm and Anime</em></p>
+                <p>LN某弱校高一OIer, 想进队ORZ</p>
+            </div>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/11/01/Answer/cow3/&title=《USACO11OPEN 奇数度 Odd degrees》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/11/01/Answer/cow3/&title=《USACO11OPEN 奇数度 Odd degrees》 — Rintaro's Blog&source=转化后不难的问题。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/11/01/Answer/cow3/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《USACO11OPEN 奇数度 Odd degrees》 — Rintaro's Blog&url=http://arintaro.com/2019/11/01/Answer/cow3/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/11/01/Answer/cow3/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+        
+
+        
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </article>
+    
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        神犇到访数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Rintaro &copy; 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/11/01/Answer/cow3/&title=《USACO11OPEN 奇数度 Odd degrees》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/11/01/Answer/cow3/&title=《USACO11OPEN 奇数度 Odd degrees》 — Rintaro's Blog&source=转化后不难的问题。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/11/01/Answer/cow3/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《USACO11OPEN 奇数度 Odd degrees》 — Rintaro's Blog&url=http://arintaro.com/2019/11/01/Answer/cow3/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/11/01/Answer/cow3/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://arintaro.com/2019/11/01/Answer/cow3/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Rintaro's Blog Here';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Rintaro's Blog';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
