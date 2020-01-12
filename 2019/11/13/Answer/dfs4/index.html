@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>LOJ146 DFS序4 | Rintaro&#39;s Blog | Algorithm and Anime</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="树上问题,数据结构,DFS序">
+    <meta name="description" content="Description:@card{ 给一棵有根树，根结点的编号为$root$。每个结点都有一个权值。接下来有 $m$ 组操作，操作分为三类： $1\ a\ x$，表示将结点$a$的权值增加$x$；$2\ a\ x$，表示将$a$的子树上所有结点的权值增加$x$；$3\ a\ b$，表示求「结点 $a$ 到结点 $b$ 的简单路径」上所有结点的权值之和。 $O(n\log{n})$ } Solu">
+<meta name="keywords" content="树上问题,数据结构,DFS序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LOJ146 DFS序4">
+<meta property="og:url" content="http://arintaro.com/2019/11/13/Answer/dfs4/index.html">
+<meta property="og:site_name" content="Rintaro&#39;s Blog">
+<meta property="og:description" content="Description:@card{ 给一棵有根树，根结点的编号为$root$。每个结点都有一个权值。接下来有 $m$ 组操作，操作分为三类： $1\ a\ x$，表示将结点$a$的权值增加$x$；$2\ a\ x$，表示将$a$的子树上所有结点的权值增加$x$；$3\ a\ b$，表示求「结点 $a$ 到结点 $b$ 的简单路径」上所有结点的权值之和。 $O(n\log{n})$ } Solu">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-13T11:34:39.780Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LOJ146 DFS序4">
+<meta name="twitter:description" content="Description:@card{ 给一棵有根树，根结点的编号为$root$。每个结点都有一个权值。接下来有 $m$ 组操作，操作分为三类： $1\ a\ x$，表示将结点$a$的权值增加$x$；$2\ a\ x$，表示将$a$的子树上所有结点的权值增加$x$；$3\ a\ b$，表示求「结点 $a$ 到结点 $b$ 的简单路径」上所有结点的权值之和。 $O(n\log{n})$ } Solu">
+    
+        <link rel="alternate" type="application/atom+xml" title="Rintaro&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Rintaro</h5>
+          <a href="mailto:rintaro@foxmail.com" title="rintaro@foxmail.com" class="mail">rintaro@foxmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ARintaro" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="tencent://QQInterLive/?Cmd=2&Uin=296394065" target="_blank">
+                <i class="icon icon-lg icon-qq"></i>
+                QQ
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">LOJ146 DFS序4</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header page-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">LOJ146 DFS序4</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-11-13T11:23:03.007Z" itemprop="datePublished" class="page-time">
+  2019-11-13
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/LOJ/">LOJ</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/LOJ/题解/">题解</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    <article class="page-article fade" itemprop="blogPage">
+        <div class="post-content page-content" id="page-content" itemprop="pageContent">
+            <a id="more"></a>
+<h2><span id="description">Description:</span></h2><div class="card">
+<p>给一棵有根树，根结点的编号为$root$。每个结点都有一个权值。<br>接下来有 $m$ 组操作，操作分为三类：</p>
+<p>$1\ a\ x$，表示将结点$a$的权值增加$x$；<br>$2\ a\ x$，表示将$a$的子树上所有结点的权值增加$x$；<br>$3\ a\ b$，表示求「结点 $a$ 到结点 $b$ 的简单路径」上所有结点的权值之和。</p>
+<p>$O(n\log{n})$</p>
+</div>
+<h2><span id="solution">Solution:</span></h2><div class="card">
+<p>树剖可以直接解决，然而会被卡，要做到一个$\log$只能支持”单点加, 子树加, 单点查, 子树查”，是无法直接对一个链考虑的，所以我们要考虑如何用这几种操作满足题目需求。</p>
+<p>考虑如何查询，显然对链考虑复杂度要多个$\log$，需要考虑操作对查询的影响，操作3按套路变成查到根节点的节点权值之和，不妨去维护”每个节点到根节点的路径权值之和”。</p>
+<p>对于操作1，显然可以直接子树加解决。</p>
+<p>对于操作2，影响可以写成$(deep[b] - deep[a] + 1) \times x$，与$dfs3$一样，维护一下即可。</p>
+<p>数据结构方面需要支持区间修改和单点查询，用差分树状数组解决即可，尽量不要用线段树，容易被卡。</p>
+</div>
+<h2><span id="code">Code:</span></h2><div class="card">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rint register int</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lint long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> isnum(x) (<span class="meta-string">'0'</span> &lt;= (x) &amp;&amp; (x) &lt;= <span class="meta-string">'9'</span>)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lowbit(x) ((x) &amp; (-x))</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> tint&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">readint</span><span class="params">(tint&amp; x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> f = <span class="number">1</span>; <span class="keyword">char</span> ch = getchar(); x = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(; !isnum(ch); ch = getchar()) <span class="keyword">if</span>(ch == <span class="string">'-'</span>) f = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(; isnum(ch); ch = getchar()) x = x * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">	x *= f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e6</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm = <span class="number">2</span> * maxn;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxnode = <span class="number">2</span> * maxn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m, root;</span><br><span class="line"><span class="keyword">int</span> head[maxn], ev[maxm], nxt[maxm], totedge = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addedge</span><span class="params">(<span class="keyword">int</span> nu, <span class="keyword">int</span> nv)</span> </span>&#123;</span><br><span class="line">	ev[++totedge] = nv, nxt[totedge] = head[nu], head[nu] = totedge;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Bint</span>&#123;</span></span><br><span class="line">	lint c[maxn];</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> pos, lint x)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">while</span>(pos &lt;= n) c[pos] += x, pos += lowbit(pos);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> L, <span class="keyword">int</span> R, lint x)</span> </span>&#123; add(L, x), add(R+<span class="number">1</span>, -x); &#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> lint <span class="title">ask</span><span class="params">(<span class="keyword">int</span> pos)</span> </span>&#123;</span><br><span class="line">		lint res = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>(pos) res += c[pos], pos -= lowbit(pos);</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;bt1, bt2, bt3;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> val[maxn];</span><br><span class="line">lint dist[maxn];</span><br><span class="line"><span class="keyword">int</span> dfn[maxn], dfr[maxn], totdfn = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> dfa[maxn], deep[maxn], size[maxn];</span><br><span class="line"><span class="keyword">int</span> wtop[maxn], wson[maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs1</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> fa, <span class="keyword">int</span> d)</span> </span>&#123;</span><br><span class="line">	dfa[x] = fa, deep[x] = d, size[x] = <span class="number">1</span>;</span><br><span class="line">	dfn[x] = ++totdfn, dist[x] += val[x];</span><br><span class="line">	<span class="keyword">for</span>(rint i=head[x], y=ev[i]; i; i=nxt[i], y=ev[i]) &#123;</span><br><span class="line">		<span class="keyword">if</span>(y == fa) <span class="keyword">continue</span>;</span><br><span class="line">		dist[y] = dist[x];</span><br><span class="line">		dfs1(y, x, d + <span class="number">1</span>);</span><br><span class="line">		size[x] += size[y];</span><br><span class="line">		<span class="keyword">if</span>(size[y] &gt; size[wson[x]]) wson[x] = y;</span><br><span class="line">	&#125;</span><br><span class="line">	dfr[x] = totdfn;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs2</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> top)</span> </span>&#123;</span><br><span class="line">	wtop[x] = top;</span><br><span class="line">	<span class="keyword">if</span>(wson[x]) dfs2(wson[x], top);</span><br><span class="line">	<span class="keyword">for</span>(rint i=head[x], y=ev[i]; i; i=nxt[i], y=ev[i]) &#123;</span><br><span class="line">		<span class="keyword">if</span>(y == dfa[x] || y == wson[x]) <span class="keyword">continue</span>;</span><br><span class="line">		dfs2(y, y);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">lca</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(wtop[x] != wtop[y]) &#123;</span><br><span class="line">		<span class="keyword">if</span>(deep[wtop[x]] &lt; deep[wtop[y]]) swap(x, y);</span><br><span class="line">		x = dfa[wtop[x]];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> deep[x] &lt; deep[y] ? x : y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add_pos</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	bt1.add(dfn[p], dfr[p], x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add_son</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	bt2.add(dfn[p], dfr[p], x), bt3.add(dfn[p], dfr[p], (lint)deep[p] * x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> lint <span class="title">ask_path</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(p == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> dist[p] + bt1.ask(dfn[p]) + (deep[p] + <span class="number">1</span>) * bt2.ask(dfn[p]) - bt3.ask(dfn[p]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> lint <span class="title">ask_path</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> nlca = lca(a, b);</span><br><span class="line">	<span class="keyword">return</span> ask_path(a) + ask_path(b) - ask_path(nlca) - ask_path(dfa[nlca]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	readint(n), readint(m), readint(root);</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; i++) readint(val[i]);</span><br><span class="line">	<span class="keyword">int</span> nu, nv;</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;n; i++) &#123;</span><br><span class="line">		readint(nu), readint(nv);</span><br><span class="line">		addedge(nu, nv), addedge(nv, nu);</span><br><span class="line">	&#125;</span><br><span class="line">	dfs1(root, <span class="number">0</span>, <span class="number">1</span>), dfs2(root, root);</span><br><span class="line">	<span class="keyword">int</span> ins, a, b, x;</span><br><span class="line">	<span class="keyword">while</span>(m--) &#123;</span><br><span class="line">		readint(ins);</span><br><span class="line">		<span class="keyword">if</span>(ins == <span class="number">1</span>) readint(a), readint(x), add_pos(a, x);</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(ins == <span class="number">2</span>) readint(a), readint(x), add_son(a, x);</span><br><span class="line">		<span class="keyword">else</span> readint(a), readint(b), <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ask_path(a, b));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+        </div>
+
+        
+        <div class="card page-about-me flex-row">
+            <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="/img/avatar.jpg"></a>
+            <div class="content flex-col">
+                <p><strong>Rintaro</strong></p>
+                <p><em>Algorithm and Anime</em></p>
+                <p>LN某弱校高一OIer, 想进队ORZ</p>
+            </div>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/11/13/Answer/dfs4/&title=《LOJ146 DFS序4》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/11/13/Answer/dfs4/&title=《LOJ146 DFS序4》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/11/13/Answer/dfs4/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《LOJ146 DFS序4》 — Rintaro's Blog&url=http://arintaro.com/2019/11/13/Answer/dfs4/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/11/13/Answer/dfs4/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+        
+
+        
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </article>
+    
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        神犇到访数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Rintaro &copy; 2019 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/11/13/Answer/dfs4/&title=《LOJ146 DFS序4》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/11/13/Answer/dfs4/&title=《LOJ146 DFS序4》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/11/13/Answer/dfs4/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《LOJ146 DFS序4》 — Rintaro's Blog&url=http://arintaro.com/2019/11/13/Answer/dfs4/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/11/13/Answer/dfs4/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://arintaro.com/2019/11/13/Answer/dfs4/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Rintaro's Blog Here';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Rintaro's Blog';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

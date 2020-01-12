@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>ZJOI2007 捉迷藏 | Rintaro&#39;s Blog | Algorithm and Anime</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="数据结构,线段树,动态点分治,点分治,括号序列">
+    <meta name="description" content="Description:@card{ 给定一颗树，分两类点，一类黑点一类白点，要求支持两种操作，查询当前所有黑点两两间距离的最大值，和改变一个点的颜色。 $1 \leq n \leq 2000$ } Solution:@card{ 点分治做法不提了，大概是动态模拟点分治的过程，开很多个堆维护答案，代码见下面。 括号序列做法难以想到，技巧性强，代码比点分治做法短很多，但是也不是很好写，非常容易写挂">
+<meta name="keywords" content="数据结构,线段树,动态点分治,点分治,括号序列">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ZJOI2007 捉迷藏">
+<meta property="og:url" content="http://arintaro.com/2020/01/04/Answer/hide/index.html">
+<meta property="og:site_name" content="Rintaro&#39;s Blog">
+<meta property="og:description" content="Description:@card{ 给定一颗树，分两类点，一类黑点一类白点，要求支持两种操作，查询当前所有黑点两两间距离的最大值，和改变一个点的颜色。 $1 \leq n \leq 2000$ } Solution:@card{ 点分治做法不提了，大概是动态模拟点分治的过程，开很多个堆维护答案，代码见下面。 括号序列做法难以想到，技巧性强，代码比点分治做法短很多，但是也不是很好写，非常容易写挂">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-01-04T09:30:54.099Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ZJOI2007 捉迷藏">
+<meta name="twitter:description" content="Description:@card{ 给定一颗树，分两类点，一类黑点一类白点，要求支持两种操作，查询当前所有黑点两两间距离的最大值，和改变一个点的颜色。 $1 \leq n \leq 2000$ } Solution:@card{ 点分治做法不提了，大概是动态模拟点分治的过程，开很多个堆维护答案，代码见下面。 括号序列做法难以想到，技巧性强，代码比点分治做法短很多，但是也不是很好写，非常容易写挂">
+    
+        <link rel="alternate" type="application/atom+xml" title="Rintaro&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Rintaro</h5>
+          <a href="mailto:rintaro@foxmail.com" title="rintaro@foxmail.com" class="mail">rintaro@foxmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ARintaro" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="tencent://QQInterLive/?Cmd=2&Uin=296394065" target="_blank">
+                <i class="icon icon-lg icon-qq"></i>
+                QQ
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">ZJOI2007 捉迷藏</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header page-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">ZJOI2007 捉迷藏</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-01-04T09:08:14.865Z" itemprop="datePublished" class="page-time">
+  2020-01-04
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/各省省选/">各省省选</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/各省省选/题解/">题解</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    <article class="page-article fade" itemprop="blogPage">
+        <div class="post-content page-content" id="page-content" itemprop="pageContent">
+            <a id="more"></a>
+<h2><span id="description">Description:</span></h2><div class="card">
+<p>给定一颗树，分两类点，一类黑点一类白点，要求支持两种操作，查询当前所有黑点两两间距离的最大值，和改变一个点的颜色。</p>
+<p>$1 \leq n \leq 2000$</p>
+</div>
+<h2><span id="solution">Solution:</span></h2><div class="card">
+<p>点分治做法不提了，大概是动态模拟点分治的过程，开很多个堆维护答案，代码见下面。</p>
+<p>括号序列做法难以想到，技巧性强，代码比点分治做法短很多，但是也不是很好写，非常容易写挂。</p>
+<p>括号序列是像$(1(2)(3))$这样的东西，这表示它遍历点$1$，然后依次遍历了$2,3$两个儿子。</p>
+<p>首先有一个结论，对于边权为$1$的树，跑一个它的括号序，两点间的距离即为对应括号序列子段不匹配的括号数。这个显然可以用线段树维护，类似摩尔投票法？但是一般我们求距离都用$LCA$，跑的比线段树快多了，所以这个结论就比较鸡肋。</p>
+<p>但是本题中，我们考虑如何动态维护两个黑点间的最大距离，也就是在分治结构上，必须以较低代价合并左右两个儿子的信息，就能利用线段树维护答案。</p>
+<p>显然在一次合并信息中，我们只需要考虑跨区间的答案，不妨对一段区间设$(x, y)$，其中$x$表示它未匹配的右括号数量，$y$表示左括号的。</p>
+<p>显然可以快速合并这两个区间，并得到新区间的答案，大概是类似$x_l + y_l - x_r + y_r$或$x_l - y_l + x_r + y_r$，对应两种$y_l$和$x_r$大小关系不同的情况，但是问题是：在分治结构上，左边和右边都各有$O(n)$个区间，暴力匹配是$O(n^2)$，拆拆式子用单调队列似乎可以做到$O(n)$？这对不修改是可以接受的，但是对于修改后合并信息完全不行，单次修改的复杂度会变成$O(n)$。</p>
+<p>所以，要想快速合并信息，我们必然要拆开左右两边的信息，使其独立，我们就可以分别找两面$\max$，然后简单的相加从而合并信息。</p>
+<p>问题在于合并信息时，由于$y_l$和$x_r$的大小关系，会产生不同的贡献。容易想到是否存在一种计算方式使得不合法的信息不会被统计。</p>
+<p>简单来说，我们发现一个区间合并信息对答案的贡献只有三种，即$x + y$，$x - y$， $y - x$。可以分别求出它们在各个情况下的最大值，然后直接相加合并。正确性是由于：考虑$x_l + y_l - x_r + y_r$的情况，这代表$y_l &gt; x_r$，如果存在一个$y_l &lt; x_r$，并且这样的式子成为了我们的答案，就会对答案造成影响，但是在这种情况下$x_l - y_l + x_r + y_r$显然会比它更大，只要我们考虑了这种情况，不合法的情况就不会影响答案。</p>
+<p>这种「虽然当前统计了不合法的方案，但是在取最优的过程中不会影响答案」的方法，降低了限制条件的要求，从而可以在线段树上高效维护。</p>
+<p>我们可以直接对于不合法的位置，把它节点三种答案贡献都设为$-inf$，即可简单的只求黑点间的答案，注意这个$inf$可能会被多次相加相减，因此千万不要开太大，比$maxn$大即可。</p>
+<p>这种方法的代码在我写出来后，没过样例，于是准备拍个小数据调一下，把之前的数据生成器和暴力复制过来后，一不小心把之前的代码也复制过来了，导致这份代码被覆盖，也就是说：丢了。。丢了。。</p>
+</div>
+<h2><span id="code">Code:</span></h2><div class="card">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> buf[<span class="number">1</span>&lt;&lt;<span class="number">21</span>], *p1, *p2;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> getc() (p1 == p2 &amp;&amp; (p2 = (p1 = buf) + fread(buf, 1, 1&lt;&lt;21, stdin)), p1 == p2 ? EOF : *p1++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lint long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pii pair<span class="meta-string">&lt;int, int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mp(x, y) make_pair((x), (y))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> isnum(x) (<span class="meta-string">'0'</span> &lt;= (x) &amp;&amp; (x) &lt;= <span class="meta-string">'9'</span>)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> isch(x) ((x) != <span class="meta-string">'\n'</span> &amp;&amp; (x) != <span class="meta-string">'\r'</span> &amp;&amp; (x) != <span class="meta-string">' '</span>)</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> tint&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">readint</span><span class="params">(tint&amp; x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> f = <span class="number">1</span>; <span class="keyword">char</span> ch = getc(); x = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(; !isnum(ch); ch = getc()) <span class="keyword">if</span>(ch == <span class="string">'-'</span>) f = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(; isnum(ch); ch = getc()) x = x * <span class="number">10</span> + ch -<span class="string">'0'</span>;</span><br><span class="line">	x *= f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">readstr</span><span class="params">(<span class="keyword">char</span> s[])</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len = <span class="number">0</span>; <span class="keyword">char</span> ch = getc();</span><br><span class="line">	<span class="keyword">while</span>(!isch(ch)) ch = getc();</span><br><span class="line">	<span class="keyword">for</span>(; isch(ch); ch = getc()) s[len++] = ch;</span><br><span class="line">	s[len] = <span class="string">'\0'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm = <span class="number">2</span> * maxn;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxd = <span class="number">20</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxnode = maxn * maxd;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf = <span class="number">1e9</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">int</span> head[maxn], ev[maxm], nxt[maxm], totedge = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addedge</span><span class="params">(<span class="keyword">int</span> nu, <span class="keyword">int</span> nv)</span> </span>&#123;</span><br><span class="line">	ev[++totedge] = nv, nxt[totedge] = head[nu], head[nu] = totedge;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Heap</span>&#123;</span></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> son[maxnode], bro[maxnode], fa[maxnode], val[maxnode];</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> s[maxnode], stop, totnode;</span><br><span class="line">	<span class="keyword">int</span> root, cnt;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(x == <span class="number">0</span> || y == <span class="number">0</span>) <span class="keyword">return</span> x + y;</span><br><span class="line">		<span class="keyword">if</span>(val[x] &gt; val[y]) swap(x, y); <span class="comment">// 大根堆</span></span><br><span class="line">		bro[x] = son[y], fa[son[y]] = x;</span><br><span class="line">		son[y] = x, fa[x] = y;</span><br><span class="line">		<span class="keyword">return</span> y;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">		fa[x] = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span>(x == <span class="number">0</span> || bro[x] == <span class="number">0</span>) <span class="keyword">return</span> x;</span><br><span class="line">		<span class="keyword">int</span> y = bro[x], p = bro[y];</span><br><span class="line">		bro[x] = bro[y] = fa[y] = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">return</span> merge(merge(x, y), merge(p));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> nval)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> p = stop ? s[stop--] : ++totnode;</span><br><span class="line">		son[p] = bro[p] = fa[p] = <span class="number">0</span>, val[p] = nval;</span><br><span class="line">		root = merge(root, p), cnt++;</span><br><span class="line">		<span class="keyword">return</span> p;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">top1</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> root ? val[root] : -inf; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">top2</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123; <span class="keyword">return</span> bro[p] ? max(top2(bro[p]), val[p]) : val[p]; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">top2</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> son[root] ? top2(son[root]) : -inf;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123; s[++stop] = root, root = merge(son[root]), cnt--; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">erase</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(x == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">		<span class="keyword">if</span>(x == root) &#123; pop(); <span class="keyword">return</span>; &#125;</span><br><span class="line">		s[++stop] = x, cnt--;</span><br><span class="line">		<span class="keyword">int</span>&amp; p = son[fa[x]] == x ? son[fa[x]] : bro[fa[x]];</span><br><span class="line">		p = bro[x], fa[p] = fa[x];</span><br><span class="line">		root = merge(root, merge(son[x]));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> cnt; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(p == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">		print(bro[p]), <span class="built_in">printf</span>(<span class="string">"%d "</span>, val[p]), print(son[p]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123; <span class="built_in">printf</span>(<span class="string">"print: "</span>), print(root), <span class="built_in">putchar</span>(<span class="string">'\n'</span>); &#125;</span><br><span class="line">&#125;q[maxnode];</span><br><span class="line"><span class="keyword">int</span> Heap::son[maxnode], Heap::bro[maxnode], Heap::fa[maxnode];</span><br><span class="line"><span class="keyword">int</span> Heap::val[maxnode];</span><br><span class="line"><span class="keyword">int</span> Heap::s[maxnode], Heap::stop, Heap::totnode;</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> vis[maxn];</span><br><span class="line"><span class="keyword">int</span> size[maxn];</span><br><span class="line"><span class="keyword">int</span> rmax = <span class="number">0</span>, nrot = <span class="number">0</span>, ntot = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs1</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">	size[x] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> nmax = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=head[x], y=ev[i]; i; i=nxt[i], y=ev[i]) &#123;</span><br><span class="line">		<span class="keyword">if</span>(y == fa || vis[y]) <span class="keyword">continue</span>;</span><br><span class="line">		dfs1(y, x);</span><br><span class="line">		size[x] += size[y];</span><br><span class="line">		nmax = max(nmax, size[y]);</span><br><span class="line">	&#125;</span><br><span class="line">	nmax = max(nmax, ntot - size[x]);</span><br><span class="line">	<span class="keyword">if</span>(nmax &lt; rmax) rmax = nmax, nrot = x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> dark[maxn];</span><br><span class="line"><span class="keyword">int</span> totq, rt;</span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; mqid[maxn], qid[maxn], qpos[maxn], dist[maxn];</span><br><span class="line"><span class="keyword">int</span> ntpos[maxnode], mtpos[maxnode], mtlast[maxnode];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs2</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> fa, <span class="keyword">int</span> d, <span class="keyword">int</span> mt, <span class="keyword">int</span> nt)</span> </span>&#123;</span><br><span class="line">	dist[x].push_back(d), mqid[x].push_back(mt), qid[x].push_back(nt);</span><br><span class="line">	qpos[x].push_back(dark[x] ? q[nt].push(d) : <span class="number">0</span>);</span><br><span class="line">	size[x] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=head[x], y=ev[i]; i; i=nxt[i], y=ev[i]) &#123;</span><br><span class="line">		<span class="keyword">if</span>(y == fa || vis[y]) <span class="keyword">continue</span>;</span><br><span class="line">		dfs2(y, x, d + <span class="number">1</span>, mt, nt);</span><br><span class="line">		size[x] += size[y];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs3</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	vis[x] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 先声明主堆</span></span><br><span class="line">	<span class="keyword">int</span> mt = ++totq;</span><br><span class="line">	mqid[x].push_back(mt), qid[x].push_back(mt), dist[x].push_back(<span class="number">0</span>);</span><br><span class="line">	qpos[x].push_back(dark[x] ? q[mt].push(<span class="number">0</span>) : <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=head[x], y=ev[i]; i; i=nxt[i], y=ev[i]) &#123;</span><br><span class="line">		<span class="keyword">if</span>(vis[y]) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">int</span> nt = ++totq;</span><br><span class="line">		dfs2(y, x, <span class="number">1</span>, mt, nt);</span><br><span class="line">		ntpos[nt] = q[mt].push(q[nt].top1());</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(q[mt].size() &gt; <span class="number">1</span>) mtpos[mt] = q[rt].push(q[mt].top1() + q[mt].top2());</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=head[x], y=ev[i]; i; i=nxt[i], y=ev[i]) &#123;</span><br><span class="line">		<span class="keyword">if</span>(vis[y] || size[y] == <span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">		rmax = maxn, nrot = <span class="number">0</span>, ntot = size[y];</span><br><span class="line">		dfs1(y, x), dfs3(nrot);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">recalc</span><span class="params">(<span class="keyword">int</span> mt)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(mtpos[mt]) q[rt].erase(mtpos[mt]);</span><br><span class="line">	<span class="keyword">if</span>(q[mt].size() &gt; <span class="number">1</span>) mtpos[mt] = q[rt].push(q[mt].top1() + q[mt].top2());</span><br><span class="line">	<span class="keyword">else</span> mtpos[mt] = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(dark[x]) &#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;mqid[x].size(); i++) &#123;</span><br><span class="line">			<span class="keyword">int</span> mt = mqid[x][i], nt = qid[x][i], pos = qpos[x][i];</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">if</span>(mt == nt) &#123; <span class="comment">// 是中心点</span></span><br><span class="line">				q[mt].erase(pos), recalc(mt);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">if</span>(q[nt].top1() == dist[x][i]) &#123; <span class="comment">// 不是中心点</span></span><br><span class="line">					q[nt].erase(pos), q[mt].erase(ntpos[nt]);</span><br><span class="line">					<span class="keyword">if</span>(q[nt].size()) ntpos[nt] = q[mt].push(q[nt].top1());</span><br><span class="line">					recalc(mt);</span><br><span class="line">				&#125; <span class="keyword">else</span> q[nt].erase(pos);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;mqid[x].size(); i++) &#123;</span><br><span class="line">			<span class="keyword">int</span> mt = mqid[x][i], nt = qid[x][i], &amp;pos = qpos[x][i], d = dist[x][i]; <span class="comment">// 注意更新pos</span></span><br><span class="line">			<span class="keyword">if</span>(mt == nt) &#123;</span><br><span class="line">				pos = q[mt].push(<span class="number">0</span>), recalc(mt);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">int</span> pre = q[nt].top1();</span><br><span class="line">				<span class="keyword">if</span>(d &gt; pre) &#123;</span><br><span class="line">					pos = q[nt].push(d);</span><br><span class="line">					<span class="keyword">if</span>(pre != -inf) q[mt].erase(ntpos[nt]);</span><br><span class="line">					ntpos[nt] = q[mt].push(d);</span><br><span class="line">					recalc(mt);</span><br><span class="line">				&#125; <span class="keyword">else</span> pos = q[nt].push(d);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	dark[x] ^= <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	readint(n);</span><br><span class="line">	<span class="keyword">int</span> nu, nv;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;n; i++) &#123;</span><br><span class="line">		readint(nu), readint(nv);</span><br><span class="line">		addedge(nu, nv), addedge(nv, nu);</span><br><span class="line">	&#125;</span><br><span class="line">	rt = ++totq;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) dark[i] = <span class="number">1</span>;</span><br><span class="line">	rmax = maxn, nrot = <span class="number">0</span>, ntot = n;</span><br><span class="line">	dfs1(<span class="number">1</span>, <span class="number">0</span>), dfs3(nrot);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> ins[<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">	readint(m);</span><br><span class="line">	<span class="keyword">while</span>(m--) &#123;</span><br><span class="line">		readstr(ins);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(ins[<span class="number">0</span>] == <span class="string">'G'</span>) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, q[rt].size() ? q[rt].top1() : <span class="number">-1</span>);</span><br><span class="line">		<span class="keyword">else</span> readint(x), change(x);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+        </div>
+
+        
+        <div class="card page-about-me flex-row">
+            <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="/img/avatar.jpg"></a>
+            <div class="content flex-col">
+                <p><strong>Rintaro</strong></p>
+                <p><em>Algorithm and Anime</em></p>
+                <p>LN某弱校高一OIer, 想进队ORZ</p>
+            </div>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2020/01/04/Answer/hide/&title=《ZJOI2007 捉迷藏》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2020/01/04/Answer/hide/&title=《ZJOI2007 捉迷藏》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2020/01/04/Answer/hide/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ZJOI2007 捉迷藏》 — Rintaro's Blog&url=http://arintaro.com/2020/01/04/Answer/hide/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2020/01/04/Answer/hide/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+        
+
+        
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </article>
+    
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        神犇到访数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Rintaro &copy; 2019 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2020/01/04/Answer/hide/&title=《ZJOI2007 捉迷藏》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2020/01/04/Answer/hide/&title=《ZJOI2007 捉迷藏》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2020/01/04/Answer/hide/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ZJOI2007 捉迷藏》 — Rintaro's Blog&url=http://arintaro.com/2020/01/04/Answer/hide/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2020/01/04/Answer/hide/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://arintaro.com/2020/01/04/Answer/hide/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Rintaro's Blog Here';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Rintaro's Blog';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

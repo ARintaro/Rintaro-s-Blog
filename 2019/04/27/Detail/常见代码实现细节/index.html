@@ -21,18 +21,18 @@
     
     
     <meta name="keywords" content="总结,方法论">
-    <meta name="description" content="这里记录的问题，全是我调过的问题orz。 &amp;lt;!– more – &amp;gt; @card{  我们写代码的目标是”一遍成”，不清醒时不写代码，没想好时不写代码  } 一、变量溢出问题@card{  乘是一个相当危险的操作，只要有乘，必须考虑溢出问题，lint型做乘法带模数时，要写快速乘 int型涉及到前缀和/乘法时，注意要转lint防爆，有的题表面是1e9左右，但有多次加法操作，也得开lint">
+    <meta name="description" content="这里记录的问题，全是我调过的问题orz。">
 <meta name="keywords" content="总结,方法论">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常见代码实现细节">
 <meta property="og:url" content="http://arintaro.com/2019/04/27/Detail/常见代码实现细节/index.html">
 <meta property="og:site_name" content="Rintaro&#39;s Blog">
-<meta property="og:description" content="这里记录的问题，全是我调过的问题orz。 &amp;lt;!– more – &amp;gt; @card{  我们写代码的目标是”一遍成”，不清醒时不写代码，没想好时不写代码  } 一、变量溢出问题@card{  乘是一个相当危险的操作，只要有乘，必须考虑溢出问题，lint型做乘法带模数时，要写快速乘 int型涉及到前缀和/乘法时，注意要转lint防爆，有的题表面是1e9左右，但有多次加法操作，也得开lint">
+<meta property="og:description" content="这里记录的问题，全是我调过的问题orz。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-31T23:59:15.383Z">
+<meta property="og:updated_time" content="2020-01-09T10:21:59.815Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见代码实现细节">
-<meta name="twitter:description" content="这里记录的问题，全是我调过的问题orz。 &amp;lt;!– more – &amp;gt; @card{  我们写代码的目标是”一遍成”，不清醒时不写代码，没想好时不写代码  } 一、变量溢出问题@card{  乘是一个相当危险的操作，只要有乘，必须考虑溢出问题，lint型做乘法带模数时，要写快速乘 int型涉及到前缀和/乘法时，注意要转lint防爆，有的题表面是1e9左右，但有多次加法操作，也得开lint">
+<meta name="twitter:description" content="这里记录的问题，全是我调过的问题orz。">
     
         <link rel="alternate" type="application/atom+xml" title="Rintaro&#39;s Blog" href="/atom.xml">
     
@@ -158,13 +158,14 @@
 <div class="container body-wrap">
     <article class="page-article fade" itemprop="blogPage">
         <div class="post-content page-content" id="page-content" itemprop="pageContent">
-            <p>这里记录的问题，全是我调过的问题orz。 &lt;!– more – &gt;</p>
+            <p>这里记录的问题，全是我调过的问题orz。</p>
+<a id="more"></a>
 <div class="card">
 <blockquote>
-<p>我们写代码的目标是”一遍成”，不清醒时不写代码，没想好时不写代码</p>
+<p>我们写代码的目标是”一遍成”，不清醒时不写代码，没想好时不写代码<br>后面括号中*的个数是我在2020/1/4后写错的个数。</p>
 </blockquote>
 </div>
-<h2><span id="一-变量溢出问题">一、变量溢出问题</span></h2><div class="card">
+<h2><span id="一-变量溢出问题"><strong>一、变量溢出问题 </strong></span></h2><div class="card">
 <ol>
 <li>乘是一个相当危险的操作，只要有乘，必须考虑溢出问题，lint型做乘法带模数时，要写快速乘</li>
 <li>int型涉及到前缀和/乘法时，注意要转lint防爆，有的题表面是1e9左右，但有多次加法操作，也得开lint</li>
@@ -175,6 +176,8 @@
 <li>double用memset初始化时，跟int型一样的最值用max: 0x42, min: 0xc2,，极限值max: 0x7f, min: 0xfe。</li>
 <li>在long long数据范围使用左移时，一定得用1LL防止溢出。</li>
 <li>设inf时一定要小心, 0x3f最多加两次, 0x7f不能加, 有时正常数据不会爆int, 但你设的两个inf之间运算爆了int</li>
+<li>注意$\text{for}$循环中的变量的溢出问题</li>
+<li>注意有时候多项式求值，代进来的$x$已经超过模数，此时需要先对$x$取模再算。</li>
 </ol>
 </div>
 <h2><span id="二-运算问题"><strong>二、运算问题</strong></span></h2><div class="card">
@@ -185,6 +188,7 @@
 <li>维护一个最小值变量初值要设为inf，维护最大值有负数的时候要赋为-inf</li>
 <li>注意非负整数与“正整数”的区别，值域里可能会有0</li>
 <li>有时候求区间$[l,r]$之类的，$l&gt;=1$，有时候我们利用区间可减性会导致值域里出现$0$，注意特判。</li>
+<li>三目运算符一定要加括号！</li>
 </ol>
 </div>
 <h2><span id="三-语言问题"><strong>三、语言问题</strong></span></h2><div class="card">
@@ -201,6 +205,13 @@
 <li>计算某些东西时，如果计算后需要移动指针，注意别先移动指针了（Acwing 294, 倍增LCA等）</li>
 <li>写一些嵌套循环移动同一个或多个指针时，必须考虑不存在，不移动，移动多了越界的情况，不然等着WA普及-吧</li>
 <li>维护单调队列的一些变形时（如点队列维护两点间斜率，区间队列带二分等），一定要仔细考虑边界情况和各种退队情况进队情况，这种东西极其容易写炸。</li>
+<li>常数优化主要考虑执行次数$10^7$到$10^8$规模的语句，这些语句微小的变化会巨大影响常数。<ul>
+<li>不要有巨大数组的寻址操作，尤其是结构体数组，这比除模运算还慢，经常会导致程序预处理了一些东西反而变慢，尤其是访问的元素还不临近的情况。</li>
+<li>不要有结构体指针的解引用。</li>
+<li>尽量不要有多次除模。</li>
+</ul>
+</li>
+<li>不要乱加register</li>
 </ol>
 </div>
 <h2><span id="四-数学相关"><strong>四、数学相关</strong></span></h2><div class="card">
@@ -214,6 +225,7 @@
 <li>如果在模意义下做减法，一定要随时调整至非负即 $(a%7 + 7) % 7$ 才是安全的</li>
 <li>计算组合数时，要注意 $0!=1$ 以及它的逆元，选0一个数一定时一种方案，$m&lt;n\ ||\ m&lt;0\ ||\ n&lt;0$时0种方案</li>
 <li>试填法，一般最后一位可以等于“后面没有位了，最后一位小于等于即可保证一定小于等于”，前置位必须保证小于</li>
+<li>计算一些式子时，开括号时千万不要忘了常数乘下标数量，比如$\sum_{1 \leq i \leq n}{(a_i + x)^2}$，开括号不是$\sum{a_i^2} + 2x\sum{a_i} + x^2$，而是$\sum{a_i^2} + 2x\sum{a_i} + n \times x^2$，千万别忘了这个$n$ （*</li>
 </ol>
 <p>} </p>
 <h2><span id="五-数据结构相关">五、数据结构相关</span></h2><div class="card">
@@ -227,7 +239,7 @@
 <li>翻转序列等需要改变子树顺序的延时标记需要在进入时立即下放，为了防止翻车，我们不如无论什么标记都是进入时立即下放</li>
 <li>下放延时标记时，需要考虑此标记对其他标记的影响，需要一起结算，（eg: 区间加区间最小值最大值的影响</li>
 <li>pushup与pushdown时，注意不要错误地把下标为0的节点信息更新来更新去</li>
-<li>在操作任何“实点”前需要pushdown，在修改后需要pushup</li>
+<li>在操作任何“实点”前需要pushdown，在修改后需要pushup。（*</li>
 <li>将操作重新排序后，注意是删除操作优先，还是增加操作优先</li>
 <li>邻接表 i=nxt[i], 千万别写成 i=nxt[x]</li>
 <li>如果一个数据结构题需要大量判边界，前驱后继是否存在等，一般是要插几个inf或-inf的虚点减少特判。</li>
@@ -244,6 +256,9 @@
 <li><p>维护不相交区间的问题，可以定义小于号为$a.r &lt; b.l$，这样完全在左为小于，完全在右为大于，剩下的相等即相交</p>
 </li>
 <li>单调队列或平衡树等结构进行操作前一定要判空！！</li>
+<li>维护值域的线段树一定要注意有相同数字的情况，如二分找前$k$大和时，只设定$k \geq cnt[p]$返回是错误的，可能有二分到$l == r$，但这个值有多于$k$个数字。</li>
+<li>区间修改的线段树能标记永久化就标记永久化，会降低常数，尤其是在作为树套树的内层树时。</li>
+<li>pushdown或pushup一定要考虑一下节点不存在时会不会正常更新。</li>
 </ol>
 </div>
 <h4><span id="六-图论相关">六、图论相关</span></h4><div class="card">
@@ -261,6 +276,10 @@
 <li>缩点相关的题注意边界情况，缩成一个点等特殊情况。</li>
 <li>找环后别忘了$tot+1$存的是最后一个节点到第一个节点的长度</li>
 <li>用奇数偶数存正反边建正反图时, 注意对常数的影响。</li>
+<li>邻接表不能乱删边，我们常用的删边方法会改变下标，使得”^1为反向边”不成立</li>
+<li>网络流题一定要注意点的编号和数组大小，加的都是双向边。</li>
+<li>网络流大部分操作都是在”残量网络”上进行的，扫到一个边一般都要判断”ew[i] == 0”</li>
+<li>倍增LCA时，如果需要重构，重新计算倍增数组，一定要保证非法位置为0，否则：<a href="https://www.luogu.com.cn/discuss/show/101216" target="_blank" rel="noopener">https://www.luogu.com.cn/discuss/show/101216</a></li>
 </ol>
 </div>
 <h4><span id="七-动态规划相关">七、动态规划相关</span></h4><div class="card">
@@ -344,7 +363,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/04/27/Detail/常见代码实现细节/&title=《常见代码实现细节》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/04/27/Detail/常见代码实现细节/&title=《常见代码实现细节》 — Rintaro's Blog&source=这里记录的问题，全是我调过的问题orz。" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -428,7 +447,7 @@
         </p>
     </div>
     <div class="bottom">
-        <p><span>Rintaro &copy; 2019</span>
+        <p><span>Rintaro &copy; 2019 - 2020</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
@@ -456,7 +475,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/04/27/Detail/常见代码实现细节/&title=《常见代码实现细节》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/04/27/Detail/常见代码实现细节/&title=《常见代码实现细节》 — Rintaro's Blog&source=这里记录的问题，全是我调过的问题orz。" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>

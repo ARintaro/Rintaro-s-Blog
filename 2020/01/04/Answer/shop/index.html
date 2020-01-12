@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>HNOI2015 开店 | Rintaro&#39;s Blog | Algorithm and Anime</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="树上问题,数据结构,动态点分治">
+    <meta name="description" content="Description:@card{ 给一棵带边权和点权的树，每次询问一个点到所有点权范围为$[L, R]$的点的距离和，强制在线。 $n \leq 1.5 \times 10^5$，$m \leq 2 \times 10^5$ } Solution:@card{ 显然可以建出点分树，每次查询即可，如果可以离线就点分治就行。 重点说一下树剖的思路，这题显然是套了一个查点权范围的壳，以卡掉一些做法">
+<meta name="keywords" content="树上问题,数据结构,动态点分治">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HNOI2015 开店">
+<meta property="og:url" content="http://arintaro.com/2020/01/04/Answer/shop/index.html">
+<meta property="og:site_name" content="Rintaro&#39;s Blog">
+<meta property="og:description" content="Description:@card{ 给一棵带边权和点权的树，每次询问一个点到所有点权范围为$[L, R]$的点的距离和，强制在线。 $n \leq 1.5 \times 10^5$，$m \leq 2 \times 10^5$ } Solution:@card{ 显然可以建出点分树，每次查询即可，如果可以离线就点分治就行。 重点说一下树剖的思路，这题显然是套了一个查点权范围的壳，以卡掉一些做法">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-01-04T11:15:25.509Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HNOI2015 开店">
+<meta name="twitter:description" content="Description:@card{ 给一棵带边权和点权的树，每次询问一个点到所有点权范围为$[L, R]$的点的距离和，强制在线。 $n \leq 1.5 \times 10^5$，$m \leq 2 \times 10^5$ } Solution:@card{ 显然可以建出点分树，每次查询即可，如果可以离线就点分治就行。 重点说一下树剖的思路，这题显然是套了一个查点权范围的壳，以卡掉一些做法">
+    
+        <link rel="alternate" type="application/atom+xml" title="Rintaro&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Rintaro</h5>
+          <a href="mailto:rintaro@foxmail.com" title="rintaro@foxmail.com" class="mail">rintaro@foxmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ARintaro" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="tencent://QQInterLive/?Cmd=2&Uin=296394065" target="_blank">
+                <i class="icon icon-lg icon-qq"></i>
+                QQ
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">HNOI2015 开店</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header page-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">HNOI2015 开店</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-01-04T11:05:48.020Z" itemprop="datePublished" class="page-time">
+  2020-01-04
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/NOIP/">NOIP</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/NOIP/题解/">题解</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    <article class="page-article fade" itemprop="blogPage">
+        <div class="post-content page-content" id="page-content" itemprop="pageContent">
+            <a id="more"></a>
+<h2><span id="description">Description:</span></h2><div class="card">
+<p>给一棵带边权和点权的树，每次询问一个点到所有点权范围为$[L, R]$的点的距离和，强制在线。</p>
+<p>$n \leq 1.5 \times 10^5$，$m \leq 2 \times 10^5$</p>
+</div>
+<h2><span id="solution">Solution:</span></h2><div class="card">
+<p>显然可以建出点分树，每次查询即可，如果可以离线就点分治就行。</p>
+<p>重点说一下树剖的思路，这题显然是套了一个查点权范围的壳，以卡掉一些做法。所以先考虑不带点权怎么做，推一下式子发现重点是维护$\sum_{1 \leq j \leq n}{d_{\text{lca}(i, j)}}$，其中$d$表示某个节点到根的距离，从题解中学到一种做法，对每个点考虑它的贡献为「这两个点从到根的路径交集」，所以我们可以先对所有的$j$覆盖一次它到根的路径，查询时只查询问点到根就行。</p>
+<p>然而树剖空间复杂度是错的，不少主席树的题空间两个$\log$，跑到上界大概都需要几G的空间，然而没人卡..</p>
+<p>下面的代码是点分树的，由于我写的时候大脑短路，觉得好像要修改点权，就敲了个平衡树。。实际上不带修用$\text{vector}$即可，但是这样复杂度是一样，常数不太好。</p>
+</div>
+<h2><span id="code">Code:</span></h2><div class="card">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> buf[<span class="number">1</span>&lt;&lt;<span class="number">21</span>], *p1, *p2;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> getc() (p1 == p2 &amp;&amp; (p2 = (p1 = buf) + fread(buf, 1, 1&lt;&lt;21, stdin)), p1 == p2 ? EOF : *p1++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lint long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pii pair<span class="meta-string">&lt;int, lint&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mp(x, y) make_pair((x), (y))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> isnum(x) (<span class="meta-string">'0'</span> &lt;= (x) &amp;&amp; (x) &lt;= <span class="meta-string">'9'</span>)</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> tint&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">readint</span><span class="params">(tint&amp; x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> f = <span class="number">1</span>; <span class="keyword">char</span> ch = getc(); x = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(; !isnum(ch); ch = getc()) <span class="keyword">if</span>(ch == <span class="string">'-'</span>) f = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(; isnum(ch); ch = getc()) x = x * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">	x *= f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1.5e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm = <span class="number">2</span> * maxn;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxd = <span class="number">20</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxnode = maxn * maxd;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m, maxa;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SBT</span>&#123;</span></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> ch[maxnode][<span class="number">2</span>], size[maxnode], key[maxnode], val[maxnode], totnode;</span><br><span class="line">	<span class="keyword">static</span> lint sum[maxnode];</span><br><span class="line">	<span class="keyword">int</span> root;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span>&amp; x, <span class="keyword">bool</span> c)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> y = ch[x][c];</span><br><span class="line">		ch[x][c] = ch[y][c ^ <span class="number">1</span>], ch[y][c ^ <span class="number">1</span>] = x;</span><br><span class="line">		size[y] = size[x], sum[y] = sum[x];</span><br><span class="line">		size[x] = size[ch[x][<span class="number">0</span>]] + size[ch[x][<span class="number">1</span>]] + <span class="number">1</span>;</span><br><span class="line">		sum[x] = sum[ch[x][<span class="number">0</span>]] + sum[ch[x][<span class="number">1</span>]] + val[x];</span><br><span class="line">		x = y;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">maintain</span><span class="params">(<span class="keyword">int</span>&amp; x, <span class="keyword">bool</span> c)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(size[ch[ch[x][c]][c]] &gt; size[ch[x][c ^ <span class="number">1</span>]]) rotate(x, c);</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(size[ch[ch[x][c]][c ^ <span class="number">1</span>]] &gt; size[ch[x][c ^ <span class="number">1</span>]]) rotate(ch[x][c], c ^ <span class="number">1</span>), rotate(x, c);</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">return</span>;</span><br><span class="line">		maintain(ch[x][<span class="number">0</span>], <span class="number">0</span>), maintain(ch[x][<span class="number">1</span>], <span class="number">1</span>);</span><br><span class="line">		maintain(x, <span class="number">0</span>), maintain(x, <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">newnode</span><span class="params">(<span class="keyword">int</span> nkey, <span class="keyword">int</span> nval)</span> </span>&#123;</span><br><span class="line">		size[++totnode] = <span class="number">1</span>, key[totnode] = nkey, val[totnode] = sum[totnode] = nval;</span><br><span class="line">		<span class="keyword">return</span> totnode;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span>&amp; p)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(p == <span class="number">0</span>) &#123; p = totnode; <span class="keyword">return</span>; &#125;</span><br><span class="line">		size[p]++, sum[p] += val[totnode];</span><br><span class="line">		insert(ch[p][key[totnode] &gt;= key[p]]);</span><br><span class="line">		maintain(p, key[totnode] &gt;= key[p]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> nkey, <span class="keyword">int</span> nval)</span> </span>&#123; newnode(nkey, nval), insert(root); &#125;</span><br><span class="line">	<span class="comment">// 第一维cnt，第二维sum</span></span><br><span class="line">	<span class="function">pii <span class="title">getsum</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> nkey)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(p == <span class="number">0</span>) <span class="keyword">return</span> mp(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">		<span class="keyword">if</span>(nkey &gt;= key[p]) &#123;</span><br><span class="line">			pii res = getsum(ch[p][<span class="number">1</span>], nkey);</span><br><span class="line">			res.first += size[ch[p][<span class="number">0</span>]] + <span class="number">1</span>, res.second += sum[ch[p][<span class="number">0</span>]] + val[p];</span><br><span class="line">			<span class="keyword">return</span> res;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">return</span> getsum(ch[p][<span class="number">0</span>], nkey);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">pii <span class="title">ask</span><span class="params">(<span class="keyword">int</span> L, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">		pii rt = getsum(root, R), lt = getsum(root, L - <span class="number">1</span>);</span><br><span class="line">		rt.first -= lt.first, rt.second -= lt.second;</span><br><span class="line">		<span class="keyword">return</span> rt;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">int</span> SBT::ch[maxnode][<span class="number">2</span>], SBT::size[maxnode], SBT::key[maxnode], SBT::val[maxnode], SBT::totnode;</span><br><span class="line">lint SBT::sum[maxnode];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> head[maxn], ev[maxm], ew[maxm], nxt[maxm], totedge = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addedge</span><span class="params">(<span class="keyword">int</span> nu, <span class="keyword">int</span> nv, <span class="keyword">int</span> nw)</span> </span>&#123;</span><br><span class="line">	ev[++totedge] = nv, ew[totedge] = nw;</span><br><span class="line">	nxt[totedge] = head[nu], head[nu] = totedge;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> vis[maxn];</span><br><span class="line"><span class="keyword">int</span> rmax, nrot, ntot;</span><br><span class="line"><span class="keyword">int</span> size[maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs1</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">	size[x] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> nmax = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=head[x], y=ev[i]; i; i=nxt[i], y=ev[i]) &#123;</span><br><span class="line">		<span class="keyword">if</span>(y == fa || vis[y]) <span class="keyword">continue</span>;</span><br><span class="line">		dfs1(y, x), size[x] += size[y];</span><br><span class="line">		nmax = max(nmax, size[y]);</span><br><span class="line">	&#125;</span><br><span class="line">	nmax = max(nmax, ntot - size[x]);</span><br><span class="line">	<span class="keyword">if</span>(nmax &lt; rmax) rmax = nmax, nrot = x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> arr[maxn];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> totbst = <span class="number">0</span>;</span><br><span class="line">SBT bst[maxnode];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; prt[maxn], pdis[maxn], bstid[maxn];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; rtbst[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs2</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> d, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">	prt[x].push_back(nrot), pdis[x].push_back(d), bstid[x].push_back(totbst);</span><br><span class="line">	bst[totbst].insert(arr[x], d), size[x] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=head[x], y=ev[i]; i; i=nxt[i], y=ev[i]) &#123;</span><br><span class="line">		<span class="keyword">if</span>(y == fa || vis[y]) <span class="keyword">continue</span>;</span><br><span class="line">		dfs2(y, d + ew[i], x);</span><br><span class="line">		size[x] += size[y];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs3</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	vis[x] = <span class="number">1</span>;</span><br><span class="line">	<span class="comment">// cerr &lt;&lt; x &lt;&lt; endl;</span></span><br><span class="line">	prt[x].push_back(x), pdis[x].push_back(<span class="number">0</span>), bstid[x].push_back(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=head[x], y=ev[i]; i; i=nxt[i], y=ev[i]) &#123;</span><br><span class="line">		<span class="keyword">if</span>(vis[y]) <span class="keyword">continue</span>;</span><br><span class="line">		rtbst[x].push_back(++totbst), dfs2(y, ew[i], x);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=head[x], y=ev[i]; i; i=nxt[i], y=ev[i]) &#123;</span><br><span class="line">		<span class="keyword">if</span>(vis[y] || size[y] == <span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">		rmax = maxn, nrot = <span class="number">0</span>, ntot = size[y];</span><br><span class="line">		dfs1(y, x), dfs3(nrot);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">lint <span class="title">ask</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> L, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">	lint res = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;prt[x].size(); i++) &#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(prt[x][i] == x) &#123; <span class="comment">// 为根</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;rtbst[x].size(); j++) res += bst[rtbst[x][j]].ask(L, R).second;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123; <span class="comment">// 不为根</span></span><br><span class="line">			<span class="keyword">int</span> rt = prt[x][i];</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;rtbst[rt].size(); j++) &#123;</span><br><span class="line">				<span class="keyword">if</span>(rtbst[rt][j] == bstid[x][i]) <span class="keyword">continue</span>;</span><br><span class="line">				pii now = bst[rtbst[rt][j]].ask(L, R);</span><br><span class="line">				res += (lint)now.first * pdis[x][i] + now.second;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(L &lt;= arr[rt] &amp;&amp; arr[rt] &lt;= R) res += pdis[x][i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	readint(n), readint(m), readint(maxa);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) readint(arr[i]);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> nu, nv, nw;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;n; i++) &#123;</span><br><span class="line">		readint(nu), readint(nv), readint(nw);</span><br><span class="line">		addedge(nu, nv, nw), addedge(nv, nu, nw);</span><br><span class="line">	&#125;</span><br><span class="line">	rmax = maxn, nrot = <span class="number">0</span>, ntot = n;</span><br><span class="line">	dfs1(<span class="number">1</span>, <span class="number">0</span>), dfs3(nrot);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> x, a, b;</span><br><span class="line">	lint res = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(m--) &#123;</span><br><span class="line">		readint(x), readint(a), readint(b);</span><br><span class="line">		<span class="keyword">int</span> l = (a + res) % maxa, r = (b + res) % maxa;</span><br><span class="line">		<span class="keyword">if</span>(l &gt; r) swap(l, r);</span><br><span class="line">		res = ask(x, l, r);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, res);</span><br><span class="line">		<span class="comment">// res = 0;</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+        </div>
+
+        
+        <div class="card page-about-me flex-row">
+            <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="/img/avatar.jpg"></a>
+            <div class="content flex-col">
+                <p><strong>Rintaro</strong></p>
+                <p><em>Algorithm and Anime</em></p>
+                <p>LN某弱校高一OIer, 想进队ORZ</p>
+            </div>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2020/01/04/Answer/shop/&title=《HNOI2015 开店》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2020/01/04/Answer/shop/&title=《HNOI2015 开店》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2020/01/04/Answer/shop/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HNOI2015 开店》 — Rintaro's Blog&url=http://arintaro.com/2020/01/04/Answer/shop/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2020/01/04/Answer/shop/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+        
+
+        
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </article>
+    
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        神犇到访数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Rintaro &copy; 2019 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2020/01/04/Answer/shop/&title=《HNOI2015 开店》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2020/01/04/Answer/shop/&title=《HNOI2015 开店》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2020/01/04/Answer/shop/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HNOI2015 开店》 — Rintaro's Blog&url=http://arintaro.com/2020/01/04/Answer/shop/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2020/01/04/Answer/shop/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://arintaro.com/2020/01/04/Answer/shop/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Rintaro's Blog Here';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Rintaro's Blog';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

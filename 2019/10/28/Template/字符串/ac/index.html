@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="Rintaro&#39;s Blog">
 <meta property="og:description" content="大概可以用来AC, 本文主要是记录性质, 大概会看不懂。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-28T22:38:49.434Z">
+<meta property="og:updated_time" content="2019-11-06T04:37:00.801Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AC自动机">
 <meta name="twitter:description" content="大概可以用来AC, 本文主要是记录性质, 大概会看不懂。">
@@ -159,14 +159,14 @@
     <article class="page-article fade" itemprop="blogPage">
         <div class="post-content page-content" id="page-content" itemprop="pageContent">
             <p>大概可以用来AC, 本文主要是记录性质, 大概会看不懂。<br><a id="more"></a> </p>
-<h2><span id="一-概念">一、概念</span></h2><div class="card">
+<h2><span id="一-概述">一、概述</span></h2><div class="card">
 <p>AC自动机是基于Trie建立的, Trie上的一个节点到根节点的路径会确定唯一的一个字符串,表示的是插入Trie的某个字符串的前缀。</p>
 <p>解决多模式串匹配问题时, 先把所有的模式串插入Trie中, 再进行建树。</p>
 <p>AC自动机对于Trie上的每个节点构造fail指针, 其指向<strong>Trie上与这个节点的后缀匹配的最长真前缀</strong>的节点, 朴素的计算方法类似KMP或者是递推, 如果父节点的fail不能继续匹配自身, 就跳fail到次长, 如果找不到就连在根节点上, 时间复杂度显然不优, 优化后建出Trie图, 同时修改Trie上边的定义, 为<strong>当前节点加上这个字符后的后缀Trie上能匹配的最长前缀</strong>, 由于没有”真”, 这对原Trie上的边也是适用的。然后我们就可以递推地以深度作为状态去计算这两种指针, 当遍历到一个节点时, 遍历字符集, 当原Trie上有这条边时, 我们需要计算它的fail, 显然是$pv[fail[x]][c]$, 即与当前节点后缀匹配的最长真前缀再加上转移的字符的后缀在Trie上能匹配的最长前缀(大概用形式化的语言说出来就没有这么绕了), 感性的理解一下就是尝试给fail再加个字符去匹配, 需要对自身跳fail去找是因为fail需要是<strong>真</strong>前缀。</p>
 <p>多模式串匹配时, 按序遍历主串, 每次当前节点跳Trie图上的边即可, 即对每个主串的前缀, 用它的后缀去找Trie上能匹配的最长前缀, 找到这个最长前缀后, 从它一直跳fail跳到根节点, 就能找到Trie上所有能与这个后缀匹配的前缀了。</p>
 <p>注意每个节点有且仅有一条fail边, 那么其实所有fail边与点构成一棵树, 一个节点往上跳fail的过程其实就遍历它到根节点的路径, 基于这个性质, 我们可以在fail树上跑一些树形数据结构来维护一些东西。如维护出现次数树上差分等。</p>
 </div>
-<h2><span id="二-实现">二、实现</span></h2><h2><span id="三-代码">三、代码</span></h2>
+<h2><span id="二-代码-讲解">二、代码 + 讲解</span></h2>
         </div>
 
         
@@ -279,7 +279,7 @@
         </p>
     </div>
     <div class="bottom">
-        <p><span>Rintaro &copy; 2019</span>
+        <p><span>Rintaro &copy; 2019 - 2020</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

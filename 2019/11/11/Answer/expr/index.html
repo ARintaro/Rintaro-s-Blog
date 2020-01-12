@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Luogu秋令营提高组 Round3 T2 表达式求值 | Rintaro&#39;s Blog | Algorithm and Anime</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="模拟,分类讨论,毒瘤">
+    <meta name="description" content="大力讨论">
+<meta name="keywords" content="模拟,分类讨论,毒瘤">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Luogu秋令营提高组 Round3 T2 表达式求值">
+<meta property="og:url" content="http://arintaro.com/2019/11/11/Answer/expr/index.html">
+<meta property="og:site_name" content="Rintaro&#39;s Blog">
+<meta property="og:description" content="大力讨论">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-11T08:45:41.936Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Luogu秋令营提高组 Round3 T2 表达式求值">
+<meta name="twitter:description" content="大力讨论">
+    
+        <link rel="alternate" type="application/atom+xml" title="Rintaro&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Rintaro</h5>
+          <a href="mailto:rintaro@foxmail.com" title="rintaro@foxmail.com" class="mail">rintaro@foxmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ARintaro" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="tencent://QQInterLive/?Cmd=2&Uin=296394065" target="_blank">
+                <i class="icon icon-lg icon-qq"></i>
+                QQ
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Luogu秋令营提高组 Round3 T2 表达式求值</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header page-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Luogu秋令营提高组 Round3 T2 表达式求值</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-11-11T08:27:23.300Z" itemprop="datePublished" class="page-time">
+  2019-11-11
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Luogu/">Luogu</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Luogu/题解/">题解</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    <article class="page-article fade" itemprop="blogPage">
+        <div class="post-content page-content" id="page-content" itemprop="pageContent">
+            <p>大力讨论<br><a id="more"></a></p>
+<h2><span id="description">Description:</span></h2><div class="card">
+<p>给出一个长度为$n$的合法表达式，由数字、加号和括号组成。这个表达式可以通过不断循环右移得到$n$个表达式。求出这$n$个表达式中所有合法表达式的计算结果，输出他们的和。</p>
+<p>由于答案可能很大，你只需要输出答案模 $998244353$ 的结果。</p>
+<p>$1 \leq n \leq 10^5$</p>
+</div>
+<h2><span id="solution">Solution:</span></h2><div class="card">
+<p>这种模拟题目很重要的一点就是手玩找性质以简化代码，如猪国杀的行为分类，最好能写出一些辅助程序，提高手玩效率。</p>
+<h4><span id="30的数据-on2-枚举断点">$30%$的数据: $O(n^2)$ 枚举断点</span></h4><p>枚举断点，判断串是否合法，计算表达式即可，有30pts。</p>
+<h4><span id="另外30的数据-无括号-计算贡献">另外$30%$的数据: 无括号 计算贡献</span></h4><p>手玩后可以发现，每次中间的贡献会被直接累加，边上的数字会被”分割”成两部分，分别累加两端的贡献即可。</p>
+<p>另外，为了方便计算，我们可以循环串，令串的末尾是一个加号。否则前几次计算时，把最前面的数字移到后面可能不会被分割。</p>
+<h4><span id="100的数据">$100%$的数据:</span></h4><p>考试的时候写出来了60pts，认为最后$40$pts是”动态括号匹配”，加上做法二，每次能匹配上时累加贡献，显然不会写。</p>
+<p>但是手玩可以发现一个很重要的性质: “括号是假的”，当一对左右括号被分割时，一定不会有合法的情况，所以我们可以直接把表达式中括号的数计算出来转化为做法二。</p>
+<p>同时还需要注意几种特殊情况:</p>
+<ol>
+<li>没有其余符号，全都是数字</li>
+</ol>
+<p>这样上述讨论”分割为两部分”不成立，移到最后面的数字会与之前的数字接在一起，需要特判。</p>
+<ol start="2">
+<li>首位或末位是括号</li>
+</ol>
+<p>在做法二中，为了方便计算，我们把第一个数字串直接移到了后面，它会与后面的数字接在一起，但是如果首尾是括号的话，就会产生括号与数字连续的奇怪组合，导致串不合法，容易发现，产生这种情况时，只有初始情况是合法的。</p>
+<p>代码是考场代码改的，比较丑，后来没有重构。</p>
+<p>std的写法是先把+号分割的串提出来，这样后来不用扫来扫去，程序简洁很多。</p>
+</div>
+<h2><span id="code">Code:</span></h2><div class="card">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rint register int</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lint long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> isnum(x) (<span class="meta-string">'0'</span> &lt;= (x) &amp;&amp; (x) &lt;= <span class="meta-string">'9'</span>)</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> tint&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">readint</span><span class="params">(tint&amp; x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> f = <span class="number">1</span>; <span class="keyword">char</span> ch = getchar(); x = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(; !isnum(ch); ch = getchar()) <span class="keyword">if</span>(ch == <span class="string">'-'</span>) f = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(; isnum(ch); ch = getchar()) x = x * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">	x *= f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod = <span class="number">998244353</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> pow10[maxn], val_pre[maxn], val_suf[maxn];</span><br><span class="line"><span class="keyword">int</span> last[maxn];</span><br><span class="line"><span class="keyword">char</span> s[maxn], arr[maxn], temp[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	pow10[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%s"</span>, s);</span><br><span class="line">	n = <span class="built_in">strlen</span>(s);</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; i++) pow10[i] = pow10[i<span class="number">-1</span>] * <span class="number">10</span> % mod; </span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(s[<span class="number">0</span>] == <span class="string">'('</span> || s[n<span class="number">-1</span>] == <span class="string">')'</span>) &#123;</span><br><span class="line">		<span class="keyword">int</span> ans = <span class="number">0</span>, x = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(rint i=<span class="number">0</span>; i&lt;n; i++) &#123;</span><br><span class="line">			<span class="keyword">if</span>(isnum(s[i])) x = (x * <span class="number">10</span> + s[i] - <span class="string">'0'</span>) % mod;</span><br><span class="line">			<span class="keyword">else</span> ans = (ans + x) % mod, x = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">bool</span> all_num = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">0</span>; i&lt;n; i++) <span class="keyword">if</span>(!isnum(s[i])) all_num = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(all_num) &#123;</span><br><span class="line">		val_pre[<span class="number">0</span>] = s[<span class="number">0</span>] - <span class="string">'0'</span>;</span><br><span class="line">		<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;n; i++) val_pre[i] = (val_pre[i<span class="number">-1</span>] * <span class="number">10</span> + s[i] - <span class="string">'0'</span>) % mod;</span><br><span class="line">		<span class="keyword">for</span>(rint i=n<span class="number">-1</span>; i&gt;=<span class="number">0</span>; i--) val_suf[i] = (val_suf[i+<span class="number">1</span>] + (s[i] - <span class="string">'0'</span>) * pow10[n - <span class="number">1</span> - i]) % mod;</span><br><span class="line">		<span class="keyword">int</span> ans = val_suf[<span class="number">0</span>];</span><br><span class="line">		<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;n; i++) ans = (ans + val_suf[i] * pow10[i] + val_pre[i - <span class="number">1</span>]) % mod;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">0</span>; i&lt;n; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span>(s[i] != <span class="string">'('</span>) arr[m++] = s[i];</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			rint j = i+<span class="number">1</span>, cnt = <span class="number">1</span>;</span><br><span class="line">			lint x = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">while</span>(cnt &amp;&amp; j &lt; n) &#123;</span><br><span class="line">				<span class="keyword">if</span>(isnum(s[j])) &#123;</span><br><span class="line">					x = (x * <span class="number">10</span> + s[j] - <span class="string">'0'</span>) % mod;</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					<span class="keyword">if</span>(s[j] == <span class="string">')'</span>) cnt--;</span><br><span class="line">					<span class="keyword">else</span> <span class="keyword">if</span>(s[j] == <span class="string">'('</span>) cnt++;</span><br><span class="line">					sum = (sum + x) % mod;</span><br><span class="line">					x = <span class="number">0</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				j++;</span><br><span class="line">			&#125;</span><br><span class="line">			i = j;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(arr[m] == <span class="string">'+'</span>) m--;</span><br><span class="line">	arr[m + <span class="number">1</span>] = <span class="string">'\0'</span>;</span><br><span class="line">	n = m;</span><br><span class="line">	<span class="keyword">if</span>(n == <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; sum &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> pos = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(pos &lt; n - <span class="number">2</span> &amp;&amp; arr[pos] != <span class="string">'+'</span>) pos++;</span><br><span class="line">	pos++;</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">0</span>; i&lt;n; i++) temp[i] = arr[(pos + i) % n];</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">0</span>; i&lt;n; i++) arr[i] = temp[i];</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">0</span>; i&lt;n; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span>(isnum(arr[i])) &#123;</span><br><span class="line">			<span class="keyword">int</span> j = i, x = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(; isnum(arr[j]); j++) x = (x * <span class="number">10</span> + arr[j] - <span class="string">'0'</span>) % mod, val_pre[j] = x;</span><br><span class="line">			last[i] = j - <span class="number">1</span>;</span><br><span class="line">			sum = (sum + x) % mod;</span><br><span class="line">			x = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(rint k=j<span class="number">-1</span>; k&gt;=i; k--) x = (pow10[j - <span class="number">1</span> - k] * (arr[k] - <span class="string">'0'</span>) + x) % mod, val_suf[k] = x;</span><br><span class="line">			i = j;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">0</span>; i&lt;n; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span>(isnum(arr[i])) &#123;</span><br><span class="line">			<span class="keyword">for</span>(rint j=i; j&lt;=last[i]; j++) &#123;</span><br><span class="line">				<span class="keyword">if</span>(j != i) ans = (ans + sum - val_suf[i] + val_pre[j<span class="number">-1</span>] + val_suf[j]) % mod;</span><br><span class="line">			&#125;</span><br><span class="line">			i = last[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, (ans + mod) % mod);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+        </div>
+
+        
+        <div class="card page-about-me flex-row">
+            <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="/img/avatar.jpg"></a>
+            <div class="content flex-col">
+                <p><strong>Rintaro</strong></p>
+                <p><em>Algorithm and Anime</em></p>
+                <p>LN某弱校高一OIer, 想进队ORZ</p>
+            </div>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/11/11/Answer/expr/&title=《Luogu秋令营提高组 Round3 T2 表达式求值》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/11/11/Answer/expr/&title=《Luogu秋令营提高组 Round3 T2 表达式求值》 — Rintaro's Blog&source=大力讨论" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/11/11/Answer/expr/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Luogu秋令营提高组 Round3 T2 表达式求值》 — Rintaro's Blog&url=http://arintaro.com/2019/11/11/Answer/expr/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/11/11/Answer/expr/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+        
+
+        
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </article>
+    
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        神犇到访数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Rintaro &copy; 2019 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/11/11/Answer/expr/&title=《Luogu秋令营提高组 Round3 T2 表达式求值》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/11/11/Answer/expr/&title=《Luogu秋令营提高组 Round3 T2 表达式求值》 — Rintaro's Blog&source=大力讨论" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/11/11/Answer/expr/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Luogu秋令营提高组 Round3 T2 表达式求值》 — Rintaro's Blog&url=http://arintaro.com/2019/11/11/Answer/expr/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/11/11/Answer/expr/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://arintaro.com/2019/11/11/Answer/expr/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Rintaro's Blog Here';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Rintaro's Blog';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>ARC089E GraphXY | Rintaro&#39;s Blog | Algorithm and Anime</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="构造,思维">
+    <meta name="description" content="Description:@card{ 构造一张有向图,并给出 $st, ed$ 每条边的权值是一个确定的整数,或者 $X$,或者 $Y$ $d, x, y$ 表示当 $X = x, Y = y$ 时 $st$ 到 $ed$ 的最短路长度 给出 $d$ 数组,构造出这个有向图 $n \leq 300$ , $x, y \leq 10$ } Solution:@card{ 考虑先求出把$X, Y$的">
+<meta name="keywords" content="构造,思维">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ARC089E GraphXY">
+<meta property="og:url" content="http://arintaro.com/2019/12/25/Answer/xy/index.html">
+<meta property="og:site_name" content="Rintaro&#39;s Blog">
+<meta property="og:description" content="Description:@card{ 构造一张有向图,并给出 $st, ed$ 每条边的权值是一个确定的整数,或者 $X$,或者 $Y$ $d, x, y$ 表示当 $X = x, Y = y$ 时 $st$ 到 $ed$ 的最短路长度 给出 $d$ 数组,构造出这个有向图 $n \leq 300$ , $x, y \leq 10$ } Solution:@card{ 考虑先求出把$X, Y$的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-25T06:59:08.341Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ARC089E GraphXY">
+<meta name="twitter:description" content="Description:@card{ 构造一张有向图,并给出 $st, ed$ 每条边的权值是一个确定的整数,或者 $X$,或者 $Y$ $d, x, y$ 表示当 $X = x, Y = y$ 时 $st$ 到 $ed$ 的最短路长度 给出 $d$ 数组,构造出这个有向图 $n \leq 300$ , $x, y \leq 10$ } Solution:@card{ 考虑先求出把$X, Y$的">
+    
+        <link rel="alternate" type="application/atom+xml" title="Rintaro&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Rintaro</h5>
+          <a href="mailto:rintaro@foxmail.com" title="rintaro@foxmail.com" class="mail">rintaro@foxmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ARintaro" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="tencent://QQInterLive/?Cmd=2&Uin=296394065" target="_blank">
+                <i class="icon icon-lg icon-qq"></i>
+                QQ
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">ARC089E GraphXY</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header page-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">ARC089E GraphXY</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-12-25T06:44:23.273Z" itemprop="datePublished" class="page-time">
+  2019-12-25
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/atcoder/">atcoder</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/atcoder/题解/">题解</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    <article class="page-article fade" itemprop="blogPage">
+        <div class="post-content page-content" id="page-content" itemprop="pageContent">
+            <a id="more"></a>
+<h2><span id="description">Description:</span></h2><div class="card">
+<p>构造一张有向图,并给出 $st, ed$</p>
+<p>每条边的权值是一个确定的整数,或者 $X$,或者 $Y$</p>
+<p>$d, x, y$ 表示当 $X = x, Y = y$ 时 $st$ 到 $ed$ 的最短路长度</p>
+<p>给出 $d$ 数组,构造出这个有向图</p>
+<p>$n \leq 300$ , $x, y \leq 10$</p>
+</div>
+<h2><span id="solution">Solution:</span></h2><div class="card">
+<p>考虑先求出把$X, Y$的影响排除在外的最短路，以此方便构造，发现至多会走$100$个$X$或$Y$，所以我们可以在状态上记录当前走了几个$X$，$Y$，定义$f_{i, j}$为走了$i$个$X$和$j$个$Y$的最短路。</p>
+<p>像这种已知答案构建问题的构造，可以考虑已知问题如何求出答案，即有$dist_{x, y} = \min(i \times x + j \times y + f_{i, j})$，考虑移项，<br>$$dist_{x, y} \leq i \times x + j \times y + f_{i, j}$$<br>$$dist_{x, y} - i \times x - j \times y \leq + f_{i, j}$$<br>$$f_{i, j} = \max(dist_{x, y} - i \times x - j \times y)$$</p>
+<p>这里的不等号只作「符号」上的转换，以便我们确定移项后是$\min$还是$\max$，由于等号在原式一定取到，所以并不是真正的放缩，以此可以求出$f$数组，显然可以构造只有$X$和只有$Y$的两条链，使走一定数量的$X,Y$的路径唯一，在连接点处放计算出的$f$即可。</p>
+<p>注意这样不一定成立，解可能不存在，因为由$d$求出$f$的时候，我们这样的推导并不能保证由$f$还能计算出一样的$d$，即我们计算出的$f$是$d$的一个必要条件。所以我们还要判断由$f$是否还能计算出一样的$d$，按照公式计算即可，我代码里写了最短路，实际上不必要。</p>
+<p>至于为什么这样构造出的$f$不满足就一定不存在满足题意的图，我感性理解一下就是对于一个$d$来说，它的$f$按照上述计算方法是唯一的，唯一的$f$构造出来的图都不满足，那么一定也不存在其他满足题意的图。实际上不太严谨，我也没看到其他题解有详细论证的，希望有人会可以告诉我。</p>
+</div>
+<h2><span id="code">Code:</span></h2><div class="card">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> buf[<span class="number">1</span>&lt;&lt;<span class="number">21</span>], *p1, *p2;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> getc() (p1 == p2 &amp;&amp; (p2 = (p1 = buf) + fread(buf, 1, 1&lt;&lt;21, stdin)), p1 == p2 ? EOF : *p1++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lint long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> isnum(x) (<span class="meta-string">'0'</span> &lt;= (x) &amp;&amp; (x) &lt;= <span class="meta-string">'9'</span>)</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> tint&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">readint</span><span class="params">(tint&amp; x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> f = <span class="number">1</span>; <span class="keyword">char</span> ch = getc(); x = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(; !isnum(ch); ch = getc()) <span class="keyword">if</span>(ch == <span class="string">'-'</span>) f = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(; isnum(ch); ch = getc()) x = x * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">	x *= f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxa = <span class="number">12</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">204</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// dist[x][y] = min&#123;i * x + j * y + f[i][j]&#125;</span></span><br><span class="line"><span class="comment">// dist[x][y] - i * x - j * y &lt;= f[i][j]</span></span><br><span class="line"><span class="comment">// f[i][j] = max&#123;dist[x][y] - i * x - j * y&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// f[i][j] = max&#123;dist[x][y] - i * x - j * y&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n = <span class="number">202</span>, m = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> A, B;</span><br><span class="line"><span class="keyword">int</span> dist[maxa][maxa], f[maxn][maxn];</span><br><span class="line"><span class="keyword">int</span> edge[maxn][maxn];</span><br><span class="line"><span class="keyword">int</span> now[maxn];</span><br><span class="line"><span class="keyword">bool</span> vis[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(f, <span class="number">-1</span>, <span class="keyword">sizeof</span>(f)), <span class="built_in">memset</span>(edge, <span class="number">-1</span>, <span class="keyword">sizeof</span>(edge));</span><br><span class="line">	readint(A), readint(B);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=A; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=B; j++) readint(dist[i][j]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=m; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;=m; j++) &#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">1</span>; x&lt;=A; x++) &#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> y=<span class="number">1</span>; y&lt;=B; y++) &#123;</span><br><span class="line">					f[i][j] = max(f[i][j], dist[x][y] - i * x - j * y);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">// i个x, j个y的最短路</span></span><br><span class="line">			edge[i + <span class="number">1</span>][<span class="number">202</span> - j] = f[i][j];</span><br><span class="line">			<span class="keyword">if</span>(edge[i + <span class="number">1</span>][<span class="number">202</span> - j] != <span class="number">-1</span>) cnt++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// dist[x][y] = min&#123;i * x + j * y + f[i][j]&#125;</span></span><br><span class="line">	<span class="comment">// dist[x][y] - i * x - j * y &lt;= f[i][j]</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// f[i][j] = max&#123;dist[x][y] - i * x - j * y&#125;</span></span><br><span class="line">	<span class="comment">// f[i][j] &gt;= dist[x][y] - i * x - j * y</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> a=<span class="number">1</span>; a&lt;=A; a++) &#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> b=<span class="number">1</span>; b&lt;=B; b++) &#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=<span class="number">100</span>; i++) edge[i][i+<span class="number">1</span>] = a;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">102</span>; i&lt;=<span class="number">201</span>; i++) edge[i][i+<span class="number">1</span>] = b;</span><br><span class="line">			<span class="built_in">memset</span>(vis, <span class="number">0</span>, <span class="keyword">sizeof</span>(vis)), <span class="built_in">memset</span>(now, <span class="number">0x3f</span>, <span class="keyword">sizeof</span>(now));</span><br><span class="line">			now[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">				<span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) <span class="keyword">if</span>(!vis[i] &amp;&amp; now[i] &lt; now[x]) x = i;</span><br><span class="line">				<span class="keyword">if</span>(x == <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">				vis[x] = <span class="number">1</span>;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> y=<span class="number">1</span>; y&lt;=n; y++)</span><br><span class="line">					<span class="keyword">if</span>(edge[x][y] != <span class="number">-1</span> &amp;&amp; now[y] &gt; now[x] + edge[x][y]) now[y] = now[x] + edge[x][y];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(now[n] != dist[a][b]) &#123; <span class="built_in">puts</span>(<span class="string">"Impossible"</span>); <span class="keyword">return</span> <span class="number">0</span>; &#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">puts</span>(<span class="string">"Possible"</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>, n, cnt + <span class="number">200</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=<span class="number">100</span>; i++) <span class="built_in">printf</span>(<span class="string">"%d %d X\n"</span>, i, i+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">102</span>; i&lt;=<span class="number">201</span>; i++) <span class="built_in">printf</span>(<span class="string">"%d %d Y\n"</span>, i, i+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=m; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;=m; j++) &#123;</span><br><span class="line">			<span class="keyword">if</span>(f[i][j] == <span class="number">-1</span>) <span class="keyword">continue</span>;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d %d %d\n"</span>, i + <span class="number">1</span>, <span class="number">202</span> - j, f[i][j]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>, <span class="number">1</span>, <span class="number">202</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+        </div>
+
+        
+        <div class="card page-about-me flex-row">
+            <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="/img/avatar.jpg"></a>
+            <div class="content flex-col">
+                <p><strong>Rintaro</strong></p>
+                <p><em>Algorithm and Anime</em></p>
+                <p>LN某弱校高一OIer, 想进队ORZ</p>
+            </div>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/12/25/Answer/xy/&title=《ARC089E GraphXY》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/12/25/Answer/xy/&title=《ARC089E GraphXY》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/12/25/Answer/xy/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ARC089E GraphXY》 — Rintaro's Blog&url=http://arintaro.com/2019/12/25/Answer/xy/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/12/25/Answer/xy/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+        
+
+        
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </article>
+    
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        神犇到访数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Rintaro &copy; 2019 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/12/25/Answer/xy/&title=《ARC089E GraphXY》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/12/25/Answer/xy/&title=《ARC089E GraphXY》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/12/25/Answer/xy/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ARC089E GraphXY》 — Rintaro's Blog&url=http://arintaro.com/2019/12/25/Answer/xy/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/12/25/Answer/xy/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://arintaro.com/2019/12/25/Answer/xy/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Rintaro's Blog Here';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Rintaro's Blog';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

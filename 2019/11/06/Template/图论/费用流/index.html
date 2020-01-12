@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>基于原始对偶方法的Dijkstra-Dinic | Rintaro&#39;s Blog | Algorithm and Anime</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="图论,网络流">
+    <meta name="description" content="然而复杂度都是不对的。">
+<meta name="keywords" content="图论,网络流">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于原始对偶方法的Dijkstra-Dinic">
+<meta property="og:url" content="http://arintaro.com/2019/11/06/Template/图论/费用流/index.html">
+<meta property="og:site_name" content="Rintaro&#39;s Blog">
+<meta property="og:description" content="然而复杂度都是不对的。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-06T05:08:12.462Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于原始对偶方法的Dijkstra-Dinic">
+<meta name="twitter:description" content="然而复杂度都是不对的。">
+    
+        <link rel="alternate" type="application/atom+xml" title="Rintaro&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Rintaro</h5>
+          <a href="mailto:rintaro@foxmail.com" title="rintaro@foxmail.com" class="mail">rintaro@foxmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ARintaro" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="tencent://QQInterLive/?Cmd=2&Uin=296394065" target="_blank">
+                <i class="icon icon-lg icon-qq"></i>
+                QQ
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">基于原始对偶方法的Dijkstra-Dinic</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header page-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">基于原始对偶方法的Dijkstra-Dinic</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-11-06T04:33:48.657Z" itemprop="datePublished" class="page-time">
+  2019-11-06
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/模板/">模板</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    <article class="page-article fade" itemprop="blogPage">
+        <div class="post-content page-content" id="page-content" itemprop="pageContent">
+            <p>然而复杂度都是不对的。<br><a id="more"></a></p>
+<h2><span id="一-概述">一、概述</span></h2><div class="card">
+<p>OI中费用流一般用消圈orSSP，复杂度在边权较大时都是不对的，但是出题人一般不卡，在这种环境下写对的某个算法反而会被卡，所以我选择用Dijkstra跑Dinic，平均表现还是比较优秀的，但是在原图上就有负权回路的图上没法正确求出答案。</p>
+<p>由于dinic更新边时一定会产生负权边，导致无法直接应用dijkstra，只能不停地跑SPFA，如果设计一个势函数，使得边权变正，那么就能用Dijkstra跑了。</p>
+<p>一个错误的想法就是把每条边都加上inf，这显然会导致加完后的最短路和原来的最短路不同，考虑物理中”势能”的想法，我们定义新的边权<br>$$<br>w_{u,v}’ = w_{u,v} + h(u) - h(v)<br>$$<br>这样相加后中间的项显然都会消去，对于一个最短路$dist_{u, v}’ = dist_{u, v}’ + h(u) - h(v)$，对于给定的源点和起点后面两项都是常数，所以最短路肯定是不变的。</p>
+<p>问题现在在于如何设计一个$h(x)$，满足对于所有的边都满足$w_{u,v} + h(u) - h(v) \geq 0$，类似差分约束的想法，这个可以与三角不等式联系到一起，显然我们有$dist_u + w_{u,v} \geq dist_v$，整理可得类似上面的形式，所以我们直接令$h(x) = dist_x$。</p>
+<p>然而还有一个问题，我们每次会动态更新边权，而我们显然不能每次都再跑一遍SPFA求出$dist$数组就为了重标号跑Dijkstra再求一遍$dist$数组，所以我们需要一个可以快速更新$h(x)$的方法。</p>
+<p>在这次跑完最短路上的图上每条边均满足$dist_u + w_{u,v} + h(u) - h(v) \geq dist_v$，变形得$w_{u, v} + (h(u) + dist_u) - (h(v) + dist_v) \geq 0$。</p>
+<p>如果这条边没被更新，显然上式仍成立。</p>
+<p>如果这条边被更新了，一定有$w_{u, v} + (h(u) + dist_u) - (dist_v + h(v)) = 0$成立，这条边更新出的绝对值最大的负边权为$-w_{u, v}$，左右两边乘个负号，即得到$-w_{u, v} + (dist_v + h(v)) - (dist_u + h(u)) = 0$，因为$-w_{u, v}$绝对值是最大的，所以$w_{v, u}’ + (dist_v + h(v)) - (dist_u + h(u)) \geq 0$。</p>
+<p>由上述的推导可以看出，我们可以每次跑完后规定$h’(x) = h(x) + dist_x$，这样新图上的边权也一定非负。</p>
+</div>
+<h2><span id="二-代码">二、代码</span></h2><p>@card{<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rint register int</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lint long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pii pair<span class="meta-string">&lt;int, int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mp(x, y) make_pair((x), (y))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> isnum(x) (<span class="meta-string">'0'</span> &lt;= (x) &amp;&amp; (x) &lt;= <span class="meta-string">'9'</span>)</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> tint&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">readint</span><span class="params">(tint&amp; x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> f = <span class="number">1</span>; <span class="keyword">char</span> ch = getchar(); x = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(; !isnum(ch); ch = getchar()) <span class="keyword">if</span>(ch == <span class="string">'-'</span>) f = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(; isnum(ch); ch = getchar()) x = x * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">	x *= f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">5000</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm = <span class="number">2e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m, st, ed;</span><br><span class="line"><span class="keyword">int</span> cur[maxn];</span><br><span class="line"><span class="keyword">int</span> head[maxn], ev[maxm], ew[maxm], ec[maxm], nxt[maxm], totedge = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addedge_one</span><span class="params">(<span class="keyword">int</span> nu, <span class="keyword">int</span> nv, <span class="keyword">int</span> nw, <span class="keyword">int</span> nc)</span> </span>&#123; <span class="comment">// 注意这里分清nw, nc</span></span><br><span class="line">	ev[++totedge] = nv, ew[totedge] = nw, ec[totedge] = nc;</span><br><span class="line">	nxt[totedge] = head[nu], head[nu] = totedge;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addedge_two</span><span class="params">(<span class="keyword">int</span> nu, <span class="keyword">int</span> nv, <span class="keyword">int</span> nw, <span class="keyword">int</span> nc)</span> </span>&#123; <span class="comment">// 别忘了加反边</span></span><br><span class="line">	addedge_one(nu, nv, nw, nc), addedge_one(nv, nu, <span class="number">0</span>, -nc);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第一维距离，第二维编号</span></span><br><span class="line">priority_queue&lt;pii, <span class="built_in">vector</span>&lt;pii&gt;, greater&lt;pii&gt; &gt; q;</span><br><span class="line">lint h[maxn], dist[maxn];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">dijkstra</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(dist, <span class="number">0x3f</span>, <span class="keyword">sizeof</span>(dist));</span><br><span class="line">	dist[st] = <span class="number">0</span>, q.push(mp(<span class="number">0</span>, st));</span><br><span class="line">	<span class="keyword">while</span>(!q.empty()) &#123;</span><br><span class="line">		pii now = q.top(); q.pop();</span><br><span class="line">		<span class="keyword">int</span> x = now.second;</span><br><span class="line">		<span class="keyword">if</span>(now.first &gt; dist[x]) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">for</span>(rint i=head[x], y=ev[i]; i; i=nxt[i], y=ev[i]) &#123;</span><br><span class="line">			<span class="keyword">if</span>(ew[i] &amp;&amp; dist[y] &gt; dist[x] + ec[i] + h[x] - h[y]) &#123; <span class="comment">// 这里记得判此边是否还有容量</span></span><br><span class="line">				dist[y] = dist[x] + ec[i] + h[x] - h[y];</span><br><span class="line">				q.push(mp(dist[y], y));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> dist[ed] &lt; inf;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> maxflow = <span class="number">0</span>, mincost = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">bool</span> vis[maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dinic</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> rest)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x == ed || rest == <span class="number">0</span>) <span class="keyword">return</span> rest;</span><br><span class="line">	vis[x] = <span class="number">1</span>; <span class="comment">// 一般的正权图跑最短路生成DAG时不用这样，但此题中可能有"零环"</span></span><br><span class="line">	<span class="keyword">int</span> flow = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(rint &amp;i = cur[x], y=ev[i]; i &amp;&amp; rest; i=nxt[i], y=ev[i]) &#123; <span class="comment">// 当前弧优化, &amp;&amp;rest 及时退出</span></span><br><span class="line">		<span class="keyword">if</span>(ew[i] == <span class="number">0</span> || vis[y] || dist[y] != dist[x] + ec[i] + h[x] - h[y]) <span class="keyword">continue</span>; </span><br><span class="line">        <span class="comment">// 记得判边是否还有容量，以及为了避免无限递归零环而打的入栈标记。</span></span><br><span class="line">        <span class="comment">// 最短路生成DAG</span></span><br><span class="line">		<span class="keyword">int</span> now = dinic(y, min(ew[i], rest));</span><br><span class="line">		flow += now, rest -= now;</span><br><span class="line">		ew[i] -= now, ew[i ^ <span class="number">1</span>] += now; <span class="comment">// 实时更新剩余容量</span></span><br><span class="line">	&#125;</span><br><span class="line">	vis[x] = <span class="number">0</span>; <span class="comment">// 回溯时还原标记，一个点可能会被多次访问</span></span><br><span class="line">	<span class="keyword">return</span> flow;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	readint(n), readint(m), readint(st), readint(ed);</span><br><span class="line">	<span class="keyword">int</span> nu, nv, nw, nc;</span><br><span class="line">	<span class="keyword">while</span>(m--) &#123;</span><br><span class="line">		readint(nu), readint(nv), readint(nw), readint(nc);</span><br><span class="line">		addedge_two(nu, nv, nw, nc);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>(dijkstra()) &#123;</span><br><span class="line">		<span class="built_in">memcpy</span>(cur, head, <span class="keyword">sizeof</span>(cur)); <span class="comment">// 当前弧优化</span></span><br><span class="line">		<span class="keyword">int</span> flow = <span class="number">0</span>; <span class="comment">// 一次多路增光，降低常数</span></span><br><span class="line">		<span class="keyword">while</span>((flow = dinic(st, INT_MAX))) maxflow += flow, mincost += flow * (dist[ed] - h[st] + h[ed]);</span><br><span class="line">		<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; i++)  h[i] += dist[i]; <span class="comment">// 更新势能函数</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>, maxflow, mincost);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</div>
+
+        </article></div>
+
+        
+        <div class="card page-about-me flex-row">
+            <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="/img/avatar.jpg"></a>
+            <div class="content flex-col">
+                <p><strong>Rintaro</strong></p>
+                <p><em>Algorithm and Anime</em></p>
+                <p>LN某弱校高一OIer, 想进队ORZ</p>
+            </div>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/11/06/Template/图论/费用流/&title=《基于原始对偶方法的Dijkstra-Dinic》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/11/06/Template/图论/费用流/&title=《基于原始对偶方法的Dijkstra-Dinic》 — Rintaro's Blog&source=然而复杂度都是不对的。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/11/06/Template/图论/费用流/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《基于原始对偶方法的Dijkstra-Dinic》 — Rintaro's Blog&url=http://arintaro.com/2019/11/06/Template/图论/费用流/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/11/06/Template/图论/费用流/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+        
+
+        
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        神犇到访数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Rintaro &copy; 2019 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/11/06/Template/图论/费用流/&title=《基于原始对偶方法的Dijkstra-Dinic》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/11/06/Template/图论/费用流/&title=《基于原始对偶方法的Dijkstra-Dinic》 — Rintaro's Blog&source=然而复杂度都是不对的。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/11/06/Template/图论/费用流/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《基于原始对偶方法的Dijkstra-Dinic》 — Rintaro's Blog&url=http://arintaro.com/2019/11/06/Template/图论/费用流/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/11/06/Template/图论/费用流/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://arintaro.com/2019/11/06/Template/图论/费用流/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Rintaro's Blog Here';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Rintaro's Blog';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

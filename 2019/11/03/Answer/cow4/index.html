@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>USACO2015Jan Cow Rectangles | Rintaro&#39;s Blog | Algorithm and Anime</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="悬线法,多维问题">
+    <meta name="description" content="强行与牛有关">
+<meta name="keywords" content="悬线法,多维问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="USACO2015Jan Cow Rectangles">
+<meta property="og:url" content="http://arintaro.com/2019/11/03/Answer/cow4/index.html">
+<meta property="og:site_name" content="Rintaro&#39;s Blog">
+<meta property="og:description" content="强行与牛有关">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-03T13:35:33.939Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="USACO2015Jan Cow Rectangles">
+<meta name="twitter:description" content="强行与牛有关">
+    
+        <link rel="alternate" type="application/atom+xml" title="Rintaro&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Rintaro</h5>
+          <a href="mailto:rintaro@foxmail.com" title="rintaro@foxmail.com" class="mail">rintaro@foxmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ARintaro" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="tencent://QQInterLive/?Cmd=2&Uin=296394065" target="_blank">
+                <i class="icon icon-lg icon-qq"></i>
+                QQ
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">USACO2015Jan Cow Rectangles</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header page-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">USACO2015Jan Cow Rectangles</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-11-03T11:44:26.450Z" itemprop="datePublished" class="page-time">
+  2019-11-03
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/USACO/">USACO</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/USACO/题解/">题解</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    <article class="page-article fade" itemprop="blogPage">
+        <div class="post-content page-content" id="page-content" itemprop="pageContent">
+            <p>强行与牛有关<br><a id="more"></a></p>
+<h2><span id="description">Description:</span></h2><div class="card">
+<p>坐标系上给$n$个点，分H点G点，求一个矩形，不包含任何G点，并包含尽量多的H点，在此基础上最小化面积。</p>
+<p>$1 \leq n \leq 1000$，$1 \leq x \leq 1000$，$1 \leq y \leq 1000$</p>
+</div>
+<h2><span id="solution">Solution:</span></h2><div class="card">
+<h4><span id="算法一-离散化后直接暴力">算法一: 离散化后直接暴力</span></h4><p>发现$n$只有500，那么我们离散化后显然可以跑$O(n^3)$的做法。</p>
+<p>转化一下题意，显然这个矩形的任意一边是必须在某个G点或H点上的，所以我们可以令H点的权值为1，G点的权值为$-inf$然后跑”最大子矩形和”，这个显然可以$O(n^3)$跑出来，直接解决。</p>
+<p>在最优化问题中，我们可以直接把不合法的状态设置成$inf$，从而避免了不合法的转移，降低编程复杂度。</p>
+<p>因为我还不会写王知昆论文中的算法一，我在这题发现离散化后都可以用算法二跑，复杂度相同，适应范围更广。</p>
+<h4><span id="算法二-求极大子矩形-二分缩小">算法二: 求极大子矩形 + 二分缩小</span></h4><p>可以发现，在这个”最大子矩形和”问题中，是没有”负权点”的，只有禁止点和点权为1/0的点，考虑没有禁止点怎么做，发现令点权最大肯定是全选，问题在于怎么让面积最小，发现”面积过大”的锅肯定是边缘上多选了一些点权为0的点，只要在四周二分缩小，每次检查点权小没小即可。</p>
+<p>然而本题中有禁止点，类似之前的想法，答案显然是极大子矩形，我们对每个极大子矩形二分缩小即可，极大子矩形个数显然是$O(n^2)$级的，二分缩小再挂个$log$，总复杂度$O(n^2logn)$</p>
+</div>
+<h2><span id="code">Code:</span></h2><div class="card">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//O(n^3)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rint register int</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lint long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> isnum(x) (<span class="meta-string">'0'</span> &lt;= (x) &amp;&amp; (x) &lt;= <span class="meta-string">'9'</span>)</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> tint&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">readint</span><span class="params">(tint&amp; x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> f = <span class="number">1</span>; <span class="keyword">char</span> ch = getchar(); x = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(; !isnum(ch); ch = getchar()) <span class="keyword">if</span>(ch == <span class="string">'-'</span>) f = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(; isnum(ch); ch = getchar()) x = x * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">	x *= f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1000</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 0 &lt;= x &lt;= 1000</span></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> px[maxn], py[maxn], val[maxn];</span><br><span class="line"><span class="keyword">int</span> totx, toty;</span><br><span class="line"><span class="keyword">int</span> htx[maxn], hty[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">eco</span><span class="params">(<span class="keyword">int</span> arr[maxn], <span class="keyword">int</span> ht[maxn], <span class="keyword">int</span>&amp; tot)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">memcpy</span>(ht, arr, <span class="keyword">sizeof</span>(<span class="keyword">int</span>) * (n + <span class="number">1</span>));</span><br><span class="line">	sort(ht+<span class="number">1</span>, ht+n+<span class="number">1</span>), tot = unique(ht+<span class="number">1</span>, ht+n+<span class="number">1</span>) - (ht+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; i++) arr[i] = lower_bound(ht+<span class="number">1</span>, ht+tot+<span class="number">1</span>, arr[i]) - ht;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> ma[maxn][maxn], sum[maxn][maxn];</span><br><span class="line"><span class="keyword">int</span> arr[maxn], arr_sum[maxn];</span><br><span class="line"><span class="comment">// 注意上限是toty</span></span><br><span class="line"><span class="keyword">int</span> ans_val = <span class="number">0</span>, ans_area = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">calc</span><span class="params">(<span class="keyword">int</span> h)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> pos = <span class="number">0</span>;</span><br><span class="line">	<span class="comment">// 直接把不合法的情况赋成-inf</span></span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=toty; i++) &#123;</span><br><span class="line">		arr_sum[i] = arr_sum[i<span class="number">-1</span>] + arr[i];</span><br><span class="line">		<span class="keyword">int</span> now_val = arr_sum[i] - arr_sum[pos],</span><br><span class="line">			now_area = h * (hty[i] - hty[pos+<span class="number">1</span>]);</span><br><span class="line">		<span class="keyword">if</span>(now_val &gt; ans_val || (now_val == ans_val &amp;&amp; now_area &lt; ans_area)) &#123;</span><br><span class="line">			ans_val = now_val, ans_area = now_area;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(arr_sum[pos] &gt;= arr_sum[i]) pos = i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// sum[i] - sum[j] 0&lt;=j&lt;i</span></span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">char</span> s[<span class="number">4</span>];</span><br><span class="line">	readint(n);</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">		readint(px[i]), readint(py[i]);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%s"</span>, s + <span class="number">1</span>);</span><br><span class="line">		val[i] = (s[<span class="number">1</span>] == <span class="string">'H'</span> ? <span class="number">1</span> : -maxn);</span><br><span class="line">	&#125;</span><br><span class="line">	eco(px, htx, totx), eco(py, hty, toty);</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; i++) ma[px[i]][py[i]] += val[i];</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=totx; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span>(rint j=<span class="number">1</span>; j&lt;=toty; j++) sum[i][j] = sum[i<span class="number">-1</span>][j] + ma[i][j];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=totx; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span>(rint j=i; j&lt;=totx; j++) &#123;</span><br><span class="line">			<span class="keyword">for</span>(rint k=<span class="number">1</span>; k&lt;=toty; k++) arr[k] = sum[j][k] - sum[i<span class="number">-1</span>][k];</span><br><span class="line">			calc(htx[j] - htx[i]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d \n%d \n"</span>, ans_val, ans_area);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// O(n^2logn)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rint register int</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lint long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> isnum(x) (<span class="meta-string">'0'</span> &lt;= (x) &amp;&amp; (x) &lt;= <span class="meta-string">'9'</span>)</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> tint&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">readint</span><span class="params">(tint&amp; x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> f = <span class="number">1</span>; <span class="keyword">char</span> ch = getchar(); x = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(; !isnum(ch); ch = getchar()) <span class="keyword">if</span>(ch == <span class="string">'-'</span>) f = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(; isnum(ch); ch = getchar()) x = x * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">	x *= f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1000</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> px[maxn], py[maxn], val[maxn];</span><br><span class="line"><span class="keyword">int</span> htx[maxn], hty[maxn];</span><br><span class="line"><span class="keyword">int</span> ma[maxn][maxn], sum[maxn][maxn];</span><br><span class="line"><span class="keyword">int</span> lmax[maxn][maxn], rmax[maxn][maxn], umax[maxn][maxn];</span><br><span class="line"><span class="keyword">int</span> totx, toty;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">eco</span><span class="params">(<span class="keyword">int</span> arr[maxn], <span class="keyword">int</span> ht[maxn], <span class="keyword">int</span>&amp; tot)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">memcpy</span>(ht, arr, <span class="keyword">sizeof</span>(<span class="keyword">int</span>) * (n + <span class="number">1</span>));</span><br><span class="line">	sort(ht+<span class="number">1</span>, ht+n+<span class="number">1</span>), tot = unique(ht+<span class="number">1</span>, ht+n+<span class="number">1</span>) - (ht + <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; i++) arr[i] = lower_bound(ht+<span class="number">1</span>, ht+tot+<span class="number">1</span>, arr[i]) - ht;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">calc_val</span><span class="params">(<span class="keyword">int</span> x1, <span class="keyword">int</span> y1, <span class="keyword">int</span> x2, <span class="keyword">int</span> y2)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> sum[x2][y2] - sum[x2][y1<span class="number">-1</span>] - sum[x1<span class="number">-1</span>][y2] + sum[x1<span class="number">-1</span>][y1<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">calc_area</span><span class="params">(<span class="keyword">int</span> x1, <span class="keyword">int</span> y1, <span class="keyword">int</span> x2, <span class="keyword">int</span> y2)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (htx[x2] - htx[x1]) * (hty[y2] - hty[y1]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">rec</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> x1, y1, x2, y2;</span><br><span class="line">	<span class="keyword">int</span> val, area;</span><br><span class="line"></span><br><span class="line">	rec() &#123;&#125;</span><br><span class="line">	rec(<span class="keyword">int</span> xx1, <span class="keyword">int</span> yy1, <span class="keyword">int</span> xx2, <span class="keyword">int</span> yy2): x1(xx1), y1(yy1), x2(xx2), y2(yy2)&#123;</span><br><span class="line">		val = calc_val(x1, y1, x2, y2), area = calc_area(x1, y1, x2, y2);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> rec&amp; b) <span class="keyword">const</span> &#123;</span><br><span class="line">		<span class="keyword">if</span>(val == b.val) <span class="keyword">return</span> area &gt; b.area;</span><br><span class="line">		<span class="keyword">return</span> val &lt; b.val;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">shrink</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> l = <span class="number">0</span>, r = x2 - x1;</span><br><span class="line">		<span class="keyword">while</span>(l &lt; r) &#123;</span><br><span class="line">			<span class="keyword">int</span> mid = (l + r + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span>(calc_val(x1 + mid, y1, x2, y2) == val) l = mid;</span><br><span class="line">			<span class="keyword">else</span> r = mid - <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		x1 += l;</span><br><span class="line">		</span><br><span class="line">		l = <span class="number">0</span>, r = x2 - x1;</span><br><span class="line">		<span class="keyword">while</span>(l &lt; r) &#123;</span><br><span class="line">			<span class="keyword">int</span> mid = (l + r + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span>(calc_val(x1, y1, x2 - mid, y2) == val) l = mid;</span><br><span class="line">			<span class="keyword">else</span> r = mid - <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		x2 -= l;</span><br><span class="line">		</span><br><span class="line">		l = <span class="number">0</span>, r = y2 - y1;</span><br><span class="line">		<span class="keyword">while</span>(l &lt; r) &#123;</span><br><span class="line">			<span class="keyword">int</span> mid = (l + r + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span>(calc_val(x1, y1 + mid, x2, y2) == val) l = mid;</span><br><span class="line">			<span class="keyword">else</span> r = mid - <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		y1 += l;</span><br><span class="line">		</span><br><span class="line">		l = <span class="number">0</span>, r = y2 - y1;</span><br><span class="line">		<span class="keyword">while</span>(l &lt; r) &#123;</span><br><span class="line">			<span class="keyword">int</span> mid = (l + r + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span>(calc_val(x1, y1, x2, y2 - mid) == val) l = mid;</span><br><span class="line">			<span class="keyword">else</span> r = mid - <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		y2 -= l;</span><br><span class="line">		area = calc_area(x1, y1, x2, y2);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;arr[maxn * maxn];</span><br><span class="line"><span class="keyword">int</span> totrec = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">char</span> s[<span class="number">3</span>];</span><br><span class="line">	readint(n);</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">		readint(px[i]), readint(py[i]);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%s"</span>, s + <span class="number">1</span>);</span><br><span class="line">		val[i] = (s[<span class="number">1</span>] == <span class="string">'H'</span> ? <span class="number">1</span> : -maxn);</span><br><span class="line">	&#125;</span><br><span class="line">	eco(px, htx, totx), eco(py, hty, toty);</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">		ma[px[i]][py[i]] += val[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// lmax, rmax表示这根悬线的最大延伸, 算自己</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> n = totx, m = toty;</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span>(rint j=<span class="number">1</span>; j&lt;=m; j++) &#123;</span><br><span class="line">			sum[i][j] = ma[i][j] + sum[i<span class="number">-1</span>][j] + sum[i][j<span class="number">-1</span>] - sum[i<span class="number">-1</span>][j<span class="number">-1</span>];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	rec ans;</span><br><span class="line">	ans.val = <span class="number">0</span>, ans.area = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span>(rint j=<span class="number">1</span>; j&lt;=m; j++) lmax[i][j] = ma[i][j] &lt; <span class="number">0</span> ? <span class="number">0</span> : lmax[i][j<span class="number">-1</span>] + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(rint j=m; j&gt;=<span class="number">1</span>; j--) rmax[i][j] = ma[i][j] &lt; <span class="number">0</span> ? <span class="number">0</span> : rmax[i][j+<span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(rint j=<span class="number">1</span>; j&lt;=m; j++) &#123;</span><br><span class="line">			<span class="keyword">if</span>(i == <span class="number">1</span> || ma[i<span class="number">-1</span>][j] &lt; <span class="number">0</span>) umax[i][j] = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				umax[i][j] = umax[i<span class="number">-1</span>][j] + <span class="number">1</span>;</span><br><span class="line">				lmax[i][j] = min(lmax[i<span class="number">-1</span>][j], lmax[i][j]);</span><br><span class="line">				rmax[i][j] = min(rmax[i<span class="number">-1</span>][j], rmax[i][j]);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(ma[i][j] &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">				arr[++totrec] = rec(i - umax[i][j] + <span class="number">1</span>, j - lmax[i][j] + <span class="number">1</span>, i, j + rmax[i][j] - <span class="number">1</span>);</span><br><span class="line">				ans = max(ans, arr[totrec]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=totrec; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span>(arr[i].val == ans.val) &#123;</span><br><span class="line">			arr[i].shrink();</span><br><span class="line">			ans = max(ans, arr[i]);</span><br><span class="line">		&#125;</span><br><span class="line"> 	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d \n%d \n"</span>, ans.val, ans.area);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+        </div>
+
+        
+        <div class="card page-about-me flex-row">
+            <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="/img/avatar.jpg"></a>
+            <div class="content flex-col">
+                <p><strong>Rintaro</strong></p>
+                <p><em>Algorithm and Anime</em></p>
+                <p>LN某弱校高一OIer, 想进队ORZ</p>
+            </div>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/11/03/Answer/cow4/&title=《USACO2015Jan Cow Rectangles》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/11/03/Answer/cow4/&title=《USACO2015Jan Cow Rectangles》 — Rintaro's Blog&source=强行与牛有关" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/11/03/Answer/cow4/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《USACO2015Jan Cow Rectangles》 — Rintaro's Blog&url=http://arintaro.com/2019/11/03/Answer/cow4/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/11/03/Answer/cow4/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+        
+
+        
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </article>
+    
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        神犇到访数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Rintaro &copy; 2019 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/11/03/Answer/cow4/&title=《USACO2015Jan Cow Rectangles》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/11/03/Answer/cow4/&title=《USACO2015Jan Cow Rectangles》 — Rintaro's Blog&source=强行与牛有关" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/11/03/Answer/cow4/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《USACO2015Jan Cow Rectangles》 — Rintaro's Blog&url=http://arintaro.com/2019/11/03/Answer/cow4/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/11/03/Answer/cow4/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://arintaro.com/2019/11/03/Answer/cow4/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Rintaro's Blog Here';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Rintaro's Blog';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

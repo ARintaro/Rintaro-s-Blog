@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>双联通分量 | Rintaro&#39;s Blog | Algorithm and Anime</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="图论,连通性问题">
+    <meta name="description" content="换种写法。">
+<meta name="keywords" content="图论,连通性问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="双联通分量">
+<meta property="og:url" content="http://arintaro.com/2019/11/06/Template/图论/双联通分量/index.html">
+<meta property="og:site_name" content="Rintaro&#39;s Blog">
+<meta property="og:description" content="换种写法。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://arintaro.com/2019/11/06/Template/图论/双联通分量/dcc.jpg">
+<meta property="og:updated_time" content="2019-11-08T12:46:18.263Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="双联通分量">
+<meta name="twitter:description" content="换种写法。">
+<meta name="twitter:image" content="http://arintaro.com/2019/11/06/Template/图论/双联通分量/dcc.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="Rintaro&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Rintaro</h5>
+          <a href="mailto:rintaro@foxmail.com" title="rintaro@foxmail.com" class="mail">rintaro@foxmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ARintaro" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="tencent://QQInterLive/?Cmd=2&Uin=296394065" target="_blank">
+                <i class="icon icon-lg icon-qq"></i>
+                QQ
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">双联通分量</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header page-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">双联通分量</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-11-06T05:08:25.345Z" itemprop="datePublished" class="page-time">
+  2019-11-06
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/模板/">模板</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    <article class="page-article fade" itemprop="blogPage">
+        <div class="post-content page-content" id="page-content" itemprop="pageContent">
+            <p>换种写法。<br><a id="more"></a></p>
+<h2><span id="一-点双联通分量">一、点双联通分量</span></h2><p>@card {</p>
+<p>需要特判两个地方，第一个是根节点，第二个是孤立点。</p>
+<p>由于特判的地方比较多，点双联通分量就不要写边tarjan边缩点了，非常容易写错</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">	dfn[x] = low[x] = ++totdfn, s[++stop] = x;</span><br><span class="line">	<span class="keyword">if</span>(head[x] == <span class="number">0</span>) ++totdcc, dcc[totdcc].push_back(x); <span class="comment">// 特判孤立点</span></span><br><span class="line">	<span class="keyword">for</span>(rint i=head[x], y=ev[i]; i; i=nxt[i], y=ev[i]) &#123;</span><br><span class="line">		<span class="keyword">if</span>(dfn[y] == <span class="number">0</span>) dfs(y, x), low[x] = min(low[x], low[y]);</span><br><span class="line">		<span class="keyword">else</span> low[x] = min(low[x], dfn[y]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(fa &amp;&amp; low[x] &gt;= dfn[fa]) &#123; <span class="comment">// 根节点不需要</span></span><br><span class="line">		++totdcc, cut[fa]++;</span><br><span class="line">		<span class="keyword">do</span> dcc[totdcc].push_back(s[stop]);</span><br><span class="line">		<span class="keyword">while</span>(s[stop--] != x);</span><br><span class="line">		dcc[totdcc].push_back(fa);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(fa == <span class="number">0</span>) cut[x] = cut[x] &gt;= <span class="number">2</span> ? cut[x] : <span class="number">0</span>; <span class="comment">// 特判根节点</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; i++) <span class="keyword">if</span>(dfn[i] == <span class="number">0</span>) dfs(i, <span class="number">0</span>);</span><br><span class="line"><span class="comment">// 只要遇到一个dfn[i]==0，一定产生了一个新的联通块</span></span><br></pre></td></tr></table></figure>
+</div>
+<h2><span id="二-边双联通分量">二、边双联通分量</span></h2><p>注意，点双联通分量是比边双联通分量更强的条件，</p>
+<p>这样的结构会被判断成同一个边双联通分量，而不是一个点双联通分量。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="dcc.jpg" alt="avatar" title>
+                </div>
+                <div class="image-caption">avatar</div>
+            </figure></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// POJ3694 Network</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> in_edge)</span> </span>&#123;</span><br><span class="line">		dfn[x] = low[x] = ++totdfn, s[++stop] = x; <span class="comment">// 入栈，给编号</span></span><br><span class="line">		<span class="keyword">for</span>(rint i=head[x], y=ev[i]; i; i=nxt[i], y=ev[i]) &#123;</span><br><span class="line">			<span class="keyword">if</span>(i == (in_edge ^ <span class="number">1</span>)) <span class="keyword">continue</span>; <span class="comment">// 这里为了判定重边</span></span><br><span class="line">			<span class="keyword">if</span>(dfn[y] == <span class="number">0</span>) dfs(y, i), low[x] = min(low[x], low[y]);</span><br><span class="line">			<span class="keyword">else</span> low[x] = min(low[x], dfn[y]); </span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 常规的割边判定法则是对于一个节点，它某个子节点回不到它和更早遍历的到的节点，此时这条边就是割边</span></span><br><span class="line">        <span class="comment">// 我们这里回溯时判定，可以直接类似强联通分量的low[x] == dfn[x]，因为无向图搜索树上显然没有横插边，不可能更新到一个节点它的dfs序比这个节点小，且比它的父节点大。</span></span><br><span class="line">		<span class="comment">// 边双联通分量递归时判断必须在结束后清空栈，点双联通分量结束后会仅剩根节点，无需清空</span></span><br><span class="line">		<span class="keyword">if</span>(low[x] == dfn[x]) &#123;  <span class="comment">// 注意这里与点双不同</span></span><br><span class="line">			++totdcc;</span><br><span class="line">			<span class="keyword">do</span> &#123;</span><br><span class="line">				<span class="keyword">int</span> z = s[stop]; dcc_id[z] = totdcc;</span><br><span class="line">				<span class="keyword">for</span>(rint i=head[z], y=ev[i]; i; i=nxt[i], y=ev[i]) &#123; <span class="comment">// 先取出的一定是缩点后构成的树上深度较大的dcc，因此可以直接边遍历边加边</span></span><br><span class="line">                <span class="comment">// 当dcc_id[y] == 0时，它可能是其缩点后的树的父dcc中的节点，也可能是在同一个dcc还没出栈的节点</span></span><br><span class="line">                <span class="comment">// 当dcc_id存在，并且不等于当前的dcc编号，它一定是当前dcc树上的子节点。</span></span><br><span class="line">					<span class="keyword">if</span>(dcc_id[y] &amp;&amp; dcc_id[y] != totdcc) G2::addedge(totdcc, dcc_id[y]);</span><br><span class="line">					<span class="comment">// 加边时如果需要去重可以对个dcc开个桶，结束后还原防止复杂度退化</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125; <span class="keyword">while</span>(s[stop--] != x);</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+        </article></div>
+
+        
+        <div class="card page-about-me flex-row">
+            <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="/img/avatar.jpg"></a>
+            <div class="content flex-col">
+                <p><strong>Rintaro</strong></p>
+                <p><em>Algorithm and Anime</em></p>
+                <p>LN某弱校高一OIer, 想进队ORZ</p>
+            </div>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/11/06/Template/图论/双联通分量/&title=《双联通分量》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/11/06/Template/图论/双联通分量/&title=《双联通分量》 — Rintaro's Blog&source=换种写法。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/11/06/Template/图论/双联通分量/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《双联通分量》 — Rintaro's Blog&url=http://arintaro.com/2019/11/06/Template/图论/双联通分量/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/11/06/Template/图论/双联通分量/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+        
+
+        
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        神犇到访数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Rintaro &copy; 2019 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/11/06/Template/图论/双联通分量/&title=《双联通分量》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/11/06/Template/图论/双联通分量/&title=《双联通分量》 — Rintaro's Blog&source=换种写法。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/11/06/Template/图论/双联通分量/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《双联通分量》 — Rintaro's Blog&url=http://arintaro.com/2019/11/06/Template/图论/双联通分量/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/11/06/Template/图论/双联通分量/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://arintaro.com/2019/11/06/Template/图论/双联通分量/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Rintaro's Blog Here';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Rintaro's Blog';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>《组合数学》笔记 | Rintaro&#39;s Blog | Algorithm and Anime</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="总结,数学">
+    <meta name="description" content="第一章@card{ 经验 常常需要在剩余系下考虑一些东西   棋盘覆盖问题经常需要染色，常见的k染色方式是在列上加一剩余系下也加一，行上加一剩余系下减一    结论 $m \times n$棋盘有$b$格牌的完美覆盖当且仅当$b$是$m$或$n$的一个因子  习题摸了 } 第二章@card{ 经验 运用加法原理的技巧是把全集分成互斥的，少量的易处理部分。   常常想着减法原理，总数减去不合法的方">
+<meta name="keywords" content="总结,数学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《组合数学》笔记">
+<meta property="og:url" content="http://arintaro.com/2019/11/18/Algorithm/《组合数学》笔记/index.html">
+<meta property="og:site_name" content="Rintaro&#39;s Blog">
+<meta property="og:description" content="第一章@card{ 经验 常常需要在剩余系下考虑一些东西   棋盘覆盖问题经常需要染色，常见的k染色方式是在列上加一剩余系下也加一，行上加一剩余系下减一    结论 $m \times n$棋盘有$b$格牌的完美覆盖当且仅当$b$是$m$或$n$的一个因子  习题摸了 } 第二章@card{ 经验 运用加法原理的技巧是把全集分成互斥的，少量的易处理部分。   常常想着减法原理，总数减去不合法的方">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-21T06:10:35.299Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《组合数学》笔记">
+<meta name="twitter:description" content="第一章@card{ 经验 常常需要在剩余系下考虑一些东西   棋盘覆盖问题经常需要染色，常见的k染色方式是在列上加一剩余系下也加一，行上加一剩余系下减一    结论 $m \times n$棋盘有$b$格牌的完美覆盖当且仅当$b$是$m$或$n$的一个因子  习题摸了 } 第二章@card{ 经验 运用加法原理的技巧是把全集分成互斥的，少量的易处理部分。   常常想着减法原理，总数减去不合法的方">
+    
+        <link rel="alternate" type="application/atom+xml" title="Rintaro&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Rintaro</h5>
+          <a href="mailto:rintaro@foxmail.com" title="rintaro@foxmail.com" class="mail">rintaro@foxmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ARintaro" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="tencent://QQInterLive/?Cmd=2&Uin=296394065" target="_blank">
+                <i class="icon icon-lg icon-qq"></i>
+                QQ
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">《组合数学》笔记</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header page-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">《组合数学》笔记</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-11-18T13:44:38.431Z" itemprop="datePublished" class="page-time">
+  2019-11-18
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/">算法</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    <article class="page-article fade" itemprop="blogPage">
+        <div class="post-content page-content" id="page-content" itemprop="pageContent">
+            <a id="more"></a>
+<h2><span id="第一章">第一章</span></h2><div class="card">
+<h4><span id="经验">经验</span></h4><ol>
+<li>常常需要在剩余系下考虑一些东西  </li>
+<li>棋盘覆盖问题经常需要染色，常见的k染色方式是在列上加一剩余系下也加一，行上加一剩余系下减一  </li>
+</ol>
+<h4><span id="结论">结论</span></h4><ol>
+<li>$m \times n$棋盘有$b$格牌的完美覆盖当且仅当$b$是$m$或$n$的一个因子</li>
+</ol>
+<h4><span id="习题">习题</span></h4><p>摸了</p>
+</div>
+<h2><span id="第二章">第二章</span></h2><div class="card">
+<h4><span id="经验">经验</span></h4><ol>
+<li>运用加法原理的技巧是把全集分成互斥的，少量的易处理部分。  </li>
+<li>常常想着减法原理，总数减去不合法的方案。  </li>
+<li>运用乘法原理时优先选择约束性强的选择。</li>
+<li>计数时一定要注意”顺序”，时常需要加序/消序。  </li>
+<li>隔板法、捆绑法。  </li>
+</ol>
+<h4><span id="结论">结论</span></h4><ol>
+<li>$\displaystyle \binom{n}{m} = \frac{n!}{(n-m)!m!}$，$\displaystyle \mathrm A_n^m = \frac{n!}{(n - m)!}$</li>
+<li>多重集$S={n_1\cdot a_1,n_2\cdot a_2,\cdots,n_k\cdot a_k,}$排列数为$\displaystyle \frac{(\sum{a_i})!}{\prod{a_i!}}$  </li>
+<li>设$n = \sum{n_i}$，且$n_i &gt; 0$，那么<br>$$<br>\binom{n}{n_1}\binom{n - n_1}{n_2}\binom{n - n_1 - n_2}{n_3}\cdots\binom{n-n_1-n_2-\cdots-n_{k-1}}{n_k} = \frac{n!}{\prod{n_i!}}<br>$$</li>
+<li>有$n$种对象的无限多重集的k组合数位$\binom{n + k - 1}{k}$  </li>
+<li>方程$x_1 + x_2 + x_3 + \cdots + x_n = k$，其中$x_i \geq 0$解的个数为$\binom{n + k - 1}{k}$，经常通过变量代换来改变限制条件中的上下界</li>
+</ol>
+<h4><span id="习题">习题</span></h4><ol>
+<li>有多少个各位数字均不相同，且不包含数字2，7且大于5400的整数？</li>
+</ol>
+<p>显然至多有八位，四位前都可以直接累加，四位需要讨论5xxx，54xx，注意深入讨论时别忘了数字不同和不包含2、7的限制条件。</p>
+<ol start="2">
+<li>10男，12女选5人，有多少种方法使得5人中至少有2女。</li>
+</ol>
+<p>经典错解是用组合选上2女，再乘上剩下选谁，这会导致重复计数，正解是枚举选几个女。</p>
+<ol start="3">
+<li>15人选11人组球队，5人只能后卫，8人只能边卫，2人两项都行，问方案数。</li>
+</ol>
+<p>对于有任意性的选项，通常选择枚举，大力讨论两项都行的两人怎么用即可。</p>
+<ol start="4">
+<li>2个红车和4个蓝车放$8\times8$棋盘上，互不攻击方案数？</li>
+</ol>
+<p>先选出6行6列转化成之前做过的问题，再乘上匹配方案数$6!$，最后乘上颜色方案数$\binom{2}{6}$即可。    </p>
+<ol start="5">
+<li>有$n$根棍排成一行，选$k$根，相邻的棍之间至少隔$l$根棍，方案数。</li>
+</ol>
+<p>正难则反，任何计数问题的方案数显然与其补集方案数一一对应。</p>
+<p>考虑拿完后剩下的段，问题转化成结论5的方程中的解，再用变量代换调整下界即可。</p>
+</div>
+
+        </div>
+
+        
+        <div class="card page-about-me flex-row">
+            <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="/img/avatar.jpg"></a>
+            <div class="content flex-col">
+                <p><strong>Rintaro</strong></p>
+                <p><em>Algorithm and Anime</em></p>
+                <p>LN某弱校高一OIer, 想进队ORZ</p>
+            </div>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/11/18/Algorithm/《组合数学》笔记/&title=《《组合数学》笔记》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/11/18/Algorithm/《组合数学》笔记/&title=《《组合数学》笔记》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/11/18/Algorithm/《组合数学》笔记/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《《组合数学》笔记》 — Rintaro's Blog&url=http://arintaro.com/2019/11/18/Algorithm/《组合数学》笔记/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/11/18/Algorithm/《组合数学》笔记/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+        
+
+        
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </article>
+    
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        神犇到访数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Rintaro &copy; 2019 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/11/18/Algorithm/《组合数学》笔记/&title=《《组合数学》笔记》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/11/18/Algorithm/《组合数学》笔记/&title=《《组合数学》笔记》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/11/18/Algorithm/《组合数学》笔记/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《《组合数学》笔记》 — Rintaro's Blog&url=http://arintaro.com/2019/11/18/Algorithm/《组合数学》笔记/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/11/18/Algorithm/《组合数学》笔记/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://arintaro.com/2019/11/18/Algorithm/《组合数学》笔记/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Rintaro's Blog Here';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Rintaro's Blog';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

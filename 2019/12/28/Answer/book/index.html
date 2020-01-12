@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>ZJOI2006 书架 | Rintaro&#39;s Blog | Algorithm and Anime</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="平衡树,树状数组">
+    <meta name="description" content="Description:@card{ 懒得写了，写个平衡树，要求支持以下操作https://www.luogu.com.cn/problem/P2596 } Solution:@card{ 本题涉及到”移动幅度不大的”区间操作，即$\text{insert}$中只有$-1, 1$，因此可以直接用树状数组水过，倍增即可单$\log$查排名。 平衡树怎么写呢，要用$\text{Splay}$ 或者是">
+<meta name="keywords" content="平衡树,树状数组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ZJOI2006 书架">
+<meta property="og:url" content="http://arintaro.com/2019/12/28/Answer/book/index.html">
+<meta property="og:site_name" content="Rintaro&#39;s Blog">
+<meta property="og:description" content="Description:@card{ 懒得写了，写个平衡树，要求支持以下操作https://www.luogu.com.cn/problem/P2596 } Solution:@card{ 本题涉及到”移动幅度不大的”区间操作，即$\text{insert}$中只有$-1, 1$，因此可以直接用树状数组水过，倍增即可单$\log$查排名。 平衡树怎么写呢，要用$\text{Splay}$ 或者是">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-28T06:57:25.636Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ZJOI2006 书架">
+<meta name="twitter:description" content="Description:@card{ 懒得写了，写个平衡树，要求支持以下操作https://www.luogu.com.cn/problem/P2596 } Solution:@card{ 本题涉及到”移动幅度不大的”区间操作，即$\text{insert}$中只有$-1, 1$，因此可以直接用树状数组水过，倍增即可单$\log$查排名。 平衡树怎么写呢，要用$\text{Splay}$ 或者是">
+    
+        <link rel="alternate" type="application/atom+xml" title="Rintaro&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Rintaro</h5>
+          <a href="mailto:rintaro@foxmail.com" title="rintaro@foxmail.com" class="mail">rintaro@foxmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ARintaro" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="tencent://QQInterLive/?Cmd=2&Uin=296394065" target="_blank">
+                <i class="icon icon-lg icon-qq"></i>
+                QQ
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">ZJOI2006 书架</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header page-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">ZJOI2006 书架</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-12-28T06:47:05.784Z" itemprop="datePublished" class="page-time">
+  2019-12-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/各省省选/">各省省选</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/各省省选/题解/">题解</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    <article class="page-article fade" itemprop="blogPage">
+        <div class="post-content page-content" id="page-content" itemprop="pageContent">
+            <a id="more"></a>
+<h2><span id="description">Description:</span></h2><div class="card">
+<p>懒得写了，写个平衡树，要求支持以下操作<br><a href="https://www.luogu.com.cn/problem/P2596" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P2596</a></p>
+</div>
+<h2><span id="solution">Solution:</span></h2><div class="card">
+<p>本题涉及到”移动幅度不大的”区间操作，即$\text{insert}$中只有$-1, 1$，因此可以直接用树状数组水过，倍增即可单$\log$查排名。</p>
+<p>平衡树怎么写呢，要用$\text{Splay}$ 或者是无旋$\text{Treap}$，常数都比较大。</p>
+<p>前者无法高效单次操作分裂出序列中前$k$个数字，必须先查一次第$k$个数的节点编号，然后把它旋转上来。而后者无法高效的已知某个节点编号，分裂出在它前面的节点。当然，如果各多实现几个函数，也是可以做到的，比如在一棵$\text{Splay}$上跑无旋$\text{Treap}$的$\text{Split}$，但是写起来比较麻烦。</p>
+<p>我写了后者，维护父指针，即可实现一个辅助函数，给节点指针查排名，再用$\text{Split}$分裂出节点。</p>
+</div>
+<h2><span id="code">Code:</span></h2><div class="card">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> buf[<span class="number">1</span>&lt;&lt;<span class="number">21</span>], *p1, *p2;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> getc() (p1 == p2 &amp;&amp; (p2 = (p1 = buf) + fread(buf, 1, 1&lt;&lt;21, stdin)), p1 == p2 ? EOF : *p1++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lint long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> isnum(x) (<span class="meta-string">'0'</span> &lt;= (x) &amp;&amp; (x) &lt;= <span class="meta-string">'9'</span>)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> isch(x) ((x) != <span class="meta-string">'\n'</span> &amp;&amp; (x) != <span class="meta-string">'\r'</span> &amp;&amp; (x) != <span class="meta-string">' '</span>)</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> tint&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">readint</span><span class="params">(tint&amp; x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> f = <span class="number">1</span>; <span class="keyword">char</span> ch = getc(); x = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(; !isnum(ch); ch = getc()) <span class="keyword">if</span>(ch == <span class="string">'-'</span>) f = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(; isnum(ch); ch = getc()) x = x * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">	x *= f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">readstr</span><span class="params">(<span class="keyword">char</span> s[])</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len = <span class="number">0</span>; <span class="keyword">char</span> ch = getc();</span><br><span class="line">	<span class="keyword">while</span>(!isch(ch)) ch = getc();</span><br><span class="line">	<span class="keyword">for</span>(; isch(ch); ch = getc()) s[len++] = ch;</span><br><span class="line">	s[len] = <span class="string">'\0'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxnode = <span class="number">1e5</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">int</span> arr[maxn];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Treap</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> lson[maxnode], rson[maxnode], dfa[maxnode];</span><br><span class="line">	<span class="keyword">int</span> rnd[maxnode], id[maxnode], size[maxnode];</span><br><span class="line">	<span class="keyword">int</span> pos[maxnode];</span><br><span class="line">	<span class="keyword">int</span> root, totnode;</span><br><span class="line"></span><br><span class="line">	Treap() &#123; rnd[<span class="number">0</span>] = rand(); &#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushup</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(p == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">		size[p] = size[lson[p]] + size[rson[p]] + <span class="number">1</span>;</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>&amp; p, <span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(a == <span class="number">0</span> || b == <span class="number">0</span>) p = a + b;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(rnd[a] &gt; rnd[b]) p = a, merge(rson[p], rson[a], b, p);</span><br><span class="line">		<span class="keyword">else</span> p = b, merge(lson[p], a, lson[b], p);</span><br><span class="line">		dfa[p] = fa, pushup(p);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>&amp; p, <span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123; merge(p, a, b, <span class="number">0</span>); &#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">split_rank</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span>&amp; a, <span class="keyword">int</span> fa, <span class="keyword">int</span>&amp; b, <span class="keyword">int</span> fb, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(p == <span class="number">0</span>) a = b = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(k &gt; size[lson[p]]) a = p, dfa[p] = fa, split_rank(rson[p], rson[a], p, b, fb, k - size[lson[p]] - <span class="number">1</span>);</span><br><span class="line">		<span class="keyword">else</span> b = p, dfa[p] = fb, split_rank(lson[p], a, fa, lson[b], p, k);</span><br><span class="line">		pushup(p);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">split_rank</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span>&amp; a, <span class="keyword">int</span>&amp; b, <span class="keyword">int</span> k)</span> </span>&#123; split_rank(p, a, <span class="number">0</span>, b, <span class="number">0</span>, k); &#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span>&amp; p, <span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(l &gt; r) <span class="keyword">return</span>;</span><br><span class="line">		<span class="keyword">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">		p = ++totnode;</span><br><span class="line">		id[p] = arr[mid], size[p] = <span class="number">1</span>, pos[arr[mid]] = p, dfa[p] = fa;</span><br><span class="line">		rnd[p] = rnd[fa] - (rand() &amp; ((<span class="number">1</span> &lt;&lt; <span class="number">12</span>) - <span class="number">1</span>));</span><br><span class="line">		build(lson[p], l, mid<span class="number">-1</span>, p), build(rson[p], mid+<span class="number">1</span>, r, p);</span><br><span class="line">		pushup(p);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(p == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">		print(lson[p], p);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d "</span>, id[p]);</span><br><span class="line">		print(rson[p], p);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123; print(root, <span class="number">0</span>), <span class="built_in">putchar</span>(<span class="string">'\n'</span>); &#125;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">getrank</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> res = size[lson[p]];</span><br><span class="line">		<span class="keyword">while</span>(dfa[p] != <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span>(rson[dfa[p]] == p) res += size[lson[dfa[p]]] + <span class="number">1</span>; <span class="comment">// 注意这里要+1</span></span><br><span class="line">			p = dfa[p];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">move_top</span><span class="params">(<span class="keyword">int</span> nid)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> k = getrank(pos[nid]), lt, mid, rt;</span><br><span class="line">		split_rank(root, lt, <span class="number">0</span>, rt, <span class="number">0</span>, k), split_rank(rt, mid, <span class="number">0</span>, rt, <span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">		merge(lt, mid, lt, <span class="number">0</span>), merge(root, lt, rt, <span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">move_bot</span><span class="params">(<span class="keyword">int</span> nid)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> k = getrank(pos[nid]), lt, mid, rt;</span><br><span class="line">		split_rank(root, lt, <span class="number">0</span>, rt, <span class="number">0</span>, k), split_rank(rt, mid, <span class="number">0</span>, rt, <span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">		merge(root, lt, rt, <span class="number">0</span>), merge(root, root, mid, <span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> nid, <span class="keyword">int</span> det)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(det == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">		<span class="keyword">int</span> k = getrank(pos[nid]), lt, mid, t, rt;</span><br><span class="line">		split_rank(root, lt, <span class="number">0</span>, rt, <span class="number">0</span>, k), split_rank(rt, mid, <span class="number">0</span>, rt, <span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">		<span class="keyword">if</span>(det &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			split_rank(rt, t, <span class="number">0</span>, rt, <span class="number">0</span>, det);</span><br><span class="line">			merge(lt, lt, t, <span class="number">0</span>), merge(rt, mid, rt, <span class="number">0</span>);</span><br><span class="line">			merge(root, lt, rt, <span class="number">0</span>);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			split_rank(lt, lt, <span class="number">0</span>, t, <span class="number">0</span>, size[lt] + det);</span><br><span class="line">			merge(lt, lt, mid, <span class="number">0</span>), merge(rt, t, rt, <span class="number">0</span>);</span><br><span class="line">			merge(root, lt, rt, <span class="number">0</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">ask</span><span class="params">(<span class="keyword">int</span> nid)</span> </span>&#123; <span class="keyword">return</span> getrank(pos[nid]); &#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getid</span><span class="params">(<span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> lt, mid, rt;</span><br><span class="line">		split_rank(root, lt, rt, k<span class="number">-1</span>), split_rank(rt, mid, rt, <span class="number">1</span>);</span><br><span class="line">		<span class="keyword">int</span> res = id[mid];</span><br><span class="line">		merge(lt, lt, mid), merge(root, lt, rt);</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;bst;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	srand(<span class="number">42</span>);</span><br><span class="line">	readint(n), readint(m);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) readint(arr[i]);</span><br><span class="line">	bst.build(bst.root, <span class="number">1</span>, n, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// return 0;</span></span><br><span class="line">	<span class="keyword">char</span> ins[<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">int</span> x, d;</span><br><span class="line">	<span class="keyword">while</span>(m--) &#123;</span><br><span class="line">		readstr(ins), readint(x);</span><br><span class="line">		<span class="comment">// cerr &lt;&lt; ins &lt;&lt; " " &lt;&lt; x &lt;&lt; endl;</span></span><br><span class="line">		<span class="keyword">if</span>(ins[<span class="number">0</span>] == <span class="string">'T'</span>) bst.move_top(x);</span><br><span class="line">		<span class="keyword">if</span>(ins[<span class="number">0</span>] == <span class="string">'B'</span>) bst.move_bot(x);</span><br><span class="line">		<span class="keyword">if</span>(ins[<span class="number">0</span>] == <span class="string">'I'</span>) readint(d), bst.insert(x, d);</span><br><span class="line">		<span class="keyword">if</span>(ins[<span class="number">0</span>] == <span class="string">'A'</span>) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, bst.ask(x));</span><br><span class="line">		<span class="keyword">if</span>(ins[<span class="number">0</span>] == <span class="string">'Q'</span>) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, bst.getid(x));</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line">		<span class="comment">// bst.print();</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+        </div>
+
+        
+        <div class="card page-about-me flex-row">
+            <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="/img/avatar.jpg"></a>
+            <div class="content flex-col">
+                <p><strong>Rintaro</strong></p>
+                <p><em>Algorithm and Anime</em></p>
+                <p>LN某弱校高一OIer, 想进队ORZ</p>
+            </div>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/12/28/Answer/book/&title=《ZJOI2006 书架》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/12/28/Answer/book/&title=《ZJOI2006 书架》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/12/28/Answer/book/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ZJOI2006 书架》 — Rintaro's Blog&url=http://arintaro.com/2019/12/28/Answer/book/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/12/28/Answer/book/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+        
+
+        
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </article>
+    
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        神犇到访数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Rintaro &copy; 2019 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2019/12/28/Answer/book/&title=《ZJOI2006 书架》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2019/12/28/Answer/book/&title=《ZJOI2006 书架》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2019/12/28/Answer/book/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ZJOI2006 书架》 — Rintaro's Blog&url=http://arintaro.com/2019/12/28/Answer/book/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2019/12/28/Answer/book/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://arintaro.com/2019/12/28/Answer/book/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Rintaro's Blog Here';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Rintaro's Blog';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
