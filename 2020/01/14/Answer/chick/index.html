@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>UOJ284 快乐游戏鸡 | Rintaro&#39;s Blog | Algorithm and Anime</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="单调栈,平衡树,树上启发式合并,长链剖分">
+    <meta name="description" content="Description:@card{ 快乐游戏鸡玩过的游戏是这样的：给定一棵 $n$ 个结点的树，其中 $1$ 号结点是根。每次玩家可以在树上行走，走过一条边需要 $1$ 秒的时间，但只能往当前所在的点的某个儿子走，不能往父亲走。每次游戏需要从 $s$ 号结点走到 $t$ 号结点去。 玩家有一个总死亡次数，初始为 $0$。每个结点上有一个程序猿和一个参数 $w_i$，如果走到结点 $i$ 的时候">
+<meta name="keywords" content="单调栈,平衡树,树上启发式合并,长链剖分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UOJ284 快乐游戏鸡">
+<meta property="og:url" content="http://arintaro.com/2020/01/14/Answer/chick/index.html">
+<meta property="og:site_name" content="Rintaro&#39;s Blog">
+<meta property="og:description" content="Description:@card{ 快乐游戏鸡玩过的游戏是这样的：给定一棵 $n$ 个结点的树，其中 $1$ 号结点是根。每次玩家可以在树上行走，走过一条边需要 $1$ 秒的时间，但只能往当前所在的点的某个儿子走，不能往父亲走。每次游戏需要从 $s$ 号结点走到 $t$ 号结点去。 玩家有一个总死亡次数，初始为 $0$。每个结点上有一个程序猿和一个参数 $w_i$，如果走到结点 $i$ 的时候">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-01-14T05:37:31.931Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UOJ284 快乐游戏鸡">
+<meta name="twitter:description" content="Description:@card{ 快乐游戏鸡玩过的游戏是这样的：给定一棵 $n$ 个结点的树，其中 $1$ 号结点是根。每次玩家可以在树上行走，走过一条边需要 $1$ 秒的时间，但只能往当前所在的点的某个儿子走，不能往父亲走。每次游戏需要从 $s$ 号结点走到 $t$ 号结点去。 玩家有一个总死亡次数，初始为 $0$。每个结点上有一个程序猿和一个参数 $w_i$，如果走到结点 $i$ 的时候">
+    
+        <link rel="alternate" type="application/atom+xml" title="Rintaro&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Rintaro</h5>
+          <a href="mailto:rintaro@foxmail.com" title="rintaro@foxmail.com" class="mail">rintaro@foxmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ARintaro" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="tencent://QQInterLive/?Cmd=2&Uin=296394065" target="_blank">
+                <i class="icon icon-lg icon-qq"></i>
+                QQ
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">UOJ284 快乐游戏鸡</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header page-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">UOJ284 快乐游戏鸡</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-01-14T05:31:18.445Z" itemprop="datePublished" class="page-time">
+  2020-01-14
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/UOJ/">UOJ</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/UOJ/题解/">题解</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    <article class="page-article fade" itemprop="blogPage">
+        <div class="post-content page-content" id="page-content" itemprop="pageContent">
+            <a id="more"></a>
+<h2><span id="description">Description:</span></h2><div class="card">
+<p>快乐游戏鸡玩过的游戏是这样的：给定一棵 $n$ 个结点的树，其中 $1$ 号结点是根。每次玩家可以在树上行走，走过一条边需要 $1$ 秒的时间，但只能往当前所在的点的某个儿子走，不能往父亲走。每次游戏需要从 $s$ 号结点走到 $t$ 号结点去。</p>
+<p>玩家有一个总死亡次数，初始为 $0$。每个结点上有一个程序猿和一个参数 $w_i$，如果走到结点 $i$ 的时候，当前总的死亡次数小于 $w_i$，那么玩家就会立刻死亡并回到起点 $s$，且该死亡过程不需要时间；如果总死亡次数大于等于 $w_i$，那么玩家就能熟练地对付程序猿从而安然无恙。注意每次游戏时不需要考虑 $s$ 和 $t$ 上的程序猿。</p>
+<p>要求做到单$log$级别，询问与$n$同级。</p>
+</div>
+<h2><span id="solution">Solution:</span></h2><div class="card">
+<p>首先发现最优方案肯定是先找个地方练级，一直练到$s$与$t$之间的最大值，再直接走过去，这样就与$t$无关了，我们的问题即转化成从$s$出发至少多长时间能死到一定的次数。</p>
+<p>再发现每次只要找个深度最浅的练级的地方练肯定是最优的，那么可能的决策就形成了一个深度单调递增，同时$w_i$也单调递增的数列，每次二分即可，好像这样就有$70pts$了。</p>
+<p>问题在于怎么把这个过程放到树上，由于我第一次写这题时还不会长链剖分，于是直接用了重链剖分+平衡树维护单调栈，做到了两个$\log$。</p>
+</div>
+<h2><span id="code">Code:</span></h2><div class="card">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> buf[<span class="number">1</span>&lt;&lt;<span class="number">21</span>], *p1, *p2;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> getc() (p1 == p2 &amp;&amp; (p2 = (p1 = buf) + fread(buf, 1, 1&lt;&lt;21, stdin)), p1 == p2 ? EOF : *p1++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lint long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> isnum(x) (<span class="meta-string">'0'</span> &lt;= (x) &amp;&amp; (x) &lt;= <span class="meta-string">'9'</span>)</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> tint&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">readint</span><span class="params">(tint&amp; x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> f = <span class="number">1</span>; <span class="keyword">char</span> ch = getc(); x = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(; !isnum(ch); ch = getc()) <span class="keyword">if</span>(ch == <span class="string">'-'</span>) f = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(; isnum(ch); ch = getc()) x = x * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">	x *= f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">mlog2</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x &lt;= <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">double</span> t = x;</span><br><span class="line">	<span class="keyword">return</span> (<span class="keyword">int</span>)((lint&amp;)t &gt;&gt; <span class="number">52</span> &amp; <span class="number">63</span>) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">3e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm = <span class="number">2</span> * maxn;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxd = <span class="number">19</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">int</span> arr[maxn];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> head[maxn], ev[maxm], nxt[maxm], totedge = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addedge</span><span class="params">(<span class="keyword">int</span> nu, <span class="keyword">int</span> nv)</span> </span>&#123;</span><br><span class="line">	ev[++totedge] = nv, nxt[totedge] = head[nu], head[nu] = totedge;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> bst&#123;</span><br><span class="line">	<span class="keyword">int</span> lson[maxn], rson[maxn];</span><br><span class="line">	<span class="keyword">int</span> dep[maxn], val[maxn], det[maxn], size[maxn], rnd[maxn];</span><br><span class="line">	lint sum_det[maxn], sum_mul[maxn];</span><br><span class="line">	<span class="keyword">int</span> root;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(p == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">		print(lson[p]), <span class="built_in">printf</span>(<span class="string">"%d "</span>, p), print(rson[p]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123; print(root), <span class="built_in">puts</span>(<span class="string">""</span>); &#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123; root = <span class="number">0</span>; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushup</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">		sum_det[p] = sum_det[lson[p]] + sum_det[rson[p]] + det[p];</span><br><span class="line">		sum_mul[p] = sum_mul[lson[p]] + sum_mul[rson[p]] + (lint)dep[p] * det[p];</span><br><span class="line">		size[p] = size[lson[p]] + size[rson[p]] + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">newnode</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123; size[p] = <span class="number">1</span>, lson[p] = rson[p] = <span class="number">0</span>, rnd[p] = rand(); &#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">split_rank</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span>&amp; a, <span class="keyword">int</span>&amp; b, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(p == <span class="number">0</span>) &#123; a = b = <span class="number">0</span>; <span class="keyword">return</span>; &#125;</span><br><span class="line">		<span class="keyword">if</span>(k &gt; size[lson[p]]) a = p, split_rank(rson[p], rson[a], b, k - size[lson[p]] - <span class="number">1</span>);</span><br><span class="line">		<span class="keyword">else</span> b = p, split_rank(lson[p], a, lson[b], k);</span><br><span class="line">		pushup(p);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">split_val</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span>&amp; a, <span class="keyword">int</span>&amp; b, <span class="keyword">int</span> nval)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(p == <span class="number">0</span>) &#123; a = b = <span class="number">0</span>; <span class="keyword">return</span>; &#125;</span><br><span class="line">		<span class="keyword">if</span>(nval &gt;= val[p]) a = p, split_val(rson[p], rson[a], b, nval);</span><br><span class="line">		<span class="keyword">else</span> b = p, split_val(lson[p], a, lson[b], nval);</span><br><span class="line">		pushup(p);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">split_dep</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span>&amp; a, <span class="keyword">int</span>&amp; b, <span class="keyword">int</span> ndep)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(p == <span class="number">0</span>) &#123; a = b = <span class="number">0</span>; <span class="keyword">return</span>; &#125;</span><br><span class="line">		<span class="keyword">if</span>(ndep &gt;= dep[p]) a = p, split_dep(rson[p], rson[a], b, ndep);</span><br><span class="line">		<span class="keyword">else</span> b = p, split_dep(lson[p], a, lson[b], ndep);</span><br><span class="line">		pushup(p);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>&amp; p, <span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(a == <span class="number">0</span> || b == <span class="number">0</span>) &#123; p = a + b; <span class="keyword">return</span>; &#125;</span><br><span class="line">		<span class="keyword">if</span>(rnd[a] &gt;= rnd[b]) p = a, merge(rson[p], rson[a], b);</span><br><span class="line">		<span class="keyword">else</span> p = b, merge(lson[p], a, lson[b]);</span><br><span class="line">		pushup(p);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">getlas</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123; <span class="keyword">return</span> rson[p] ? getlas(rson[p]) : p; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> lt, mid, rt;</span><br><span class="line">		split_dep(root, lt, rt, dep[p]);</span><br><span class="line">		<span class="keyword">int</span> t = getlas(lt);</span><br><span class="line">		<span class="keyword">if</span>(val[t] &gt;= val[p]) &#123; merge(root, lt, rt); <span class="keyword">return</span>; &#125;</span><br><span class="line">		newnode(p), det[p] = val[p] - val[t], pushup(p);</span><br><span class="line">		split_val(rt, mid, rt, val[p]), split_rank(rt, mid, rt, <span class="number">1</span>);</span><br><span class="line">		<span class="keyword">if</span>(mid) det[mid] = val[mid] - val[p], pushup(mid);</span><br><span class="line">		merge(lt, lt, p), merge(lt, lt, mid), merge(root, lt, rt);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">lint <span class="title">ask</span><span class="params">(<span class="keyword">int</span> aim, <span class="keyword">int</span> ndep)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> lt, mid, rt;</span><br><span class="line">		split_val(root, lt, rt, aim - <span class="number">1</span>), split_rank(rt, mid, rt, <span class="number">1</span>);</span><br><span class="line">		lint res = sum_mul[lt] - ndep * sum_det[lt] + (lint)(dep[mid] - ndep) * (aim + det[mid] - val[mid]);</span><br><span class="line">		merge(lt, lt, mid), merge(root, lt, rt);</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> dfa[maxn][maxd], deep[maxn], size[maxn], wson[maxn];</span><br><span class="line"><span class="keyword">int</span> maxval[maxn][maxd];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs1</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> d, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">	size[x] = <span class="number">1</span>, deep[x] = d, bst::dep[x] = d;</span><br><span class="line">	dfa[x][<span class="number">0</span>] = fa, maxval[x][<span class="number">0</span>] = arr[fa];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> t=<span class="number">1</span>; (<span class="number">1</span>&lt;&lt;t)&lt;=d; t++) </span><br><span class="line">		dfa[x][t] = dfa[dfa[x][t<span class="number">-1</span>]][t<span class="number">-1</span>], maxval[x][t] = max(maxval[x][t<span class="number">-1</span>], maxval[dfa[x][t<span class="number">-1</span>]][t<span class="number">-1</span>]);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=head[x], y=ev[i]; i; i=nxt[i], y=ev[i]) &#123;</span><br><span class="line">		dfs1(y, d + <span class="number">1</span>, x), size[x] += size[y];</span><br><span class="line">		<span class="keyword">if</span>(size[y] &gt; size[wson[x]]) wson[x] = y;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs2</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	bst::insert(x);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=head[x], y=ev[i]; i; i=nxt[i], y=ev[i]) dfs2(y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> qx[maxn], qy[maxn], qaim[maxn];</span><br><span class="line">lint ans[maxn];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">ask</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> anc)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> t=mlog2(deep[x] - deep[anc]); t&gt;=<span class="number">0</span>; t--) &#123;</span><br><span class="line">		<span class="keyword">if</span>(deep[dfa[x][t]] &gt; deep[anc]) res = max(res, maxval[x][t]), x = dfa[x][t];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; qid[maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs3</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">bool</span> flag)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=head[x], y=ev[i]; i; i=nxt[i], y=ev[i]) <span class="keyword">if</span>(y != wson[x]) dfs3(y, <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">if</span>(wson[x]) dfs3(wson[x], <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span>(!qid[x].size() &amp;&amp; flag) &#123; bst::clear(); <span class="keyword">return</span>; &#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=head[x], y=ev[i]; i; i=nxt[i], y=ev[i]) <span class="keyword">if</span>(y != wson[x]) dfs2(y);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;qid[x].size(); i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> now = qid[x][i];</span><br><span class="line">		ans[now] = bst::ask(qaim[now], deep[x]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(!flag) bst::insert(x);</span><br><span class="line">	<span class="keyword">else</span> bst::clear();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	readint(n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) readint(arr[i]), bst::val[i] = arr[i];</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;=n; i++) readint(x), addedge(x, i);</span><br><span class="line">	dfs1(<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">	readint(m);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=m; i++) &#123;</span><br><span class="line">		readint(qx[i]), readint(qy[i]);</span><br><span class="line">		qaim[i] = ask(qy[i], qx[i]);</span><br><span class="line">		qid[qx[i]].push_back(i);</span><br><span class="line">	&#125;</span><br><span class="line">	dfs3(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=m; i++) <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans[i] + deep[qy[i]] - deep[qx[i]]);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+        </div>
+
+        
+        <div class="card page-about-me flex-row">
+            <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="/img/avatar.jpg"></a>
+            <div class="content flex-col">
+                <p><strong>Rintaro</strong></p>
+                <p><em>Algorithm and Anime</em></p>
+                <p>LN某弱校高一OIer, 想进队ORZ</p>
+            </div>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2020/01/14/Answer/chick/&title=《UOJ284 快乐游戏鸡》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2020/01/14/Answer/chick/&title=《UOJ284 快乐游戏鸡》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2020/01/14/Answer/chick/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《UOJ284 快乐游戏鸡》 — Rintaro's Blog&url=http://arintaro.com/2020/01/14/Answer/chick/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2020/01/14/Answer/chick/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+        
+
+        
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </article>
+    
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        神犇到访数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Rintaro &copy; 2019 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://arintaro.com/2020/01/14/Answer/chick/&title=《UOJ284 快乐游戏鸡》 — Rintaro's Blog&pic=http://arintaro.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://arintaro.com/2020/01/14/Answer/chick/&title=《UOJ284 快乐游戏鸡》 — Rintaro's Blog&source=某弱省一弱校高一OIer" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://arintaro.com/2020/01/14/Answer/chick/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《UOJ284 快乐游戏鸡》 — Rintaro's Blog&url=http://arintaro.com/2020/01/14/Answer/chick/&via=http://arintaro.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://arintaro.com/2020/01/14/Answer/chick/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://arintaro.com/2020/01/14/Answer/chick/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Rintaro's Blog Here';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Rintaro's Blog';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

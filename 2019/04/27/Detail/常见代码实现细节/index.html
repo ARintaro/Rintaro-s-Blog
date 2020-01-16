@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="Rintaro&#39;s Blog">
 <meta property="og:description" content="这里记录的问题，全是我调过的问题orz。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-09T10:21:59.815Z">
+<meta property="og:updated_time" content="2020-01-14T10:45:04.831Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见代码实现细节">
 <meta name="twitter:description" content="这里记录的问题，全是我调过的问题orz。">
@@ -188,7 +188,7 @@
 <li>维护一个最小值变量初值要设为inf，维护最大值有负数的时候要赋为-inf</li>
 <li>注意非负整数与“正整数”的区别，值域里可能会有0</li>
 <li>有时候求区间$[l,r]$之类的，$l&gt;=1$，有时候我们利用区间可减性会导致值域里出现$0$，注意特判。</li>
-<li>三目运算符一定要加括号！</li>
+<li>三目运算符一定要加括号！(*</li>
 </ol>
 </div>
 <h2><span id="三-语言问题"><strong>三、语言问题</strong></span></h2><div class="card">
@@ -239,7 +239,7 @@
 <li>翻转序列等需要改变子树顺序的延时标记需要在进入时立即下放，为了防止翻车，我们不如无论什么标记都是进入时立即下放</li>
 <li>下放延时标记时，需要考虑此标记对其他标记的影响，需要一起结算，（eg: 区间加区间最小值最大值的影响</li>
 <li>pushup与pushdown时，注意不要错误地把下标为0的节点信息更新来更新去</li>
-<li>在操作任何“实点”前需要pushdown，在修改后需要pushup。（*</li>
+<li>在操作任何“实点”前需要pushdown，在修改后需要pushup。（**</li>
 <li>将操作重新排序后，注意是删除操作优先，还是增加操作优先</li>
 <li>邻接表 i=nxt[i], 千万别写成 i=nxt[x]</li>
 <li>如果一个数据结构题需要大量判边界，前驱后继是否存在等，一般是要插几个inf或-inf的虚点减少特判。</li>
